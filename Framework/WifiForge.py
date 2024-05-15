@@ -1,6 +1,6 @@
 import os
 
-os.system("git clone git@github.com:her3ticAVI/MiniNet-Framework.git  && cd MiniNet-Framework/DevSetup/mininet-wifi && sudo python3 Joes_setup.py && cd  ../../")
+os.system("cd MiniNet-Framework/DevSetup/mininet-wifi && sudo python3 Joes_setup.py && cd  ../../")
 
 # ANSI escape codes for colors
 RED = "\033[91m"
