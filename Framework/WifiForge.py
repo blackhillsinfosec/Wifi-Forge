@@ -1,7 +1,5 @@
 import os
 
-os.system("cd MiniNet-Framework/DevSetup/mininet-wifi && sudo python3 Joes_setup.py && cd  ../../")
-
 # ANSI escape codes for colors
 RED = "\033[91m"
 GREEN = "\033[92m"
