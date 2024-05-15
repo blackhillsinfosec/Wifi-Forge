@@ -1,0 +1,543 @@
+#!/usr/bin/env python
+
+"""
+Mininet runner
+author: Brandon Heller (brandonh@stanford.edu) -
+Modified by: Ramon Fontes (ramonrf@dca.fee.unicamp.br)
+
+To see options:
+  sudo mn -h
+"""
+
+from optparse import OptionParser
+import os
+import sys
+import time
+
+from sys import version_info as py_version_info
+
+# Fix setuptools' evil madness, and open up (more?) security holes
+if 'PYTHONPATH' in os.environ:
+    sys.path = os.environ[ 'PYTHONPATH' ].split(':') + sys.path
+
+from mininet.clean import cleanup
+from mininet.log import lg, LEVELS, info, debug, error, output
+from mininet.net import Mininet, MininetWithControlNet
+from mininet.node import (Host, CPULimitedHost, Controller, OVSController,
+                          Ryu, NOX, RemoteController, findController,
+                          DefaultController, NullController,
+                          UserSwitch, OVSSwitch, OVSBridge, IVSSwitch)
+from mininet.nodelib import LinuxBridge
+from mininet.link import Link, TCLink, TCULink, OVSLink
+
+from mininet.topo import (SingleSwitchTopo, LinearTopo,
+                          SingleSwitchReversedTopo,
+                          MinimalTopo)
+from mininet.topolib import TreeTopo, TorusTopo
+from mininet.util import customClass, specialClass, splitArgs, buildTopo
+
+import mn_wifi.cli
+from mn_wifi.bmv2 import switches, aps
+from mn_wifi.clean import cleanup_wifi
+from mn_wifi.net import VERSION, Mininet_wifi, MininetWithControlWNet
+from mn_wifi.topo import (SingleAPTopo, LinearWirelessTopo,
+                          MinimalWirelessTopo)
+from mn_wifi.link import WirelessLink, wmediumd
+from mn_wifi.node import (Station, UserAP, OVSAP, CPULimitedStation)
+
+
+# built in topologies, created only when run
+TOPODEF = 'minimal'
+TOPOS = { 'minimal': MinimalTopo,
+          'linear': LinearTopo,
+          'reversed': SingleSwitchReversedTopo,
+          'single': SingleSwitchTopo,
+          'tree': TreeTopo,
+          'torus': TorusTopo }
+
+SWITCHDEF = 'default'
+SWITCHES = { 'user': UserSwitch,
+             'ovs': OVSSwitch,
+             'ovsbr' : OVSBridge,
+             # Keep ovsk for compatibility with 2.0
+             'ovsk': OVSSwitch,
+             'ivs': IVSSwitch,
+             'lxbr': LinuxBridge,
+             'default': OVSSwitch }
+SWITCHES.update(switches)
+
+APDEF = 'default'
+APS = { 'user': UserAP,
+        'ovs': OVSAP,
+        'ovsbr' : OVSBridge,
+        # Keep ovsk for compatibility with 2.0
+        'ovsk': OVSAP,
+        'lxbr': LinuxBridge,
+        'default': OVSAP }
+APS.update(aps)
+
+HOSTDEF = 'proc'
+HOSTS = { 'proc': Host,
+          'rt': specialClass(CPULimitedHost, defaults=dict(sched='rt')),
+          'cfs': specialClass(CPULimitedHost, defaults=dict(sched='cfs')) }
+
+STATIONDEF = 'proc'
+STATIONS = { 'proc': Station,
+          'rt': specialClass(CPULimitedStation, defaults=dict(sched='rt')),
+          'cfs': specialClass(CPULimitedStation, defaults=dict(sched='cfs')) }
+
+CONTROLLERDEF = 'default'
+
+CONTROLLERS = { 'ref': Controller,
+                'ovsc': OVSController,
+                'nox': NOX,
+                'remote': RemoteController,
+                'ryu': Ryu,
+                'default': DefaultController,  # Note: overridden below
+                'none': NullController }
+
+LINKDEF = 'default'
+LINKS = { 'default': Link,  # Note: overridden below
+          'tc': TCLink,
+          'wtc': WirelessLink,
+          'wmediumd': wmediumd,
+          'tcu': TCULink,
+          'ovs': OVSLink }
+
+# TESTS dict can contain functions and/or Mininet() method names
+# XXX: it would be nice if we could specify a default test, but
+# this may be tricky
+TESTS = { name: True
+          for name in ( 'pingall', 'pingpair', 'iperf', 'iperfudp' ) }
+
+CLI = None  # Set below if needed
+
+# Locally defined tests
+def allTest( net ):
+    "Run ping and iperf tests"
+    net.waitConnected()
+    net.start()
+    net.ping()
+    net.iperf()
+
+def nullTest( _net ):
+    "Null 'test' (does nothing)"
+    pass
+
+TESTS.update( all=allTest, none=nullTest, build=nullTest )
+
+# Map to alternate spellings of Mininet() methods
+ALTSPELLING = { 'pingall': 'pingAll', 'pingpair': 'pingPair',
+                'iperfudp': 'iperfUdp' }
+
+def runTests( mn, options ):
+    """Run tests
+       mn: Mininet object
+       option: list of test optinos """
+    # Split option into test name and parameters
+    for option in options:
+        # Multiple tests may be separated by '+' for now
+        for test in option.split( '+' ):
+            test, args, kwargs = splitArgs( test )
+            test = ALTSPELLING.get( test.lower(), test )
+            testfn = TESTS.get( test, test )
+            if callable( testfn ):
+                testfn( mn, *args, **kwargs )
+            elif hasattr( mn, test ):
+                mn.waitConnected()
+                getattr( mn, test )( *args, **kwargs )
+            else:
+                raise Exception( 'Test %s is unknown - please specify one of '
+                                 '%s ' % ( test, TESTS.keys() ) )
+
+def addDictOption(opts, choicesDict, default, name, **kwargs):
+    """Convenience function to add choices dicts to OptionParser.
+       opts: OptionParser instance
+       choicesDict: dictionary of valid choices, must include default
+       default: default choice key
+       name: long option name
+       kwargs: additional arguments to add_option"""
+    helpStr = ('|'.join(sorted(choicesDict.keys())) +
+               '[,param=value...]')
+    helpList = [ '%s=%s' % (k, v.__name__)
+                 for k, v in choicesDict.items() ]
+    helpStr += ' ' + (' '.join(helpList))
+    params = dict(type='string', default=default, help=helpStr)
+    params.update(**kwargs)
+    opts.add_option('--' + name, **params)
+
+
+def version(*_args):
+    "Print Mininet version and exit"
+    output( "%s\n" % VERSION )
+    sys.exit()
+
+
+class MininetRunner(object):
+    "Build, setup, and run Mininet."
+
+    def __init__(self):
+        "Init."
+        self.options = None
+        self.args = None  # May be used someday for more CLI scripts
+        self.validate = None
+
+        self.parseArgs()
+        self.setup()
+        self.begin()
+
+    def custom(self, _option, _opt_str, value, _parser):
+        """Parse custom file and add params.
+           option: option e.g. --custom
+           opt_str: option string e.g. --custom
+           value: the value the follows the option
+           parser: option parser instance"""
+        files = []
+        if os.path.isfile(value):
+            # Accept any single file (including those with commas)
+            files.append(value)
+        else:
+            # Accept a comma-separated list of filenames
+            files += value.split(',')
+
+        for fileName in files:
+            customs = {}
+            if os.path.isfile(fileName):
+                exec (compile(open(fileName, "rb").read(), fileName, 'exec'),
+                      customs, customs)
+                if py_version_info < (3, 0):
+                    custom_items = customs.iteritems()
+                else:
+                    custom_items = customs.items()
+                for name, val in custom_items:
+                    self.setCustom(name, val)
+            else:
+                raise Exception('could not find custom file: %s' % fileName)
+
+    def setCustom(self, name, value):
+        "Set custom parameters for MininetRunner."
+        if name in ('topos', 'switches', 'aps', 'hosts', 'controllers', 'links'
+                    'testnames', 'tests'):
+            # Update dictionaries
+            param = name.upper()
+            globals()[ param ].update(value)
+        elif name == 'validate':
+            # Add custom validate function
+            self.validate = value
+        else:
+            # Add or modify global variable or class
+            globals()[ name ] = value
+
+    def setNat(self, _option, opt_str, value, parser):
+        "Set NAT option(s)"
+        assert self  # satisfy pylint
+        parser.values.nat = True
+        # first arg, first char != '-'
+        if parser.rargs and parser.rargs[ 0 ][ 0 ] != '-':
+            value = parser.rargs.pop(0)
+            _, args, kwargs = splitArgs(opt_str + ',' + value)
+            parser.values.nat_args = args
+            parser.values.nat_kwargs = kwargs
+        else:
+            parser.values.nat_args = []
+            parser.values.nat_kwargs = {}
+
+    def parseArgs(self):
+        """Parse command-line args and return options object.
+           returns: opts parse options dict"""
+
+        desc = ("The %prog utility creates Mininet network from the\n"
+                "command line. It can create parametrized topologies,\n"
+                "invoke the Mininet CLI, and run tests.")
+
+        usage = ('%prog [options]\n'
+                 '(type %prog -h for details)')
+
+        opts = OptionParser(description=desc, usage=usage)
+        addDictOption(opts, SWITCHES, SWITCHDEF, 'switch')
+        addDictOption(opts, APS, APDEF, 'ap')
+        addDictOption(opts, HOSTS, HOSTDEF, 'host')
+        addDictOption(opts, STATIONS, STATIONDEF, 'station')
+        addDictOption(opts, CONTROLLERS, [], 'controller', action='append')
+        addDictOption(opts, LINKS, LINKDEF, 'link')
+        addDictOption(opts, TOPOS, TOPODEF, 'topo')
+
+        opts.add_option('--client-isolation', action='store_true', dest="client_isolation",
+                        default=False, help='prevent low-level bridging of frames '
+                                            'between associated stations in the BSS')
+        opts.add_option('--wifi', '-w', action='store_true',
+                        default=False, help='activate wifi')
+        opts.add_option('--ieee80211w', type='string',
+                        default=None, help='enable ieee80211w')
+        opts.add_option('--docker', '-d', action='store_true',
+                        default=False, help='for docker environment')
+        opts.add_option('--container', type='string',
+                        default="mininet-wifi", help='docker: container name')
+        opts.add_option('--json-file', type='string',
+                        default=False, help='json file dir')
+        opts.add_option('--ssh-user', type='string',
+                        default="alpha", help='docker: ssh username')
+        opts.add_option('--plot', action='store_true',
+                        default=False, help='plot 2D graph')
+        opts.add_option('--plot3d', action='store_true',
+                        default=False, help='plot 3D graph')
+        opts.add_option('--channel', type='int',
+                        default=1, help='wireless channel configuration')
+        opts.add_option('--band', type='int',
+                        default=20, help='wireless bandwidth channel')
+        opts.add_option('--mode', type='string',
+                        default="g", help='wireless mode configuration')
+        opts.add_option('--ssid', type='string',
+                        default="my-ssid", help='wireless ssid configuration')
+        opts.add_option('--encrypt', type='string',
+                        default="", help='wireless encryption protocol')
+        opts.add_option('--passwd', type='string',
+                        default="", help='passphrase')
+        opts.add_option('--clean', '-c', action='store_true',
+                        default=False, help='clean and exit')
+        opts.add_option('--custom', action='callback',
+                        callback=self.custom, type='string',
+                        help='read custom classes or params from .py file(s)')
+        opts.add_option('--test', default=[], action='append',
+                        dest='test', help='|'.join(TESTS.keys()))
+        opts.add_option('--xterms', '-x', action='store_true',
+                        default=False, help='spawn xterms for each node')
+        opts.add_option('--ipbase', '-i', type='string', default='10.0.0.0/8',
+                        help='base IP address for hosts')
+        opts.add_option('--mac', action='store_true',
+                        default=False, help='automatically set host MACs')
+        opts.add_option('--position', action='store_true',
+                        default=False, help='automatically set node Positions')
+        opts.add_option('--arp', action='store_true',
+                        default=False, help='set all-pairs ARP entries')
+        opts.add_option('--verbosity', '-v', type='choice',
+                        choices=list(LEVELS.keys()), default='info',
+                        help='|'.join(list(LEVELS.keys())))
+        opts.add_option('--innamespace', action='store_true',
+                        default=False, help='sw and ctrl in namespace?')
+        opts.add_option('--listenport', type='int', default=6634,
+                        help='base port for passive switch listening')
+        opts.add_option('--nolistenport', action='store_true',
+                        default=False, help="don't use passive listening " +
+                        "port")
+        opts.add_option('--pre', type='string', default=None,
+                        help='CLI script to run before tests')
+        opts.add_option('--post', type='string', default=None,
+                        help='CLI script to run after tests')
+        opts.add_option('--pin', action='store_true',
+                        default=False, help="pin hosts to CPU cores "
+                        "(requires --host cfs or --host rt)")
+        opts.add_option('--nat', action='callback', callback=self.setNat,
+                        help="adds a NAT to the topology that"
+                        " connects Mininet hosts to the physical network."
+                        " Warning: This may route any traffic on the machine"
+                        " that uses Mininet's"
+                        " IP subnet into the Mininet network."
+                        " If you need to change"
+                        " Mininet's IP subnet, see the --ipbase option.")
+        opts.add_option('--version', action='callback', callback=version,
+                        help='prints the version and exits')
+
+        self.options, self.args = opts.parse_args()
+
+        # We don't accept extra arguments after the options
+        if self.args:
+            opts.print_help()
+            sys.exit()
+
+    def setup(self):
+        "Setup and validate environment."
+
+        # set logging verbosity
+        if LEVELS[self.options.verbosity] > LEVELS['output']:
+            info('*** WARNING: selected verbosity level (%s) will hide CLI '
+                 'output!\n'
+                 'Please restart Mininet with -v [debug, info, output].'
+                 % self.options.verbosity)
+        lg.setLogLevel(self.options.verbosity)
+
+    # Maybe we'll reorganize this someday...
+    # pylint: disable=too-many-branches,too-many-statements
+
+    def begin(self):
+        "Create and run mininet."
+
+        global CLI
+
+        opts = self.options
+
+        if opts.clean:
+            cleanup()
+            cleanup_wifi()
+            sys.exit()
+
+        start = time.time()
+
+        if not opts.controller:
+            # Update default based on available controllers
+            CONTROLLERS[ 'default' ] = findController()
+            opts.controller = [ 'default' ]
+            if not CONTROLLERS[ 'default' ]:
+                opts.controller = [ 'none' ]
+                if opts.switch == 'default':
+                    info('*** No default OpenFlow controller found '
+                         'for default switch!\n')
+                    info('*** Falling back to OVS Bridge\n')
+                    opts.switch = 'ovsbr'
+                elif opts.switch not in ('ovsbr', 'lxbr'):
+                    raise Exception("Could not find a default controller "
+                                    "for switch %s" %
+                                    opts.switch)
+                if opts.ap == 'default':
+                    info('*** No default OpenFlow controller found '
+                         'for default ap!\n')
+                    info('*** Falling back to OVS Bridge\n')
+                    opts.ap = 'ovsbr'
+                elif opts.ap not in ('ovsbr', 'lxbr'):
+                    raise Exception("Could not find a default controller "
+                                    "for ap %s" %
+                                    opts.ap)
+
+        if opts.wifi:
+            TOPOS['single'] = SingleAPTopo
+            TOPOS['linear'] = LinearWirelessTopo
+            TOPOS['minimal'] = MinimalWirelessTopo
+            if opts.link == 'default':
+                opts.link = 'wtc'
+
+        topo = buildTopo(TOPOS, opts.topo)
+        switch = customClass(SWITCHES, opts.switch)
+        ap = customClass(APS, opts.ap)
+        host = customClass(HOSTS, opts.host)
+        station = customClass(STATIONS, opts.station)
+        controller = [ customClass(CONTROLLERS, c)
+                       for c in opts.controller ]
+
+        if opts.switch == 'user' and opts.link == 'default':
+            debug('*** Using TCULink with UserSwitch\n')
+            # Use link configured correctly for UserSwitch
+            opts.link = 'tcu'
+        elif opts.ap == 'user' and opts.link == 'default':
+            debug('*** Using TCULink with UserAP\n')
+            # Use link configured correctly for UserAP
+            opts.link = 'tcu'
+
+        link = customClass(LINKS, opts.link)
+
+        if self.validate:
+            self.validate(opts)
+
+        ipBase = opts.ipbase
+        xterms = opts.xterms
+        mac = opts.mac
+        arp = opts.arp
+        pin = opts.pin
+        position = opts.position
+        channel = opts.channel
+        band = opts.band
+        mode = opts.mode
+        ssid = opts.ssid
+        ieee80211w = opts.ieee80211w
+        encrypt = opts.encrypt
+        passwd = opts.passwd
+        docker = opts.docker
+        json_file = opts.json_file
+        ssh_user = opts.ssh_user
+        container = opts.container
+        client_isolation = opts.client_isolation
+        plot = opts.plot
+        plot3d = opts.plot3d
+        listenPort = 'None'
+
+        inNamespace = opts.innamespace
+        if not opts.nolistenport:
+            listenPort = opts.listenport
+
+        if opts.wifi:
+            Net = MininetWithControlWNet if opts.innamespace else Mininet_wifi
+        else:
+            Net = MininetWithControlNet if opts.innamespace else Mininet
+
+        if opts.wifi:
+            mn = Net(topo=topo,
+                     switch=switch, accessPoint=ap, host=host, station=station,
+                     controller=controller,
+                     link=link,
+                     ipBase=ipBase,
+                     inNamespace=inNamespace,
+                     channel=channel,
+                     band=band,
+                     mode=mode,
+                     ssid=ssid,
+                     ieee80211w=ieee80211w,
+                     encrypt=encrypt,
+                     passwd=passwd,
+                     client_isolation=client_isolation,
+                     docker=docker,
+                     container=container,
+                     json_file=json_file,
+                     ssh_user=ssh_user,
+                     plot=plot,
+                     plot3d=plot3d,
+                     xterms=xterms, autoSetMacs=mac,
+                     autoStaticArp=arp, autoPinCpus=pin,
+                     listenPort=listenPort,
+                     autoSetPositions=position)
+        else:
+            mn = Net(topo=topo,
+                     switch=switch, host=host, controller=controller, link=link,
+                     ipBase=opts.ipbase, inNamespace=opts.innamespace,
+                     xterms=opts.xterms, autoSetMacs=opts.mac,
+                     autoStaticArp=opts.arp, autoPinCpus=opts.pin,
+                     listenPort=opts.listenport)
+
+        if opts.ensure_value('nat', False):
+            mn.addNAT(*opts.nat_args, **opts.nat_kwargs).configDefault()
+
+        # --custom files can set CLI or change mininet.cli.CLI
+        if opts.wifi:
+            CLI = mn_wifi.cli.CLI if CLI is None else CLI
+        else:
+            from mininet.cli import CLI as mininet_cli
+            CLI = mininet_cli if CLI is None else CLI
+
+        if opts.pre:
+            CLI(mn, script=opts.pre)
+
+        mn.start()
+
+        if opts.test:
+            runTests(mn, opts.test)
+        else:
+            CLI(mn)
+
+        if opts.post:
+            CLI(mn, script=opts.post)
+
+        mn.stop()
+
+        elapsed = float(time.time() - start)
+        info('completed in %0.3f seconds\n' % elapsed)
+
+
+if __name__ == "__main__":
+    try:
+        MininetRunner()
+    except KeyboardInterrupt:
+        info("\n\nKeyboard Interrupt. Shutting down and cleaning up...\n\n")
+        cleanup()
+        cleanup_wifi()
+    except Exception:
+        # Print exception
+        type_, val_, trace_ = sys.exc_info()
+        errorMsg = ("-"*80 + "\n" +
+                    "Caught exception. Cleaning up...\n\n" +
+                    "%s: %s\n" % (type_.__name__, val_) +
+                    "-"*80 + "\n")
+        error(errorMsg)
+        # Print stack trace to debug log
+        import traceback
+        stackTrace = traceback.format_exc()
+        debug(stackTrace + "\n")
+        cleanup()
+        cleanup_wifi()

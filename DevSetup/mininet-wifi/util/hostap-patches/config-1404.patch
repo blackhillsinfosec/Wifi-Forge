@@ -1,0 +1,218 @@
+diff --git hostapd/defconfig hostapd/defconfig
+index aeac13a67..9a80f00c1 100644
+--- hostapd/defconfig
++++ hostapd/defconfig
+@@ -114,11 +114,11 @@ CONFIG_EAP_TTLS=y
+ #CONFIG_EAP_FAST=y
+ 
+ # Wi-Fi Protected Setup (WPS)
+-#CONFIG_WPS=y
++CONFIG_WPS=y
+ # Enable UPnP support for external WPS Registrars
+-#CONFIG_WPS_UPNP=y
++CONFIG_WPS_UPNP=y
+ # Enable WPS support with NFC config method
+-#CONFIG_WPS_NFC=y
++CONFIG_WPS_NFC=y
+ 
+ # EAP-IKEv2
+ #CONFIG_EAP_IKEV2=y
+@@ -135,33 +135,34 @@ CONFIG_PKCS12=y
+ 
+ # RADIUS authentication server. This provides access to the integrated EAP
+ # server from external hosts using RADIUS.
+-#CONFIG_RADIUS_SERVER=y
++CONFIG_RADIUS_SERVER=y
+ 
+ # Build IPv6 support for RADIUS operations
+ CONFIG_IPV6=y
+ 
+ # IEEE Std 802.11r-2008 (Fast BSS Transition)
+-#CONFIG_IEEE80211R=y
++CONFIG_IEEE80211R=y
++CONFIG_IEEE80211R_AP=y
+ 
+ # Use the hostapd's IEEE 802.11 authentication (ACL), but without
+ # the IEEE 802.11 Management capability (e.g., FreeBSD/net80211)
+ #CONFIG_DRIVER_RADIUS_ACL=y
+ 
+ # IEEE 802.11n (High Throughput) support
+-#CONFIG_IEEE80211N=y
++CONFIG_IEEE80211N=y
+ 
+ # Wireless Network Management (IEEE Std 802.11v-2011)
+ # Note: This is experimental and not complete implementation.
+-#CONFIG_WNM=y
++CONFIG_WNM=y
+ 
+ # IEEE 802.11ac (Very High Throughput) support
+-#CONFIG_IEEE80211AC=y
++CONFIG_IEEE80211AC=y
+ 
+ # IEEE 802.11ax HE support
+ # Note: This is experimental and work in progress. The definitions are still
+ # subject to change and this should not be expected to interoperate with the
+ # final IEEE 802.11ax version.
+-#CONFIG_IEEE80211AX=y
++CONFIG_IEEE80211AX=y
+ 
+ # Remove debugging code that is printing out debug messages to stdout.
+ # This can be used to reduce the size of the hostapd considerably if debugging
+@@ -350,7 +351,7 @@ CONFIG_IPV6=y
+ # For more details refer to:
+ # http://wireless.kernel.org/en/users/Documentation/acs
+ #
+-#CONFIG_ACS=y
++CONFIG_ACS=y
+ 
+ # Multiband Operation support
+ # These extentions facilitate efficient use of multiple frequency bands
+@@ -372,7 +373,7 @@ CONFIG_IPV6=y
+ 
+ # Include internal line edit mode in hostapd_cli. This can be used to provide
+ # limited command line editing and history support.
+-#CONFIG_WPA_CLI_EDIT=y
++CONFIG_WPA_CLI_EDIT=y
+ 
+ # Opportunistic Wireless Encryption (OWE)
+ # Experimental implementation of draft-harkins-owe-07.txt
+@@ -381,3 +382,4 @@ CONFIG_IPV6=y
+ # Override default value for the wpa_disable_eapol_key_retries configuration
+ # parameter. See that parameter in hostapd.conf for more details.
+ #CFLAGS += -DDEFAULT_WPA_DISABLE_EAPOL_KEY_RETRIES=1
++CONFIG_SAE=y
+diff --git wpa_supplicant/defconfig wpa_supplicant/defconfig
+index 0a082529e..167ed935a 100644
+--- wpa_supplicant/defconfig
++++ wpa_supplicant/defconfig
+@@ -157,12 +157,12 @@ CONFIG_EAP_LEAP=y
+ #CONFIG_EAP_TNC=y
+ 
+ # Wi-Fi Protected Setup (WPS)
+-#CONFIG_WPS=y
++CONFIG_WPS=y
+ # Enable WPS external registrar functionality
+-#CONFIG_WPS_ER=y
++CONFIG_WPS_ER=y
+ # Disable credentials for an open network by default when acting as a WPS
+ # registrar.
+-#CONFIG_WPS_REG_DISABLE_OPEN=y
++CONFIG_WPS_REG_DISABLE_OPEN=y
+ # Enable WPS support with NFC config method
+ #CONFIG_WPS_NFC=y
+ 
+@@ -216,7 +216,7 @@ CONFIG_CTRL_IFACE=y
+ 
+ # Include internal line edit mode in wpa_cli. This can be used as a replacement
+ # for GNU Readline to provide limited command line editing and history support.
+-#CONFIG_WPA_CLI_EDIT=y
++CONFIG_WPA_CLI_EDIT=y
+ 
+ # Remove debugging code that is printing out debug message to stdout.
+ # This can be used to reduce the size of the wpa_supplicant considerably
+@@ -299,7 +299,7 @@ CONFIG_BACKEND=file
+ 
+ # IEEE 802.11w (management frame protection), also known as PMF
+ # Driver support is also needed for IEEE 802.11w.
+-#CONFIG_IEEE80211W=y
++CONFIG_IEEE80211W=y
+ 
+ # Support Operating Channel Validation
+ #CONFIG_OCV=y
+@@ -385,7 +385,7 @@ CONFIG_BACKEND=file
+ #CONFIG_DYNAMIC_EAP_METHODS=y
+ 
+ # IEEE Std 802.11r-2008 (Fast BSS Transition) for station mode
+-#CONFIG_IEEE80211R=y
++CONFIG_IEEE80211R=y
+ 
+ # Add support for writing debug log to a file (/tmp/wpa_supplicant-log-#.txt)
+ #CONFIG_DEBUG_FILE=y
+@@ -467,15 +467,15 @@ CONFIG_BACKEND=file
+ #CONFIG_GETRANDOM=y
+ 
+ # IEEE 802.11n (High Throughput) support (mainly for AP mode)
+-#CONFIG_IEEE80211N=y
++CONFIG_IEEE80211N=y
+ 
+ # IEEE 802.11ac (Very High Throughput) support (mainly for AP mode)
+ # (depends on CONFIG_IEEE80211N)
+-#CONFIG_IEEE80211AC=y
++CONFIG_IEEE80211AC=y
+ 
+ # Wireless Network Management (IEEE Std 802.11v-2011)
+ # Note: This is experimental and not complete implementation.
+-#CONFIG_WNM=y
++CONFIG_WNM=y
+ 
+ # Interworking (IEEE 802.11u)
+ # This can be used to enable functionality to improve interworking with
+@@ -497,12 +497,12 @@ CONFIG_BACKEND=file
+ # should be noted that this is mainly aimed at simple cases like
+ # WPA2-Personal while more complex configurations like WPA2-Enterprise with an
+ # external RADIUS server can be supported with hostapd.
+-#CONFIG_AP=y
++CONFIG_AP=y
+ 
+ # P2P (Wi-Fi Direct)
+ # This can be used to enable P2P support in wpa_supplicant. See README-P2P for
+ # more information on P2P operations.
+-#CONFIG_P2P=y
++CONFIG_P2P=y
+ 
+ # Enable TDLS support
+ #CONFIG_TDLS=y
+@@ -563,7 +563,7 @@ CONFIG_BACKEND=file
+ #
+ # For more details refer to:
+ # http://wireless.kernel.org/en/users/Documentation/acs
+-#CONFIG_ACS=y
++CONFIG_ACS=y
+ 
+ # Support Multi Band Operation
+ #CONFIG_MBO=y
+@@ -578,7 +578,7 @@ CONFIG_BACKEND=file
+ # Support RSN on IBSS networks
+ # This is needed to be able to use mode=1 network profile with proto=RSN and
+ # key_mgmt=WPA-PSK (i.e., full key management instead of WPA-None).
+-#CONFIG_IBSS_RSN=y
++CONFIG_IBSS_RSN=y
+ 
+ # External PMKSA cache control
+ # This can be used to enable control interface commands that allow the current
+@@ -586,18 +586,19 @@ CONFIG_BACKEND=file
+ #CONFIG_PMKSA_CACHE_EXTERNAL=y
+ 
+ # Mesh Networking (IEEE 802.11s)
+-#CONFIG_MESH=y
++CONFIG_MESH=y
+ 
+ # Background scanning modules
+ # These can be used to request wpa_supplicant to perform background scanning
+ # operations for roaming within an ESS (same SSID). See the bgscan parameter in
+ # the wpa_supplicant.conf file for more details.
+ # Periodic background scans based on signal strength
+-#CONFIG_BGSCAN_SIMPLE=y
++CONFIG_BGSCAN_SIMPLE=y
+ # Learn channels used by the network and try to avoid bgscans on other
+ # channels (experimental)
+-#CONFIG_BGSCAN_LEARN=y
++CONFIG_BGSCAN_LEARN=y
+ 
+ # Opportunistic Wireless Encryption (OWE)
+ # Experimental implementation of draft-harkins-owe-07.txt
+ #CONFIG_OWE=y
++CONFIG_SAE=y
+diff --git wpa_supplicant/p2p_supplicant.c wpa_supplicant/p2p_supplicant.c
+index 848299d54..0699f12cb 100644
+--- wpa_supplicant/p2p_supplicant.c
++++ wpa_supplicant/p2p_supplicant.c
+@@ -96,7 +96,7 @@
+ #define P2P_MAX_INITIAL_CONN_WAIT_GO_REINVOKE 15
+ #endif /* P2P_MAX_INITIAL_CONN_WAIT_GO_REINVOKE */
+ 
+-#define P2P_MGMT_DEVICE_PREFIX		"p2p-dev-"
++#define P2P_MGMT_DEVICE_PREFIX		"p2p-"
+ 
+ /*
+  * How many seconds to wait to re-attempt to move GOs, in case previous attempt

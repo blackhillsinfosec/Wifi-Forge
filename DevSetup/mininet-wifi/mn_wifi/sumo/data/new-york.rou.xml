@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Sun May 28 11:35:02 2017 by SUMO duarouter Version 0.28.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="new-york.net.xml"/>
+        <trip-files value="trips.trips.xml"/>
+    </input>
+
+    <output>
+        <output-file value="new-york.rou.xml"/>
+    </output>
+
+    <processing>
+        <ignore-errors value="true"/>
+    </processing>
+
+    <time>
+        <begin value="0"/>
+        <end value="100.0"/>
+    </time>
+
+    <report>
+        <no-warnings value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <route edges="116672333#1 116672333#2 384178813#0 384178813#1 156994977#0 156994977#1 156994977#2 194923795#0 194923795#1 194923795#2 194923795#3" color="green" id="route1"/>
+    <route edges="116672333#1 116672333#2 384178813#0 22914179#1 22914179#2 22914179#3 5670836#1 5670836#2 5670836#3 5670836#4 194923795#2 194923795#3" color="yellow" id="route2"/>
+    <route edges="116672333#1 116672333#2 384178812 420598407 420598415 465101198#0 465101198#1 465101198#2" color="red" id="route3"/>
+    <route edges="116672333#1 116672333#2 384178813#0 384178813#1 156994977#0 22914181#1 22914181#2 110489637 5670836#3 5670836#4 5670836#5 5670836#6 348477348#6 196117090#2 196117090#3 194923795#3" color="blue" id="route4"/>
+
+
+    <vehicle id="0" depart="1.00" route="route1"/>
+    <vehicle id="10" depart="2.00" route="route3"/>
+    <vehicle id="11" depart="3.00" route="route3"/>
+    <vehicle id="12" depart="4.00" route="route3"/>
+    <vehicle id="13" depart="5.00" route="route3"/>
+    <vehicle id="1" depart="6.00" route="route1"/>
+    <vehicle id="14" depart="7.00" route="route3"/>
+    <vehicle id="15" depart="8.00" route="route3"/>
+    <vehicle id="16" depart="9.00" route="route3"/>
+    <vehicle id="17" depart="10.00" route="route3"/>
+    <vehicle id="2" depart="11.00" route="route1"/>
+    <vehicle id="18" depart="12.00" route="route3"/>
+    <vehicle id="19" depart="13.00" route="route3"/>
+    <vehicle id="20" depart="14.00" route="route3"/>
+    <vehicle id="3" depart="16.00" route="route1"/>
+    <vehicle id="4" depart="21.00" route="route1"/>
+    <vehicle id="5" depart="26.00" route="route1"/>
+    <vehicle id="6" depart="31.00" route="route1"/>
+    <vehicle id="7" depart="36.00" route="route1"/>
+    <vehicle id="8" depart="41.00" route="route1"/>
+    <vehicle id="9" depart="46.00" route="route1"/>
+
+</routes>

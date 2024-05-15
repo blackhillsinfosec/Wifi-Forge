@@ -1,0 +1,33 @@
+mininet (2.1.0-0ubuntu1) saucy; urgency=low
+
+  * Add 2.1.0 final packaging
+
+ -- Bob Lantz <rlantz@cs.stanford.edu>  Wed, 18 Sep 2013 22:43:47 -0700
+
+mininet (2.1.0~rc1-0ubuntu1) saucy; urgency=low
+
+  * New upstream release candidate:
+    - d/control: Drop dependency on python-networkx, add iperf, socat
+      and cgroup-bin to Depends.
+
+ -- James Page <james.page@ubuntu.com>  Wed, 28 Aug 2013 10:10:20 +0100
+
+mininet (2.0.0-0ubuntu1) raring; urgency=low
+
+  * New upstream release.
+
+ -- James Page <james.page@ubuntu.com>  Wed, 19 Dec 2012 15:48:01 +0000
+
+mininet (2.0.0~rc1-0ubuntu1) quantal; urgency=low
+
+  * New upstream release.
+  * Update copyright to match upstream release
+  * Fix this message
+
+ -- Bob Lantz <rlantz@cs.stanford.edu>  Sun, 18 Nov 2012 00:15:09 -0800
+
+mininet (2.0.0~d4-0ubuntu1) quantal; urgency=low
+
+  * Initial release.
+
+ -- Bob Lantz <rlantz@cs.stanford.edu>  Tue, 07 Aug 2012 14:11:27 -0700

@@ -1,0 +1,131 @@
+diff --git bin/install-p4dev-v4.sh bin/install-p4dev-v4.sh
+index f05d6b0..c81e3f8 100755
+--- bin/install-p4dev-v4.sh
++++ bin/install-p4dev-v4.sh
+@@ -25,7 +25,6 @@
+ # As of 2020-Dec, the open source P4 tools seem to be ready for this.
+ 
+ # In fact, this script does end up installing Python2, but only
+-# because installing Mininet as this script currently does, causes
+ # Python2 to be installed.  Before that point (near the end), Python2
+ # is never installed.
+ 
+@@ -178,7 +177,6 @@ echo "  + nanomsg version 1.0.0"
+ echo "  + nnpy git checkout c7e718a5173447c85182dc45f99e2abcf9cd4065 (latest as of 2015-Apr-22"
+ echo "+ p4c: github.com/p4lang/p4c latest version"
+ echo "+ ptf: github.com/p4lang/ptf latest version"
+-echo "+ Mininet: github.com/mininet/mininet latest version"
+ echo "+ Python packages: grpcio 1.17.1, protobuf 3.6.1"
+ echo "+ Python packages: scapy, ipaddr, psutil, crcmod, pypcap"
+ echo ""
+@@ -240,62 +238,6 @@ get_from_nearest() {
+ # https://bugs.launchpad.net/ubuntu/+source/automake/+bug/1250877
+ # https://unix.stackexchange.com/questions/351394/makefile-installing-python-module-out-of-of-pythonpath
+ 
+-PY3LOCALPATH=`${THIS_SCRIPT_DIR_ABSOLUTE}/py3localpath.py`
+-
+-move_usr_local_lib_python3_from_site_packages_to_dist_packages() {
+-    local SRC_DIR
+-    local DST_DIR
+-    local j
+-    local k
+-
+-    SRC_DIR="${PY3LOCALPATH}/site-packages"
+-    DST_DIR="${PY3LOCALPATH}/dist-packages"
+-
+-    # When I tested this script on Ubunt 16.04, there was no
+-    # site-packages directory.  Return without doing anything else if
+-    # this is the case.
+-    if [ ! -d ${SRC_DIR} ]
+-    then
+-	return 0
+-    fi
+-
+-    # Do not move any __pycache__ directory that might be present.
+-    sudo rm -fr ${SRC_DIR}/__pycache__
+-
+-    echo "Source dir contents before moving: ${SRC_DIR}"
+-    ls -lrt ${SRC_DIR}
+-    echo "Dest dir contents before moving: ${DST_DIR}"
+-    ls -lrt ${DST_DIR}
+-    for j in ${SRC_DIR}/*
+-    do
+-	echo $j
+-	k=`basename $j`
+-	# At least sometimes (perhaps always?) there is a directory
+-	# 'p4' or 'google' in both the surce and dest directory.  I
+-	# think I want to merge their contents.  List them both so I
+-	# can see in the log what was in both at the time:
+-        if [ -d ${SRC_DIR}/$k -a -d ${DST_DIR}/$k ]
+-   	then
+-	    echo "Both source and dest dir contain a directory: $k"
+-	    echo "Source dir $k directory contents:"
+-	    ls -l ${SRC_DIR}/$k
+-	    echo "Dest dir $k directory contents:"
+-	    ls -l ${DST_DIR}/$k
+-            sudo mv ${SRC_DIR}/$k/* ${DST_DIR}/$k/
+-	    sudo rmdir ${SRC_DIR}/$k
+-	else
+-	    echo "Not a conflicting directory: $k"
+-            sudo mv ${SRC_DIR}/$k ${DST_DIR}/$k
+-	fi
+-    done
+-
+-    echo "Source dir contents after moving: ${SRC_DIR}"
+-    ls -lrt ${SRC_DIR}
+-    echo "Dest dir contents after moving: ${DST_DIR}"
+-    ls -lrt ${DST_DIR}
+-}
+-
+-
+ echo "------------------------------------------------------------"
+ echo "Time and disk space used before installation begins:"
+ set -x
+@@ -539,7 +481,6 @@ sudo make install
+ 
+ # Save about 0.25G of storage by cleaning up PI build
+ make clean
+-move_usr_local_lib_python3_from_site_packages_to_dist_packages
+ 
+ set +x
+ echo "end install PI:"
+@@ -597,7 +538,6 @@ cd targets/simple_switch_grpc
+ make
+ sudo make install
+ sudo ldconfig
+-move_usr_local_lib_python3_from_site_packages_to_dist_packages
+ 
+ set +x
+ echo "end install behavioral-model:"
+@@ -655,31 +595,6 @@ find /usr/lib /usr/local $HOME/.local | sort > usr-local-6-after-p4c.txt
+ set +x
+ echo "------------------------------------------------------------"
+ 
+-echo "Installing Mininet - not necessary to run P4 programs, but useful if"
+-echo "you want to run tutorials from https://github.com/p4lang/tutorials"
+-echo "repository."
+-echo "start install mininet:"
+-set -x
+-date
+-
+-git clone git://github.com/mininet/mininet mininet
+-cd mininet
+-PATCH_DIR="${THIS_SCRIPT_DIR_ABSOLUTE}/patches"
+-patch -p1 < "${PATCH_DIR}/mininet-dont-install-python2.patch" || echo "Errors while attempting to patch mininet, but continuing anyway ..."
+-cd ..
+-sudo ./mininet/util/install.sh -nw
+-
+-set +x
+-echo "end install mininet:"
+-set -x
+-date
+-
+-cd "${INSTALL_DIR}"
+-find /usr/lib /usr/local $HOME/.local | sort > usr-local-7-after-mininet-install.txt
+-
+-set +x
+-echo "------------------------------------------------------------"
+-
+ echo "Installing PTF"
+ echo "start install ptf:"
+ set -x

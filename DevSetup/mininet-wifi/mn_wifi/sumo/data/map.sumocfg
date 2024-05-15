@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumoConfiguration.xsd">
+    <input>
+        <net-file value="new-york.net.xml"/>
+        <route-files value="new-york.rou.xml"/>
+        <additional-files value="new-york.poly.xml"/>
+    </input>
+
+    <output>
+	<tripinfo-output value="maptripinfo.out.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="1000"/>
+	<step-length value="0.1"/>
+    </time>
+    <report>
+        <no-step-log value="true"/>
+        <xml-validation value="never"/>
+    </report>
+    <traci_server>
+	<processing>
+		<time-to-teleport value="100"/>
+	</processing>
+         <remote-port value="8813"/>
+    </traci_server>
+</configuration>

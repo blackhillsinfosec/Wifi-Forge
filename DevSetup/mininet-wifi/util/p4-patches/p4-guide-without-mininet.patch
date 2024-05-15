@@ -1,0 +1,149 @@
+diff --git bin/install-p4dev-v2.sh bin/install-p4dev-v2.sh
+index 01fdc57..2b19899 100755
+--- bin/install-p4dev-v2.sh
++++ bin/install-p4dev-v2.sh
+@@ -377,143 +377,6 @@ date
+ cd "${INSTALL_DIR}"
+ find /usr/lib /usr/local $HOME/.local | sort > usr-local-6-after-p4c.txt
+ 
+-echo "------------------------------------------------------------"
+-
+-echo "Installing Mininet - not necessary to run P4 programs, but useful if"
+-echo "you want to run tutorials from https://github.com/p4lang/tutorials"
+-echo "repository."
+-echo "start install mininet:"
+-date
+-
+-git clone git://github.com/mininet/mininet mininet
+-cd mininet
+-# As of 2019-Nov-06, the latest version of mininet tries to apt-get
+-# install the package cgroup-bin on Ubuntu Linux systems.  The
+-# description of this package in Ubuntu 16.04 and 18.04 is "Package to
+-# ease upgrading from older cgroup-bin package to the new cgroup-tools
+-# package."  The new cgroup-tools package exists on Ubuntu 16.04,
+-# 18.04, and 19.10 systems.  The old cgroup-bin package exists on
+-# Ubuntu 16.04 and 18.04, but is no longer present with Ubuntu 19.10.
+-# I would guess it is considered obsolete and has been removed, and
+-# will not be added again in future Ubuntu versions.
+-#
+-# The patch below simply changes installing cgroup-bin to instead
+-# install cgroup-tools, so it should work on all versions of Ubuntu
+-# Linux supported by this script.
+-PATCH_DIR="${THIS_SCRIPT_DIR_ABSOLUTE}/patches"
+-patch -p1 < "${PATCH_DIR}/mininet-installer-fix-for-ubuntu19.10.patch"
+-cd ..
+-sudo ./mininet/util/install.sh -nwv
+-
+-echo "end install mininet:"
+-date
+-
+-cd "${INSTALL_DIR}"
+-find /usr/lib /usr/local $HOME/.local | sort > usr-local-7-after-mininet-install.txt
+-
+-echo "------------------------------------------------------------"
+-echo "Installing a few miscellaneous packages"
+-echo "start install miscellaneous packages:"
+-date
+-
+-# grpcio 1.17.2 would be ideal, to match the version of gRPC that we
+-# have installed.  At least on 2020-Jan-21 when I tried to install
+-# that version of grpcio using pip, it indicated that many other
+-# versions were available, but not that one.  The closest two versions
+-# were 1.17.1 and 1.18.0.  Antonin Bas mentioned that he believes
+-# there were perhaps no changes from 1.17.1 to 1.17.2 and so
+-# recommended using 1.17.1.  So far, it has worked well when doing
+-# _basic_ P4Runtime API testing on a system on which this install
+-# script was run.
+-sudo pip install grpcio==1.17.1
+-set -x
+-pip list
+-set +x
+-
+-# Installing the version of grpcio above does not automatically
+-# install a Python protobuf package, so install one.
+-sudo pip install protobuf==3.6.1
+-set -x
+-pip list
+-set +x
+-
+-# Things needed for `cd tutorials/exercises/basic ; make run` to work:
+-sudo apt-get --yes install python-psutil libgflags-dev net-tools
+-sudo pip install crcmod
+-set -x
+-pip list
+-set +x
+-
+-echo "end install miscellaneous packages:"
+-date
+-
+-cd "${INSTALL_DIR}"
+-find /usr/lib /usr/local $HOME/.local | sort > usr-local-8-after-miscellaneous-install.txt
+-
+-set -x
+-pip list
+-pip3 list
+-set +x
+-
+-set +e
+-
+-echo "------------------------------------------------------------"
+-echo "Time and disk space used when installation was complete:"
+-date
+-df -h .
+-df -BM .
+-
+-cd "${INSTALL_DIR}"
+-DETS="install-details"
+-mkdir -p "${DETS}"
+-mv usr-local-*.txt "${DETS}"
+-cd "${DETS}"
+-diff usr-local-1-before-protobuf.txt usr-local-2-after-protobuf.txt > usr-local-file-changes-protobuf.txt
+-diff usr-local-2-after-protobuf.txt usr-local-3-after-grpc.txt > usr-local-file-changes-grpc.txt
+-diff usr-local-3-after-grpc.txt usr-local-4-after-PI.txt > usr-local-file-changes-PI.txt
+-diff usr-local-4-after-PI.txt usr-local-5-after-behavioral-model.txt > usr-local-file-changes-behavioral-model.txt
+-diff usr-local-5-after-behavioral-model.txt usr-local-6-after-p4c.txt > usr-local-file-changes-p4c.txt
+-diff usr-local-6-after-p4c.txt usr-local-7-after-mininet-install.txt > usr-local-file-changes-mininet-install.txt
+-diff usr-local-7-after-mininet-install.txt usr-local-8-after-miscellaneous-install.txt > usr-local-file-changes-miscellaneous-install.txt
+-
+-P4GUIDE_BIN="${THIS_SCRIPT_DIR_ABSOLUTE}"
+-
+-echo "----------------------------------------------------------------------"
+-echo "Output of script p4-environment-info.sh"
+-echo "----------------------------------------------------------------------"
+-"${THIS_SCRIPT_DIR_ABSOLUTE}/p4-environment-info.sh"
+-echo "----------------------------------------------------------------------"
+-
+-echo "----------------------------------------------------------------------"
+-echo "CONSIDER READING WHAT IS BELOW"
+-echo "----------------------------------------------------------------------"
+-echo ""
+-
+-cd "${INSTALL_DIR}"
+-echo "P4_INSTALL=\"${INSTALL_DIR}\"" > p4setup.bash
+-echo "BMV2=\"\$P4_INSTALL/behavioral-model\"" >> p4setup.bash
+-echo "P4GUIDE_BIN=\"${P4GUIDE_BIN}\"" >> p4setup.bash
+-echo "export PATH=\"\$P4GUIDE_BIN:\$BMV2/tools:/usr/local/bin:\$PATH\"" >> p4setup.bash
+-
+-echo "set P4_INSTALL=\"${INSTALL_DIR}\"" > p4setup.csh
+-echo "set BMV2=\"\$P4_INSTALL/behavioral-model\"" >> p4setup.csh
+-echo "set P4GUIDE_BIN=\"${P4GUIDE_BIN}\"" >> p4setup.csh
+-echo "set path = ( \$P4GUIDE_BIN \$BMV2/tools /usr/local/bin \$path )" >> p4setup.csh
+-
+-echo ""
+-echo "Created files: p4setup.bash p4setup.csh"
+-echo ""
+-echo "If you use a Bash-like command shell, you may wish to copy the lines"
+-echo "of the file p4setup.bash to your .bashrc or .profile files in your"
+-echo "home directory to add some useful commands to your"
+-echo "command path every time you log in or create a new shell."
+-echo ""
+-echo "If you use the tcsh or csh shells, instead copy the contents of the"
+-echo "file p4setup.csh to your .tcshrc or .cshrc file in your home"
+-echo "directory."
+-
+-echo "----------------------------------------------------------------------"
+-echo "CONSIDER READING WHAT IS ABOVE"
+-echo "----------------------------------------------------------------------"
++echo "Done!"
+ 
+ clean_up

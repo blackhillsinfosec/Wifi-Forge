@@ -1,0 +1,3 @@
+table_set_default ipv4_lpm drop
+table_add MyIngress.ipv4_lpm ipv4_forward 10.0.0.2 => 00:00:00:00:00:02 2
+table_add MyIngress.ipv4_lpm ipv4_forward 10.0.0.4 => 00:00:00:00:00:04 1
