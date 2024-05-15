@@ -47,6 +47,8 @@ def main_menu():
         print("                   +========================================================+")
         print("                   |  " + MAGENTA  + "Last Updated 5/15/2024 " + RESET  + "   |    " + RED + "Version 1.0.0" + RESET + "          |")
         print("                   +========================================================+")
+        print("                   |                Version Name: "+CYAN+"New Frontier"+RESET+"              |")
+        print("                   +========================================================+")
         choice = input("\n                    Select Lab: ")
 
         if choice == '1':
