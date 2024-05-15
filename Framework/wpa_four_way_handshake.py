@@ -26,21 +26,23 @@ def create_wifi_network_4_way_handshake():
 
     # Create stations
     print('Creating stations...')
-    attacker = net.addStation('a')
-    host1 = net.addStation('host1', passwd='qwerty', encrypt='wpa2')
-    host2 = net.addStation('host2', passwd='qwerty', encrypt='wpa2')
-
+    attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
+    host1 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
+    host2 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
+    c0 = net.addController('c0')
     # Create access point
     print('Creating the Access Point...')
-    ap = net.addAccessPoint('ap1', ssid='mywifi', passwd='qwerty', encrypt='wpa2', mode='g', channel='6')
+    ap = net.addAccessPoint('ap1', ssid='mywifi', passwd='december2022', encrypt='wpa2', mode='g', channel='6')
 
     net.configureNodes()
     print('Adding stations...')
+    net.addLink(attacker,ap)
     net.addLink(host1, ap)
     net.addLink(host2, ap)
 
     net.build()
-    ap.start([])
+    c0.start()
+    ap.start([c0])
     os.system("clear")
     print_banner()
     print("\n")
