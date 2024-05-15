@@ -1,0 +1,2 @@
+this is for creating a script that automatically compiles the content of Framework to elf with one command. Automation is key.
+This should prduce a stand alone for linux

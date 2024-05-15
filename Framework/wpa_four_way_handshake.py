@@ -46,6 +46,6 @@ def create_wifi_network_4_way_handshake():
     print("\n")
     print('                    +-_-_-_- WPA 4 Way Hand-shake started Sucessfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
-    print('                            Type exit when the simulation is completer')
+    print('                            Type exit when the simulation is completed\n')
     CLI(net)
     net.stop()
