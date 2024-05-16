@@ -1,6 +1,6 @@
 # WI-Fi Forge
 
-![[Pasted image 20240516111408.png]]
+![Pasted image 20240516111408](https://github.com/her3ticAVI/MiniNet-Framework/assets/95513994/211da053-38ad-4f92-9cf3-920570dca8b3)
 
 # About Wifi-Forge
 
