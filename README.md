@@ -38,7 +38,7 @@ Wi-Fi Forge provides pre-built labs that cover the following:
 - PRE-SHARED KEY CRYPTOGRAPHIC MATERIAL CAPTURE IN HANDSHAKE FORMAT
 - EAPHAMMER AND THE EVIL-TWIN ATTACK
 
-# Lab Links
+# Networks
 
 - CORP-RETAIL
 - CORP-SECURE
@@ -50,7 +50,7 @@ Wi-Fi Forge provides pre-built labs that cover the following:
 2. Initialize EvilTwin Lab/John the Ripper - ==incorporates NTLM hashes, problem :(==
 4. WifiPhisher 
 5. Initialize Custom Network 
-6. . ABOUT/HELP
+6. ABOUT/HELP
 
 # Links and Further Reading 
 
