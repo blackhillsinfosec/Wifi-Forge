@@ -1,3 +1,4 @@
+from mininet.node import Controller
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
 import os
@@ -22,14 +23,14 @@ def print_banner():
     print(banner)
 
 def create_wifi_network_4_way_handshake():
-    net = Mininet_wifi()
+    net = Mininet_wifi(controller=Controller)
 
     # Create stations
     print('Creating stations...')
     attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
     host1 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
     host2 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
-    c0 = net.addController('c0')
+    c0 = net.addController('c0', controller=Controller)
     # Create access point
     print('Creating the Access Point...')
     ap = net.addAccessPoint('ap1', ssid='mywifi', passwd='december2022', encrypt='wpa2', mode='g', channel='6')
