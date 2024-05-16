@@ -1,7 +1,9 @@
 import os
-#test
-#os.system("cd MiniNet-Framework/DevSetup/mininet-wifi && sudo python3 Joes_setup.py && cd  ../../")
-
+with open("first_install_check","r+") as file:
+	content = file.read()
+	if "1" in content:
+		os.system("cd MiniNet-Framework/DevSetup/mininet-wifi && sudo python3 Joes_setup.py && cd  ../../")
+		file.truncate(0)
 # ANSI escape codes for colors
 RED = "\033[91m"
 GREEN = "\033[92m"
