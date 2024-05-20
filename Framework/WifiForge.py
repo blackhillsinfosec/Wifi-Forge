@@ -5,7 +5,7 @@ with open("first_install_check","r+") as file:
 		os.system("sudo python3 ../Joes_setup.py")
 		file.truncate(0)
 		file.write('0')
-		input("Install complete! Press any key to continue!")
+		
 # ANSI escape codes for colors
 RED = "\033[91m"
 GREEN = "\033[92m"
