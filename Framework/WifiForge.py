@@ -2,8 +2,10 @@ import os
 with open("first_install_check","r+") as file:
 	content = file.read()
 	if "1" in content:
-		os.system("cd MiniNet-Framework/DevSetup/mininet-wifi && sudo python3 Joes_setup.py && cd  ../../")
+		os.system("sudo python3 ../Joes_setup.py")
 		file.truncate(0)
+		file.write('0')
+		input("Install complete! Press any key to continue!")
 # ANSI escape codes for colors
 RED = "\033[91m"
 GREEN = "\033[92m"
@@ -78,6 +80,7 @@ def main_menu():
             input("                   Press any key to continue...")
             continue
         elif choice.lower() == 'q':
+            os.system("sudo mn -c")
             print("Exiting...")
             break
         else:
