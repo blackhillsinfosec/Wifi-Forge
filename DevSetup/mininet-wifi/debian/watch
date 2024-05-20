@@ -1,3 +1,0 @@
-version=3
-opts=filenamemangle=s/(.*)\/archive/$1/,uversionmangle=s/([abdr].*)\.tar\.gz/~$1/ \
-https://github.com/mininet/mininet/tags .*/archive\/(\d.*\.tar\.gz)
