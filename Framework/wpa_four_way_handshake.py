@@ -25,17 +25,16 @@ def print_banner():
 def create_wifi_network_4_way_handshake():
     net = Mininet_wifi(controller=Controller)
 
-    # Create stations
     print('Creating stations...')
     attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
     host1 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
     host2 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
-    c0 = net.addController('c0', controller=Controller)
-    # Create access point
+
     print('Creating the Access Point...')
     ap = net.addAccessPoint('ap1', ssid='mywifi', passwd='december2022', encrypt='wpa2', mode='g', channel='6')
+    c0 = net.addController('c0', controller=Controller)
+    net.configureWifiNodes()
 
-    net.configureNodes()
     print('Adding stations...')
     net.addLink(attacker,ap)
     net.addLink(host1, ap)
@@ -44,11 +43,14 @@ def create_wifi_network_4_way_handshake():
     net.build()
     c0.start()
     ap.start([c0])
+    
     os.system("clear")
     print_banner()
     print("\n")
     print('                    +-_-_-_- WPA 4 Way Hand-shake started Sucessfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
+    
     CLI(net)
+
     net.stop()

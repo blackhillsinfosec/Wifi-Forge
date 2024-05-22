@@ -1,4 +1,3 @@
-from mininet.net import Mininet
 from mininet.node import Controller
 from mininet.cli import CLI
 from mn_wifi.net import Mininet_wifi
@@ -24,7 +23,6 @@ def print_banner():
     print(banner)
 
 def create_wifi_WEP_attack():
-    "Create a network."
     net = Mininet_wifi(controller=Controller)
 
     print('Creating stations...')

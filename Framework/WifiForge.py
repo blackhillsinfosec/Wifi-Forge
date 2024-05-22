@@ -48,6 +48,10 @@ def create_wifi_WEP_attack():
 
 def main_menu():
     while True:
+        os.system("sudo mn -c")
+        os.system("sudo rmmod mac80211_hwsim")
+        os.system("sudo modprobe mac80211_hwsim")
+        os.system("service openvswitch-switch start")
         print_banner()
         print("\n\n                             " + GREEN + "Brought to you by Black Hills InfoSec" + RESET)
         print("                   +==================Simulation Selection==================+")
