@@ -40,6 +40,10 @@ def create_wifi_network_4_way_handshake():
     from wpa_four_way_handshake import create_wifi_network_4_way_handshake
     create_wifi_network_4_way_handshake()
 
+def create_wifi_WEP_attack():
+     from wep_attack import create_wifi_WEP_attack
+     create_wifi_WEP_attack()
+
 # SWITCH CASE WITH FUNCTION CALLS
 
 def main_menu():
@@ -48,6 +52,7 @@ def main_menu():
         print("\n\n                             " + GREEN + "Brought to you by Black Hills InfoSec" + RESET)
         print("                   +==================Simulation Selection==================+")
         print("                   | ["+CYAN+"1"+RESET+"] WPA 4 Way Handshake Attack                         |")
+        print("                   | ["+CYAN+"2"+RESET+"] WEP Attack                                         |")
         print("                   | ["+CYAN+"h"+RESET+"] Help                                               |")
         print("                   | ["+CYAN+"q"+RESET+"] Quit                                               |")
         print("                   +========================================================+")
@@ -57,15 +62,13 @@ def main_menu():
         print("                   +========================================================+")
         choice = input("\n                    Select Lab: ")
 
+        choice.lower()
+        print(choice)
         if choice == '1':
-            
-
             create_wifi_network_4_way_handshake()
         elif choice == '2':
-            # Call function for option 2
-            pass
+            create_wifi_WEP_attack()
         elif choice == 'h':
-            # Call function for option 2
             os.system("clear")
             print_banner()
             print("\n\n                   +=========================Help Page==============================+")
@@ -79,7 +82,7 @@ def main_menu():
             print("                   +================================================================+")
             input("                   Press any key to continue...")
             continue
-        elif choice.lower() == 'q':
+        elif choice == 'q':
             os.system("sudo mn -c")
             print("Exiting...")
             break
