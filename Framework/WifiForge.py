@@ -63,7 +63,6 @@ def main_menu():
         choice = input("\n                    Select Lab: ")
 
         choice.lower()
-        print(choice)
         if choice == '1':
             create_wifi_network_4_way_handshake()
         elif choice == '2':
