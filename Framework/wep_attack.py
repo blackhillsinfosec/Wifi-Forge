@@ -1,4 +1,4 @@
-from mn_wifi.net import Mininet
+from mininet.net import Mininet
 from mininet.node import Controller
 from mininet.cli import CLI
 from mn_wifi.net import Mininet_wifi
