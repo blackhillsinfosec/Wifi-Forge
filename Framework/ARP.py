@@ -45,11 +45,11 @@ def create_arp_spoof():
     sta2.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
 
 
-#    os.system("clear")
-#    print_banner()
-#    print("\n")
-#    print('                          +-_-_-_- ARP Spoof started Sucessfully -_-_-_-+')
-#    print('                             Type "xterm a" and press enter to begin')
-#    print('                            Type exit when the simulation is completed\n')
+    os.system("clear")
+    print_banner()
+    print("\n")
+    print('                          +-_-_-_- ARP Spoof started Sucessfully -_-_-_-+')
+    print('                             Type "xterm a" and press enter to begin')
+    print('                            Type exit when the simulation is completed\n')
     CLI(net)
     net.stop()
