@@ -1,9 +1,10 @@
-from mn_wifi.net import Mininet
-from mininet.node import Controller
-from mininet.cli import CLI
+from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
 import os
-
+'''
+Estbalish an environment for learning ARP spoofing
+See original script here: https://hackmd.io/@ramonfontes/cracking_wep
+'''
 def print_banner():
     os.system("clear")
     banner = """                             ,                     ,                                                 
@@ -23,34 +24,32 @@ def print_banner():
   ;       ;@         ,;.    ;#t      ,;.          ;#t                                  ;;           """
     print(banner)
 
-def create_wifi_WEP_attack():
-    "Create a network."
-    net = Mininet_wifi(controller=Controller)
+def create_arp_spoof():
+    net = Mininet_wifi()
 
-    print('Creating stations...')
-    sta1 = net.addStation('sta1', passwd='1234567891a', encrypt='wep')
-    sta2 = net.addStation('sta2', passwd='123456789a', encrypt='wep')
-    
-    print('Creating the Access Point...')
-    ap1 = net.addAccessPoint('ap1', ssid="simplewifi", mode="g", channel="1", passwd='123456789a', encrypt='wep', failMode="standalone", datapath='user')
-    c1 = net.addController('c1')
+    print("[+] Creating nodes...\n")
+    ap1 = net.addAccessPoint('ap1', ssid='new-ssid', mode='g',
+                             channel='1', position='10,10,0',
+                             failMode="standalone")
+    sta1 = net.addStation('sta1', position='10,20,0')
+    sta2 = net.addStation('sta2', position='10,30,0')
+
+    print("[+] Configuring wifi nodes...\n")
     net.configureWifiNodes()
 
-    print('Adding stations...')
-    net.addLink(sta1, ap1)
-    net.addLink(sta2, ap1)
-
+    print("[+] Starting network...\n")
     net.build()
-    c1.start()
-    ap1.start([c1])
+    net.addNAT().configDefault()
+    ap1.start([])
+    
+    sta2.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
 
-    os.system("clear")
-    print_banner()
-    print("\n")
-    print('                    +-_-_-_- WEP 4 Way Hand-shake started Sucessfully -_-_-_-+')
-    print('                             Type "xterm a" and press enter to begin')
-    print('                            Type exit when the simulation is completed\n')
 
+#    os.system("clear")
+#    print_banner()
+#    print("\n")
+#    print('                          +-_-_-_- ARP Spoof started Sucessfully -_-_-_-+')
+#    print('                             Type "xterm a" and press enter to begin')
+#    print('                            Type exit when the simulation is completed\n')
     CLI(net)
-
     net.stop()

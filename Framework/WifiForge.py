@@ -44,6 +44,10 @@ def create_wifi_WEP_attack():
      from wep_attack import create_wifi_WEP_attack
      create_wifi_WEP_attack()
 
+def create_ARP_spoof():
+     from ARP import create_arp_spoof
+     create_arp_spoof()
+
 # SWITCH CASE WITH FUNCTION CALLS
 
 def main_menu():
@@ -53,6 +57,9 @@ def main_menu():
         print("                   +==================Simulation Selection==================+")
         print("                   | ["+CYAN+"1"+RESET+"] WPA 4 Way Handshake Attack                         |")
         print("                   | ["+CYAN+"2"+RESET+"] WEP Attack                                         |")
+        print("                   | ["+CYAN+"3"+RESET+"] ARP Spoof Attack                                   |")
+        print("                   | ["+CYAN+"4"+RESET+"] Evil-Twin Attack                                   |")
+        print("                   | ["+CYAN+"5"+RESET+"] Wifi Phisher                                       |")
         print("                   | ["+CYAN+"h"+RESET+"] Help                                               |")
         print("                   | ["+CYAN+"q"+RESET+"] Quit                                               |")
         print("                   +========================================================+")
@@ -67,6 +74,12 @@ def main_menu():
             create_wifi_network_4_way_handshake()
         elif choice == '2':
             create_wifi_WEP_attack()
+        elif choice == '3':
+            create_ARP_spoof()
+        elif choice == '4':
+            print("EVIL TWIN WIP")
+        elif choice == '5':
+            print("WIFI PHISHER WIP")
         elif choice == 'h':
             os.system("clear")
             print_banner()

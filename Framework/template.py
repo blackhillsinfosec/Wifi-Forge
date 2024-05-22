@@ -1,9 +1,12 @@
-from mn_wifi.net import Mininet
+from mininet.net import Mininet
 from mininet.node import Controller
 from mininet.cli import CLI
 from mn_wifi.net import Mininet_wifi
 import os
-
+'''
+Estbalish an environment for learning WEP attacks
+See original script here: https://hackmd.io/@ramonfontes/cracking_wep
+'''
 def print_banner():
     os.system("clear")
     banner = """                             ,                     ,                                                 
@@ -24,25 +27,7 @@ def print_banner():
     print(banner)
 
 def create_wifi_WEP_attack():
-    "Create a network."
-    net = Mininet_wifi(controller=Controller)
-
-    print('Creating stations...')
-    sta1 = net.addStation('sta1', passwd='1234567891a', encrypt='wep')
-    sta2 = net.addStation('sta2', passwd='123456789a', encrypt='wep')
-    
-    print('Creating the Access Point...')
-    ap1 = net.addAccessPoint('ap1', ssid="simplewifi", mode="g", channel="1", passwd='123456789a', encrypt='wep', failMode="standalone", datapath='user')
-    c1 = net.addController('c1')
-    net.configureWifiNodes()
-
-    print('Adding stations...')
-    net.addLink(sta1, ap1)
-    net.addLink(sta2, ap1)
-
-    net.build()
-    c1.start()
-    ap1.start([c1])
+    "PUT CODE HERE"
 
     os.system("clear")
     print_banner()
