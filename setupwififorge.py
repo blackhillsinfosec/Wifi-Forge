@@ -7,7 +7,7 @@ CYAN = "\033[36m"
 RESET = "\033[0m"
 
 #need to change the config file to trust the submodule
-supress = ">/dev/null 2>&1"
+supress = ""
 
 print(f"[{GREEN}+{RESET}] Adding Submodules to safe.directory...")
 os.system("git config --global --add safe.directory $(pwd)" + supress)
