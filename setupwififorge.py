@@ -17,6 +17,14 @@ os.system("git submodule init" + supress)
 
 os.system("git submodule update" + supress)
 
+print(f"[{GREEN}+{RESET}] Installing Kali Tools...")
+os.system("sudo ./dependencies.sh" + supress)
+os.system("sudo apt install aircrack-ng" + supress)
+os.system("sudo apt install john" + supress)
+os.system("sudo apt install eaphammer" + supress)
+os.system("sudo apt install wifiphisher" + supress)
+os.system("sudo apt install arpspoof" + supress)
+
 print(f"[{GREEN}+{RESET}] Running Install Script...")
 os.system("sudo mininet-wifi/util/install.sh -Wlnfv" + supress)
 
@@ -38,3 +46,6 @@ print(f"[{GREEN}+{RESET}] Installing openvswitch-testcontroller...")
 os.system("sudo apt install openvswitch-testcontroller" + supress)
 
 os.system("sudo ln /usr/bin/ovs-testcontroller /usr/bin/controller" + supress)
+
+
+
