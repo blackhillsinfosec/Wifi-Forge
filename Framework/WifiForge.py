@@ -2,7 +2,7 @@ import os
 with open("first_install_check","r+") as file:
 	content = file.read()
 	if "1" in content:
-		os.system("sudo python3 ../Joes_setup.py")
+		os.system("sudo python3 ../setupwififorge.py")
 		file.truncate(0)
 		file.write('0')
 		
