@@ -22,7 +22,6 @@ os.system("sudo ./dependencies.sh" + supress)
 os.system("sudo apt install aircrack-ng" + supress)
 os.system("sudo apt install john" + supress)
 os.system("sudo apt install eaphammer" + supress)
-os.system("sudo apt install wifiphisher" + supress)
 os.system("sudo apt install arpspoof" + supress)
 
 print(f"[{GREEN}+{RESET}] Running Install Script...")
