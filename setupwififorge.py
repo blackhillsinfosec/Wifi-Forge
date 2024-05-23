@@ -27,11 +27,12 @@ os.system("git submodule init" + supress)
 os.system("git submodule update" + supress)
 
 print(f"[{GREEN}+{RESET}] Installing Kali Tools...")
+os.system("sudo apt install curl -y" + supress)
 os.system("sudo ./dependencies.sh" + supress)
-os.system("sudo apt install aircrack-ng" + supress)
-os.system("sudo apt install john" + supress)
-os.system("sudo apt install eaphammer" + supress)
-os.system("sudo apt install arpspoof" + supress)
+os.system("sudo apt install aircrack-ng -y" + supress)
+os.system("sudo apt install john -y" + supress)
+os.system("sudo apt install eaphammer -y" + supress)
+os.system("sudo apt install arpspoof -y" + supress)
 
 
 
