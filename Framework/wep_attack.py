@@ -25,6 +25,7 @@ def create_wifi_WEP_attack():
 
     os.system("clear")
     print_banner()
+    
     print("\n")
     print('                    +-_-_-_- WEP 4 Way Hand-shake started Sucessfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
