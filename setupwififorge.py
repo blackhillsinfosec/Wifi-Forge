@@ -32,7 +32,7 @@ os.system("sudo ./dependencies.sh" + supress)
 os.system("sudo apt install aircrack-ng -y" + supress)
 os.system("sudo apt install john -y" + supress)
 os.system("sudo apt install eaphammer -y" + supress)
-os.system("sudo apt install arpspoof -y" + supress)
+os.system("sudo apt install dsniff -y" + supress)
 
 
 
