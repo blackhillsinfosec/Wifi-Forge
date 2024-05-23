@@ -5,7 +5,7 @@ import inspect
 with open("first_install_check","r+") as file:
 	content = file.read()
 	if "1" in content:
-		os.system("sudo python3 ../setupwififorge.py")
+		os.system("sudo python3 .setupwififorge.py")
 		print("First Time Setup Successful! Run WifiForge again!")
 		exit()
 # ANSI escape codes for colors
