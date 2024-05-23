@@ -6,7 +6,6 @@ import os
 
 def create_wifi_WEP_attack():
     net = Mininet_wifi(controller=Controller)
-    print("WEP ATTACK")
     print('Creating stations...')
     sta1 = net.addStation('sta1', passwd='1234567891a', encrypt='wep')
     sta2 = net.addStation('sta2', passwd='123456789a', encrypt='wep')
