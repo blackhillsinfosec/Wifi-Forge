@@ -15,7 +15,7 @@ truncated_cwd = cwd[:index + len("/MiniNet-Framework")]
 
 
 #need to change the config file to trust the submodule
-supress = ">/dev/null 2>&1"
+supress = "" #">/dev/null 2>&1"
 print(f"[{GREEN}+{RESET}] Adding Submodules to safe.directory...")
 os.system(f"git config --global --add safe.directory {truncated_cwd}" + supress)
 

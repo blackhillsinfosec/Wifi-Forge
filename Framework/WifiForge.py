@@ -52,7 +52,7 @@ def load_functions_from_py_files(directory):
     function_dict = {}
     current_script = os.path.basename(__file__)
     for filename in os.listdir(directory):
-        if filename.endswith(".py") and filename != current_script:
+        if filename.endswith(".py") and not filename.startswith(".") and filename != current_script:
             module_name = filename[:-3]  # Remove the .py extension
             file_path = os.path.join(directory, filename)
             function_name, function = import_module_and_get_function(file_path, module_name)
