@@ -6,37 +6,43 @@ MAGENTA = "\033[35m"
 CYAN = "\033[36m"
 RESET = "\033[0m"
 
+cwd = os.getcwd()
+
+
+if "Framework" in cwd:
+        cwd += "/../mininet-wifi"
+else:
+        cwd += "/mininet-wifi"
+
+
 #need to change the config file to trust the submodule
 supress = ""
-
+print(f"git config --global --add safe.directory {cwd}../../MiniNet-Framework")
 print(f"[{GREEN}+{RESET}] Adding Submodules to safe.directory...")
-os.system("git config --global --add safe.directory $(pwd)" + supress)
+os.system(f"git config --global --add safe.directory {cwd}../../MiniNet-Framework" + supress)
 
 print(f"[{GREEN}+{RESET}] Initializating Submodules...")
 os.system("git submodule init" + supress)
 
 os.system("git submodule update" + supress)
 
-print(f"[{GREEN}+{RESET}] Installing Kali Tools...")
-os.system("sudo ./dependencies.sh" + supress)
-os.system("sudo apt install aircrack-ng" + supress)
-os.system("sudo apt install john" + supress)
-os.system("sudo apt install eaphammer" + supress)
-os.system("sudo apt install arpspoof" + supress)
+#print(f"[{GREEN}+{RESET}] Installing Kali Tools...")
+#os.system("sudo ./dependencies.sh" + supress)
+#os.system("sudo apt install aircrack-ng" + supress)
+#os.system("sudo apt install john" + supress)
+#os.system("sudo apt install eaphammer" + supress)
+#os.system("sudo apt install arpspoof" + supress)
+
+
+
+os.chdir(cwd)
 
 print(f"[{GREEN}+{RESET}] Running Install Script...")
-os.system("sudo mininet-wifi/util/install.sh -Wlnfv" + supress)
+os.system(f"{cwd}/util/install.sh -Wlnfv" + supress)
 
 print(f"[{GREEN}+{RESET}] Installing Mininet...")
 os.system("sudo apt install -y mininet" + supress)
 
-cwd = os.getcwd() + "/../mininet-wifi"
-
-try:
-	os.chdir(cwd)
-except:
-	print(f"[{RED}!{RESET}] Directory Error! Was mininet-wifi successfully deployed?...")
-	exit()
 
 print(f"[{GREEN}+{RESET}] Compiling...")
 os.system("sudo make install" + supress)
