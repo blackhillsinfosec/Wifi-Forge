@@ -6,9 +6,8 @@ with open("first_install_check","r+") as file:
 	content = file.read()
 	if "1" in content:
 		os.system("sudo python3 ../setupwififorge.py")
-		file.truncate(0)
-		file.write('0')
-		
+		print("First Time Setup Successful! Run WifiForge again!")
+		exit()
 # ANSI escape codes for colors
 RED = "\033[91m"
 GREEN = "\033[92m"
@@ -17,10 +16,10 @@ CYAN = "\033[36m"
 RESET = "\033[0m"
 
 # BANNER CALL
-input("WAIT")
+
 def print_banner():
     os.system("clear")
-#     banner = """                             ,                     ,                                                 
+    banner = """                             ,                     ,                                                 
 #                             Et                    Et           :                                    
 #                             E#t                   E#t         t#,                                 ,;
 #                      t      E##t     t            E##t       ;##W.   j.               .Gt       f#i 

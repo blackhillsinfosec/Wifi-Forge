@@ -9,14 +9,14 @@ RESET = "\033[0m"
 cwd = os.getcwd()
 
 
-if "Framework" in cwd:
+if "/Framework" in cwd:
         cwd += "/../mininet-wifi"
 else:
         cwd += "/mininet-wifi"
 
 
 #need to change the config file to trust the submodule
-supress = ""
+supress = ">/dev/null"
 print(f"git config --global --add safe.directory {cwd}../../MiniNet-Framework")
 print(f"[{GREEN}+{RESET}] Adding Submodules to safe.directory...")
 os.system(f"git config --global --add safe.directory {cwd}../../MiniNet-Framework" + supress)
@@ -26,12 +26,12 @@ os.system("git submodule init" + supress)
 
 os.system("git submodule update" + supress)
 
-#print(f"[{GREEN}+{RESET}] Installing Kali Tools...")
-#os.system("sudo ./dependencies.sh" + supress)
-#os.system("sudo apt install aircrack-ng" + supress)
-#os.system("sudo apt install john" + supress)
-#os.system("sudo apt install eaphammer" + supress)
-#os.system("sudo apt install arpspoof" + supress)
+print(f"[{GREEN}+{RESET}] Installing Kali Tools...")
+os.system("sudo ./dependencies.sh" + supress)
+os.system("sudo apt install aircrack-ng" + supress)
+os.system("sudo apt install john" + supress)
+os.system("sudo apt install eaphammer" + supress)
+os.system("sudo apt install arpspoof" + supress)
 
 
 
@@ -52,5 +52,8 @@ os.system("sudo apt install openvswitch-testcontroller" + supress)
 
 os.system("sudo ln /usr/bin/ovs-testcontroller /usr/bin/controller" + supress)
 
-
-
+with open(f"{cwd}/../Framework/first_install_check", "r+") as file:
+	content = file.read()
+	if "1" in content:
+		file.truncate(0)
+		file.write('0')
