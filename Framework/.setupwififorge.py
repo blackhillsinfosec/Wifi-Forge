@@ -9,7 +9,7 @@ RESET = "\033[0m"
 cwd = os.getcwd()
 print(cwd)
 #need to change the config file to trust the submodule
-supress = ""
+supress = ">/dev/null 2>&1"
 print(f"[{GREEN}+{RESET}] Adding Submodules to safe.directory...")
 os.system(f"git config --global --add safe.directory {cwd}/../../MiniNet-Framework" + supress)
 
