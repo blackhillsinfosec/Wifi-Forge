@@ -7,11 +7,17 @@ CYAN = "\033[36m"
 RESET = "\033[0m"
 
 cwd = os.getcwd()
-print(cwd)
+
+#Format the string to only include the path to the repo's main file
+#The exact path is needed to add to the safe.repositories file
+index = cwd.index("/MiniNet-Framework")
+truncated_cwd = cwd[:index + len("/MiniNet-Framework")]
+
+
 #need to change the config file to trust the submodule
 supress = ">/dev/null 2>&1"
 print(f"[{GREEN}+{RESET}] Adding Submodules to safe.directory...")
-os.system(f"git config --global --add safe.directory {cwd}/../../MiniNet-Framework" + supress)
+os.system(f"git config --global --add safe.directory {truncated_cwd}" + supress)
 
 print(f"[{GREEN}+{RESET}] Initializating Submodules...")
 os.system("git submodule init" + supress)
@@ -50,3 +56,4 @@ with open("../first_install_check", "r+") as file:
 	if "1" in content:
 		file.truncate(0)
 		file.write('0')
+
