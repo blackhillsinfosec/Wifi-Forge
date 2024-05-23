@@ -17,15 +17,16 @@ else:
 
 #need to change the config file to trust the submodule
 supress = ">/dev/null"
-print(f"git config --global --add safe.directory {cwd}../../MiniNet-Framework")
+print(f"{cwd}")
+print(f"git config --global --add safe.directory {cwd}/../../MiniNet-Framework")
 print(f"[{GREEN}+{RESET}] Adding Submodules to safe.directory...")
-os.system(f"git config --global --add safe.directory {cwd}../../MiniNet-Framework" + supress)
+os.system(f"git config --global --add safe.directory {cwd}/../../MiniNet-Framework" + supress)
 
 print(f"[{GREEN}+{RESET}] Initializating Submodules...")
 os.system("git submodule init" + supress)
 
 os.system("git submodule update" + supress)
-
+'''
 print(f"[{GREEN}+{RESET}] Installing Kali Tools...")
 os.system("sudo apt install curl -y" + supress)
 os.system("sudo ./dependencies.sh" + supress)
@@ -58,3 +59,4 @@ with open(f"{cwd}/../Framework/first_install_check", "r+") as file:
 	if "1" in content:
 		file.truncate(0)
 		file.write('0')
+'''
