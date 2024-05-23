@@ -18,6 +18,7 @@ os.system("git submodule init" + supress)
 os.system("git submodule update" + supress)
 
 print(f"[{GREEN}+{RESET}] Installing Kali Tools...")
+os.system("sudo apt install curl" + supress)
 os.system("sudo ./dependencies.sh" + supress)
 os.system("sudo apt install aircrack-ng" + supress)
 os.system("sudo apt install john" + supress)
