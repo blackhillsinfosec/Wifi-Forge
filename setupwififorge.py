@@ -16,7 +16,7 @@ else:
 
 
 #need to change the config file to trust the submodule
-supress = ">/dev/null"
+supress = "2>/dev/null"
 print(f"git config --global --add safe.directory {cwd}../../MiniNet-Framework")
 print(f"[{GREEN}+{RESET}] Adding Submodules to safe.directory...")
 os.system(f"git config --global --add safe.directory {cwd}../../MiniNet-Framework" + supress)
