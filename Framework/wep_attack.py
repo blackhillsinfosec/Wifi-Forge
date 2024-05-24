@@ -4,28 +4,30 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WEP_Attack_Simulation():
+def WEP_attack():
     net = Mininet_wifi(controller=Controller)
+    
     print('Creating stations...')
-    sta1 = net.addStation('sta1', passwd='1234567891a', encrypt='wep')
-    sta2 = net.addStation('sta2', passwd='123456789a', encrypt='wep')
+    
+    attacker = net.addStation('a', wlans=2, password='12345', encrypt='wep')
+    sta1 = net.addStation('sta1', passwd='12345678', encrypt='wep')
+    sta2 = net.addStation('sta2', passwd='12345678', encrypt='wep')
     
     print('Creating the Access Point...')
-    ap1 = net.addAccessPoint('ap1', ssid="simplewifi", mode="g", channel="1", passwd='123456789a', encrypt='wep', failMode="standalone", datapath='user')
-    c1 = net.addController('c1')
+    ap = net.addAccessPoint('ap1', ssid="mywifi", mode="g", channel="6", passwd='123456789a', encrypt='wep')
+    c0 = net.addController('c0', controller=Controller)
     net.configureWifiNodes()
 
     print('Adding stations...')
-    net.addLink(sta1, ap1)
-    net.addLink(sta2, ap1)
+    net.addLink(attacker, ap)
+    net.addLink(sta1, ap)
+    net.addLink(sta2, ap)
 
     net.build()
-    c1.start()
-    ap1.start([c1])
+    c0.start()
+    ap.start([c0])
 
-    os.system("clear")
-    print_banner()
-    
+    print_banner()    
     print("\n")
     print('                    +-_-_-_- WEP 4 Way Hand-shake started Sucessfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')

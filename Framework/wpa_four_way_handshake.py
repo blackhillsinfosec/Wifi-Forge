@@ -4,13 +4,13 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WPA2_4_way_handshake_Simulation():
+def WPA2_attack():
     net = Mininet_wifi(controller=Controller)
 
     print('Creating stations...')
     attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
-    host1 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
-    host2 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
+    sta1 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
+    sta2 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
 
     print('Creating the Access Point...')
     ap = net.addAccessPoint('ap1', ssid='mywifi', passwd='december2022', encrypt='wpa2', mode='g', channel='6')
@@ -20,8 +20,8 @@ def WPA2_4_way_handshake_Simulation():
 
     print('Adding stations...')
     net.addLink(attacker,ap)
-    net.addLink(host1, ap)
-    net.addLink(host2, ap)
+    net.addLink(sta1, ap)
+    net.addLink(sta2, ap)
 
     net.build()
     c0.start()

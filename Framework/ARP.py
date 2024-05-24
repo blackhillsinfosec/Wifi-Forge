@@ -7,32 +7,31 @@ Estbalish an environment for learning ARP spoofing
 See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 '''
 
-def Arp_Spoof_SSL_Downgrade_Simulation():
+def create_arp_spoof():
     net = Mininet_wifi()
 
     print("Creating nodes...")
-    ap1 = net.addAccessPoint('ap1', ssid='new-ssid', mode='g',
-                             channel='1', position='10,10,0',
-                             failMode="standalone")
+    attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
     sta1 = net.addStation('sta1', position='10,20,0')
     sta2 = net.addStation('sta2', position='10,30,0')
 
-    print("Configuring wifi nodes...")
+    print('Creating the Access Point...')
+    ap = net.addAccessPoint('ap1', ssid='new-ssid', mode='g', channel='1', position='10,10,0', failMode="standalone")
     net.configureWifiNodes()
 
-    print("Starting network...")
+    print('Adding stations...')
     net.build()
     net.addNAT().configDefault()
-    ap1.start([])
-    
+    ap.start([])
     sta2.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
 
 
-    os.system("clear")
     print_banner()
     print("\n")
     print('                          +-_-_-_- ARP Spoof started Sucessfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
+    
     CLI(net)
+    
     net.stop()

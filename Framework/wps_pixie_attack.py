@@ -6,7 +6,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WPS_Pixie_Dust_Attack_Simulation():
+def WPS_Pixie_attack():
     net = Mininet_wifi()
 
     print("Creating nodes...")
@@ -34,7 +34,6 @@ def WPS_Pixie_Dust_Attack_Simulation():
     sta1.cmd('ip link set mon0 up')
     makeTerm(sta1)  #reaver -i mon0 -b 02:00:00:00:02:00 -vv
 
-    os.system("clear")
     print_banner()
     print("\n")
     print('                    +-_-_-_- WEP 4 Way Hand-shake started Sucessfully -_-_-_-+')
