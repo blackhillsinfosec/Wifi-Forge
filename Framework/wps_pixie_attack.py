@@ -27,7 +27,7 @@ def print_banner():
 def create_wifi_WPS_Pixie_attack():
     net = Mininet_wifi()
 
-    print("*** Creating nodes\n")
+    print("Creating nodes...")
     sta1 = net.addStation('sta1', encrypt='wpa2')
     sta2 = net.addStation('sta2', encrypt='wpa2')
     ap1 = net.addAccessPoint('ap1', ssid="secure_wifi", mode="g", channel="1",
@@ -35,10 +35,10 @@ def create_wifi_WPS_Pixie_attack():
                              failMode="standalone", datapath='user', wps_state='2',
                              config_methods='label display push_button keypad')
 
-    print("Configuring nodes...\n")
+    print("Configuring nodes...")
     net.configureNodes()
 
-    print("Associating Stations...\n")
+    print("Associating Stations...")
     net.addLink(sta1, ap1)
     net.addLink(sta2, ap1)
 
