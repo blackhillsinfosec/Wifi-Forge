@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def create_wifi_WEP_attack():
+def WEP_Attack_Simulation():
     net = Mininet_wifi(controller=Controller)
     print('Creating stations...')
     sta1 = net.addStation('sta1', passwd='1234567891a', encrypt='wep')
