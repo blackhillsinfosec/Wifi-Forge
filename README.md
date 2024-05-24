@@ -21,7 +21,7 @@ cd MiniNet-Framework/Framework
 sudo python3 WifiForge.py
 ```
 
-## Labs
+## Labs and Featured Tools
 
 Wi-Fi Forge provides pre-built labs that cover the following:
 
