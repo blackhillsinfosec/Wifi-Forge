@@ -6,7 +6,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def create_wifi_WPS_Pixie_attack():
+def WPS_Pixie_Dust_Attack_Simulation():
     net = Mininet_wifi()
 
     print("Creating nodes...")
