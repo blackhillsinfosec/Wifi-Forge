@@ -8,13 +8,13 @@ Estbalish an environment for learning WEP attacks
 See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 '''
 def print_banner():
-    os.system("clear")
-    banner = """                             ,                     ,                                                 
-                            Et                    Et           :                                    
-                            E#t                   E#t         t#,                                 ,;
-                     t      E##t     t            E##t       ;##W.   j.               .Gt       f#i 
-            ;        Ej     E#W#t    Ej           E#W#t     :#L:WE   EW,             j#W:     .E#t  
-          .DL        E#,    E#tfL.   E#,          E#tfL.   .KG  ,#D  E##j          ;K#f      i#W,   
+	os.system("clear")
+	banner = """                             ,                     ,                                                 
+							Et                    Et           :                                    
+							E#t                   E#t         t#,                                 ,;
+					 t      E##t     t            E##t       ;##W.   j.               .Gt       f#i 
+			;        Ej     E#W#t    Ej           E#W#t     :#L:WE   EW,             j#W:     .E#t  
+		  .DL        E#,    E#tfL.   E#,          E#tfL.   .KG  ,#D  E##j          ;K#f      i#W,   
   f.     :K#L     LWLE#t    E#t      E#t          E#t      EE    ;#f E###D.      .G#D.      L#D.    
   EW:   ;W##L   .E#f E#t ,ffW#Dffj.  E#t       ,ffW#Dffj. f#.     t#iE#jG#W;    j#K;      :K#Wfff;  
   E#t  t#KE#L  ,W#;  E#t  ;LW#ELLLf. E#t        ;LW#ELLLf.:#G     GK E#t t##f ,K#f   ,GD; i##WLLLLt 
@@ -24,19 +24,28 @@ def print_banner():
   E#K:    L#W;       E#t    E#t      E#t          E#t         G#t    E#t  ;#W:      j###t      .D#; 
   EG      LE.        E#t    E#t      E#t          E#t          t     DWi   ,KK:      .G#t        tt 
   ;       ;@         ,;.    ;#t      ,;.          ;#t                                  ;;           """
-    print(banner)
+	print(banner)
 
 def create_wifi_WEP_attack():
-    "PUT CODE HERE"
-    net = Mininet_wifi(controller=Controller)
+	"PUT CODE HERE"
+	net = Mininet_wifi(controller=Controller)
+	
+	print("Creating Stations...")
+	sta1 = net.addStation('sta1', passwd='Jerry@277626', encrypt='wpa3')
+	sta2 = net.addStation('sta2', passwd='Jerry@277626', encrypt='wpa3')
 
-    os.system("clear")
-    print_banner()
-    print("\n")
-    print('                    +-_-_-_- WEP 4 Way Hand-shake started Sucessfully -_-_-_-+')
-    print('                             Type "xterm a" and press enter to begin')
-    print('                            Type exit when the simulation is completed\n')
+	print("Creating Access Point...")
+	c0 = net.addController('c0')
+	
+	
 
-    CLI(net)
+	os.system("clear")
+	print_banner()
+	print("\n")
+	print('                    +-_-_-_- WEP 4 Way Hand-shake started Sucessfully -_-_-_-+')
+	print('                             Type "xterm a" and press enter to begin')
+	print('                            Type exit when the simulation is completed\n')
 
-    net.stop()
+	CLI(net)
+
+	net.stop()
