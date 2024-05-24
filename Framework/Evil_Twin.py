@@ -31,11 +31,11 @@ def Evil_Twin_Lab():
 	net = Mininet_wifi(controller=Controller)
 	
 	print("Creating Stations...")
-	sta1 = net.addStation('attacker', passwd='Jerry@277626', encrypt='wpa3', ip="10.0.0.1/8")
-	sta2 = net.addStation('sta2', passwd='Jerry@277626', encrypt='wpa3', ip="10.0.0.2/8")
+	sta1 = net.addStation('attacker', passwd='Jerry@277626', encrypt='wep', ip="10.0.0.1/8", wlans=2)
+	sta2 = net.addStation('sta2', passwd='Jerry@277626', encrypt='wep', ip="10.0.0.2/8", wlans=2)
 
 	print("Creating Access Point...")
-	ap1 = net.addAccessPoint('ap1', ssid="CORP_NET", mode="g", channel="1", passwd="Jerry@277626", encrypt="wpa3", failmode="standalone", datapath="user")
+	ap1 = net.addAccessPoint('ap1', ssid="CORP_NET", mode="g", channel="1", passwd="Jerry@277626", encrypt="wep", failmode="standalone", datapath="user")
 	c0 = net.addController('c0')
 	net.configureWifiNodes()
 	
@@ -54,7 +54,7 @@ def Evil_Twin_Lab():
 	os.system("clear")
 	print_banner()
 	print("\n")
-	print('                    +-_-_-_- WEP 4 Way Hand-shake started Sucessfully -_-_-_-+')
+	print('                       +-_-_-_- Evil Twin Lab started Sucessfully -_-_-_-+')
 	print('                             Type "xterm a" and press enter to begin')
 	print('                            Type exit when the simulation is completed\n')
 
