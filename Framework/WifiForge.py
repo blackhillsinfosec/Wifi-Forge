@@ -1,3 +1,4 @@
+from subprocess import Popen, DEVNULL
 import os
 import importlib.util
 import inspect
@@ -5,7 +6,11 @@ import inspect
 with open("first_install_check","r+") as file:
 	content = file.read()
 	if "1" in content:
-		os.system("sudo ./setup.sh")
+		print("Performing First Time Setup! Please Allow up to 5 Minutes for Installation")
+		Popen("./setup.sh", stdout=DEVNULL, stderr=DEVNULL).wait()
+		os.system("clear")
+		file.truncate(0)
+		file.write('0')
 		print("First Time Setup Successful! Run WifiForge again!")
 		exit()
 # ANSI escape codes for colors
