@@ -36,18 +36,19 @@ os.system("sudo apt install dsniff -y" + supress)
 print(cwd+"===================================================")
 os.chdir(cwd+"/mininet-wifi")
 
+print(f"[{GREEN}+{RESET}] Installing Mininet...")
+os.system("sudo apt install mininet -y --allow-downgrades" + supress)
+
 print(f"[{GREEN}+{RESET}] Running Install Script...")
 os.system("./util/install.sh -Wlnfv" + supress)
 
-print(f"[{GREEN}+{RESET}] Installing Mininet...")
-os.system("sudo apt install -y mininet" + supress)
 
 
 print(f"[{GREEN}+{RESET}] Compiling...")
 os.system("sudo make install" + supress)
 
 print(f"[{GREEN}+{RESET}] Installing openvswitch-testcontroller...")
-os.system("sudo apt install openvswitch-testcontroller" + supress)
+os.system("sudo apt install openvswitch-testcontroller -y" + supress)
 
 os.system("sudo ln /usr/bin/ovs-testcontroller /usr/bin/controller" + supress)
 
