@@ -80,7 +80,9 @@ def main_menu():
     print("                   +==================Simulation Selection==================+")
     for i, (filename, (function_name, _)) in enumerate(functions.items(), start=1):
         formatted_name = function_name.replace('_', ' ').title()
-        print("                   | [{: <1}] {: <50} |".format(i, formatted_name))                                       
+        print(f"                   | [{GREEN}{i:<1}{RESET}] {formatted_name:<51}|") 
+    print(f"                   | [{GREEN}h{RESET}] Help                                               |")
+    print(f"                   | [{GREEN}q{RESET}] Quit                                               |")   
     print("                   +========================================================+")
     print("                   |  " + MAGENTA  + "Last Updated 5/15/2024 " + RESET  + "   |    " + RED + "Version 1.0.0" + RESET + "          |")
     print("                   +========================================================+")
