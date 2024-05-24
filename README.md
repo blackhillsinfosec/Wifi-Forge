@@ -8,12 +8,11 @@ Wi-Fi Forge provides a safe environment for learning WiFi hacking via [Mininet-W
 
 ## Important Notes
 
-- Mininet and Mininet-Wifi only runs on Linux operating systems. 
-- It is suggested to run Mininet on Ubuntu version 14.04 or greater. 
-- The Mininet-Wifi installation script may disrupt normal operating system use, it is suggested to use a fresh install or virtual machine.
-# Set-Up Guide
+- Mininet and Wifi Forge only runs on Ubuntu operating systems. 
+- It is suggested to run Wifi Forge on Ubuntu version 14.04 or greater. 
+- The Wifi Forge installation script may disrupt normal operating system use, it is suggested to use a fresh install or virtual machine
 
-==TBD, subject to change==
+# Set-Up Guide
 
 Clone the repository
 ```
@@ -26,31 +25,14 @@ sudo python3 WifiForge.py
 
 Wi-Fi Forge provides pre-built labs that cover the following:
 
-- CAPTURING
-- CRACKING
-- SITUATIONAL AWARENESS
-- QUICK SCAN
-- NETWORK ACCESS
-- NETWORK MANAGER
-- AIRODUMP-NG
-- AIRCRACK-NG
-- JOHN THE RIPPER "JOHN"
-- PRE-SHARED KEY CRYPTOGRAPHIC MATERIAL CAPTURE IN HANDSHAKE FORMAT
-- EAPHAMMER AND THE EVIL-TWIN ATTACK
-
-# Networks
-
-- CORP-RETAIL
-- CORP-SECURE
-- Network: 10.35.0.0/24
-
-# Menu Options
-
-1. Initialize WPA Handshake Lab
-2. Initialize EvilTwin Lab/John the Ripper - ==incorporates NTLM hashes, problem :(==
-4. WifiPhisher 
-5. Initialize Custom Network 
-6. ABOUT/HELP
+- WPA 4 Way Handshakes
+- Cracking Wifi Key Encryption
+- The tool eaphammer
+- WPS Pixie Dust Attacks
+- WEP wifi attakcs
+- The ARP Spoof tool and downgrading ssl
+- The aircrack-ng tool suite
+- John the Ripper "JOHN"
 
 # Links and Further Reading 
 
