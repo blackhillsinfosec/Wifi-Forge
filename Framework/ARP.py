@@ -10,17 +10,17 @@ See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 def create_arp_spoof():
     net = Mininet_wifi()
 
-    print("[+] Creating nodes...\n")
+    print("Creating nodes...")
     ap1 = net.addAccessPoint('ap1', ssid='new-ssid', mode='g',
                              channel='1', position='10,10,0',
                              failMode="standalone")
     sta1 = net.addStation('sta1', position='10,20,0')
     sta2 = net.addStation('sta2', position='10,30,0')
 
-    print("[+] Configuring wifi nodes...\n")
+    print("Configuring wifi nodes...")
     net.configureWifiNodes()
 
-    print("[+] Starting network...\n")
+    print("Starting network...")
     net.build()
     net.addNAT().configDefault()
     ap1.start([])
