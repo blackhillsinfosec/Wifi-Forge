@@ -1,6 +1,7 @@
 from mininet.net import Mininet
+from mininet.log import setLogLevel, info
 from mininet.node import Controller
-from mininet.cli import CLI
+from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
 import os
 '''
@@ -29,16 +30,15 @@ def print_banner():
 def Evil_Twin_Lab():
 	"PUT CODE HERE"
 	net = Mininet_wifi(controller=Controller)
-	
+
 	print("Creating Stations...")
-	sta1 = net.addStation('attacker', passwd='Jerry@277626', encrypt='wep', ip="10.0.0.1/8", wlans=2)
-	sta2 = net.addStation('sta2', passwd='Jerry@277626', encrypt='wep', ip="10.0.0.2/8", wlans=2)
+	sta1 = net.addStation('attacker', passwd='JERRY277626AA', encrypt='wpa2', wlans=2)
+	sta2 = net.addStation('sta2', passwd='JERRY277626AA', encrypt='wpa2', wlans=2)
 
 	print("Creating Access Point...")
-	ap1 = net.addAccessPoint('ap1', ssid="CORP_NET", mode="g", channel="1", passwd="Jerry@277626", encrypt="wep", failmode="standalone", datapath="user")
+	ap1 = net.addAccessPoint('ap1', ssid="CORP_NET", mode='g', channel='1', passwd="JERRY277626AA", encrypt="wpa2")
 	c0 = net.addController('c0')
 	net.configureWifiNodes()
-	
 	print('Adding Stations')
 	net.addLink(sta1, ap1)
 	net.addLink(sta2, ap1)
@@ -51,8 +51,8 @@ def Evil_Twin_Lab():
 	c0.start()
 	ap1.start([c0])
 
-	os.system("clear")
-	print_banner()
+	#os.system("clear")
+	#print_banner()
 	print("\n")
 	print('                       +-_-_-_- Evil Twin Lab started Sucessfully -_-_-_-+')
 	print('                             Type "xterm a" and press enter to begin')
@@ -62,3 +62,5 @@ def Evil_Twin_Lab():
 
 	net.stop()
 
+setLogLevel('info')
+Evil_Twin_Lab()
