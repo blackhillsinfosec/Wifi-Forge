@@ -1,6 +1,8 @@
 # WI-Fi Forge
 
-![wifi forge banner](https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/banner.png)
+<div style="text-align: center;">
+  <img src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/banner.png" alt="Wi-Fi Forge Banner">
+</div>
 
 ## About Wifi-Forge
 
