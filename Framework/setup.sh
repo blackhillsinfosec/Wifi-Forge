@@ -16,6 +16,7 @@ index=$(echo "$cwd" | awk -F'/MiniNet-Framework' '{print length($1)+length("/Min
 truncated_cwd=$(echo "$cwd" | cut -c 1-"$index")
 
 # Change the config file to trust the submodule
+
 # Adding Submodules to safe.directory
 echo -e "[${GREEN}+${RESET}] Adding Submodules to safe.directory..."
 git config --global --add safe.directory "$truncated_cwd" > /dev/null 2>&1
