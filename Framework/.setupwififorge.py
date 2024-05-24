@@ -36,11 +36,13 @@ os.system("sudo apt install dsniff -y" + supress)
 print(cwd+"===================================================")
 os.chdir(cwd+"/mininet-wifi")
 
+
 print(f"[{GREEN}+{RESET}] Installing Mininet...")
 os.system("sudo apt install mininet -y --allow-downgrades" + supress)
 
 print(f"[{GREEN}+{RESET}] Running Install Script...")
 os.system("./util/install.sh -Wlnfv" + supress)
+
 
 
 
