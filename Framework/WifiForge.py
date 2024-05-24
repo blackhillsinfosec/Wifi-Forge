@@ -7,7 +7,7 @@ with open("first_install_check","r+") as file:
 	content = file.read()
 	if "1" in content:
 		print("Performing First Time Setup! Please Allow up to 5 Minutes for Installation")
-		Popen("./setup.sh", stdout=DEVNULL, stderr=DEVNULL).wait()
+		Popen("./setup.sh").wait()
 		os.system("clear")
 		file.truncate(0)
 		file.write('0')
