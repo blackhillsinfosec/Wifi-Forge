@@ -19,6 +19,7 @@ Clone the repository
 git clone https://github.com/her3ticAVI/MiniNet-Framework
 cd MiniNet-Framework/Framework
 sudo python3 WifiForge.py
+```
 
 ## Labs
 
