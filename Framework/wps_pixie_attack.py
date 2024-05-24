@@ -3,6 +3,7 @@ from mininet.net import Mininet
 from mininet.node import Controller
 from mininet.cli import CLI
 from mn_wifi.net import Mininet_wifi
+from WifiForge import print_banner
 import os
 
 def create_wifi_WPS_Pixie_attack():
