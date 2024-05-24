@@ -16,8 +16,8 @@ Wi-Fi Forge provides a safe environment for learning WiFi hacking via [Mininet-W
 
 Clone the repository
 ```
-git clone https://github.com/her3ticAVI/MiniNet-Framework
-cd MiniNet-Framework/Framework
+git clone https://github.com/her3ticAVI/MiniNet-Framework &&
+cd MiniNet-Framework/Framework &&
 sudo python3 WifiForge.py
 ```
 
