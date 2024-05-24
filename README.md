@@ -2,7 +2,7 @@
   <img src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/wififorge.png" alt="Wi-Fi Forge Banner">
 </div>
 
-## About Wifi-Forge
+## FAQS
 
 Wi-Fi Forge provides a safe environment for learning WiFi hacking via [Mininet-Wifi](https://github.com/intrig-unicamp/mininet-wifi/tree/master?tab=readme-ov-file) and [Mininet](https://github.com/mininet/mininet), which creates software defined networks within a single host machine. Wi-Fi Forge provides pre-built labs that can be setup and completed with minimal overhead all from a single laptop without any additional hardware.
 
