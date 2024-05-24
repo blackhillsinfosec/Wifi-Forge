@@ -58,9 +58,5 @@ sudo make install $supress
 echo -e "[${GREEN}+${RESET}] Installing openvswitch-testcontroller..."
 sudo apt install openvswitch-testcontroller -y $supress
 
+echo "0" > "$cwd/../first_install_check"
 # Create/Update first_install_check file
-if [ -f "$cwd/../first_install_check" ]; then
-    if grep -q "1" "$cwd/../first_install_check"; then
-        echo "0" > "$cwd/../first_install_check"
-    fi
-fi
