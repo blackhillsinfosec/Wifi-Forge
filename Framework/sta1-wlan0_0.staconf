@@ -1,0 +1,8 @@
+ctrl_interface=/var/run/wpa_supplicant
+network={
+   ssid="CORP_NET"
+   psk="Jerry@277626"
+   proto=WPA2
+   pairwise=CCMP
+   key_mgmt=SAE
+}

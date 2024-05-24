@@ -26,18 +26,30 @@ def print_banner():
   ;       ;@         ,;.    ;#t      ,;.          ;#t                                  ;;           """
 	print(banner)
 
-def create_wifi_WEP_attack():
+def Evil_Twin_Lab():
 	"PUT CODE HERE"
 	net = Mininet_wifi(controller=Controller)
 	
 	print("Creating Stations...")
-	sta1 = net.addStation('sta1', passwd='Jerry@277626', encrypt='wpa3')
-	sta2 = net.addStation('sta2', passwd='Jerry@277626', encrypt='wpa3')
+	sta1 = net.addStation('attacker', passwd='Jerry@277626', encrypt='wpa3', ip="10.0.0.1/8")
+	sta2 = net.addStation('sta2', passwd='Jerry@277626', encrypt='wpa3', ip="10.0.0.2/8")
 
 	print("Creating Access Point...")
+	ap1 = net.addAccessPoint('ap1', ssid="CORP_NET", mode="g", channel="1", passwd="Jerry@277626", encrypt="wpa3", failmode="standalone", datapath="user")
 	c0 = net.addController('c0')
+	net.configureWifiNodes()
 	
-	
+	print('Adding Stations')
+	net.addLink(sta1, ap1)
+	net.addLink(sta2, ap1)
+
+	net.build()
+	c0.start()
+	ap1.start([c0])
+
+	net.build()
+	c0.start()
+	ap1.start([c0])
 
 	os.system("clear")
 	print_banner()
@@ -49,3 +61,4 @@ def create_wifi_WEP_attack():
 	CLI(net)
 
 	net.stop()
+
