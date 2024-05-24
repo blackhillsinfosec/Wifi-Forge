@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def create_wifi_network_4_way_handshake():
+def WPA2_4_way_handshake_Simulation():
     net = Mininet_wifi(controller=Controller)
 
     print('Creating stations...')
