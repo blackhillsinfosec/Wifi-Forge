@@ -8,9 +8,27 @@ import string
 from tqdm import tqdm
 from datetime import datetime
 import sys
+import signal
 
 #variables
 interface = "a-wlan0"
+MAC = "get the mac"
+
+def NTLMNET(signum, frame):
+    print(f"a-wlan0: STA {MAC} IEEE 802.11: authenticated")
+    print(f"a-wlan0: STA {MAC} IEEE 802.11: associated (aid 1)")
+    print(f"a-wlan0: CTRL-EVENT-EAP-STARTED {MAC}")
+    print("a-wlan0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=1")
+    print("a-wlan0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=25\n\n")
+
+    print(f"mschapv2: {datetime.date}")
+    print("\tdomain\\username\t\tjohnnie.doyle@lab.local")
+    print("\tusername:\t\tjohnnie.doyle@lab.local")
+    print("\tchallenge:\t\tf1:ed:0e:75:f1:27:8a:a2")
+    print("\tresponse:\t\t22:93:c5:38:2d:a0:91:b7:00:4c:fa:f4:98:18:62:ff:ed:22:2f:50:76:5c:86:9e")
+    print("\n\tjtr NETNTLM\t\tjohnnie.doyle@lab.local:$NETNTLM$65c09d9d0f121f7d$5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff")
+    print("\n\thashcat NETNTLM:\t\tjohnnie.doyle@lab.local::::5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff:65c09d9d0f121f7d")
+
 
 def print_file_names(message):
     datestring = datetime.strftime(datetime.now(), '%Y-%m-%d-%H-%M-%S')
@@ -101,9 +119,9 @@ time.sleep(random.randint(0,2))
 print("a-wlan0: interface state COUNTRY_UPDATE->ENABLED")
 print("attacker-wlan0: AP-ENABLED\n\n")
 
-exit_input = input("Press enter to quit...\n\n")
+signal.signal(signal.SIGALRM, NTLMNET)
+exit_input = "0"
+signal.alarm(random.randint(2,20))
 while exit_input != "":
     exit_input = input("Press enter to quit...\n\n")
-
-
 
