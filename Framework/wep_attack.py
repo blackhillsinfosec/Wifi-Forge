@@ -11,7 +11,7 @@ def WEP_attack():
     attacker = net.addStation('a', passwd='123456789a', encrypt='wep')
     sta2 = net.addStation('sta2', passwd='123456789a', encrypt='wep')
     sta3 = net.addStation('sta3', passwd='123456789a', encrypt='wep')
-    ap1 = net.addAccessPoint('ap1', ssid="simplewifi", mode="g", channel="1",
+    ap1 = net.addAccessPoint('ap1', ssid="simplewifi", mode="g", channel="6",
                              passwd='123456789a', encrypt='wep',
                              failMode="standalone", datapath='user')
 
