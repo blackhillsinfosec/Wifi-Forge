@@ -9,32 +9,47 @@ from tqdm import tqdm
 from datetime import datetime
 import sys
 import signal
+from functools import partial
 
 #variables
 interface = "a-wlan0"
-MAC = "get the mac"
+MAC = "02:00:00:00:02:00"
 
-def NTLMNET(signum, frame):
+def echo(text, file_path):
+    os.system(f"echo '{text}' >> {file_path}")
+
+def NTLMNET(message, signum, frame):
     print(f"a-wlan0: STA {MAC} IEEE 802.11: authenticated")
     print(f"a-wlan0: STA {MAC} IEEE 802.11: associated (aid 1)")
     print(f"a-wlan0: CTRL-EVENT-EAP-STARTED {MAC}")
     print("a-wlan0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=1")
     print("a-wlan0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=25\n\n")
 
-    print(f"mschapv2: {datetime.date}")
+    print(f"mschapv2: {datetime.today()}")
     print("\tdomain\\username\t\tjohnnie.doyle@lab.local")
     print("\tusername:\t\tjohnnie.doyle@lab.local")
     print("\tchallenge:\t\tf1:ed:0e:75:f1:27:8a:a2")
     print("\tresponse:\t\t22:93:c5:38:2d:a0:91:b7:00:4c:fa:f4:98:18:62:ff:ed:22:2f:50:76:5c:86:9e")
     print("\n\tjtr NETNTLM\t\tjohnnie.doyle@lab.local:$NETNTLM$65c09d9d0f121f7d$5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff")
-    print("\n\thashcat NETNTLM:\t\tjohnnie.doyle@lab.local::::5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff:65c09d9d0f121f7d")
+    print("\n\thashcat NETNTLM:\tjohnnie.doyle@lab.local::::5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff:65c09d9d0f121f7d")
 
+    os.system(f"echo 'mschapv2: {datetime.today()}' > {message}")
+    echo("\tdomain\\username\t\tjohnnie.doyle@lab.local", message)
+    echo("\tusername:\t\tjohnnie.doyle@lab.local", message)
+    echo("\tchallenge:\t\tf1:ed:0e:75:f1:27:8a:a2", message)
+    echo("\tresponse:\t\t22:93:c5:38:2d:a0:91:b7:00:4c:fa:f4:98:18:62:ff:ed:22:2f:50:76:5c:86:9e", message)
+    echo("\n\tjtr NETNTLM\t\tjohnnie.doyle@lab.local:$NETNTLM$65c09d9d0f121f7d$5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff", message)
+    echo("\n\thashcat NETNTLM:\tjohnnie.doyle@lab.local::::5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff:65c09d9d0f121f7d", message)
+
+
+    exit()
 
 def print_file_names(message):
     datestring = datetime.strftime(datetime.now(), '%Y-%m-%d-%H-%M-%S')
     randstring = ''.join(random.choice(string.ascii_letters+string.digits) for _ in range(32))
     message += '-'.join([datestring,randstring])
     print(message)
+    return message
 
 #check argv
 if len(sys.argv) != 6:
@@ -104,12 +119,13 @@ for i in tqdm(range(int(9e6))):
 
 print("\n\n")
 print("[*] Success: a-wlan0 no longer controlled by NetworkManager")
-print("[*] WPA handshakes will be saved to wpa_hakeshake_capture")
 
-print_file_names(f"[*] WPA handshakes will be saved to {os.getcwd()}/eaphammer/loot/wpa_handshake_capture")
-print_file_names(f"Configuration file: {os.getcwd()}/wpa_handshake_capture\n\n")
+message = print_file_names(f"[*] WPA handshakes will be saved to {os.getcwd()}/loot/wpa_handshake_capture")
+message = message[35:]
+print(message)
+print_file_names(f"Configuration file: {os.getcwd()}/wpa_handshake_capture")
 
-print("[hostapd] AP starting...\n\n")
+print("\n\n[hostapd] AP starting...\n\n")
 time.sleep(random.randint(1,4))
 
 print("a-wlan0: interface state UNINITIALIZED->COUNTRY_UPDATE")
@@ -119,7 +135,7 @@ time.sleep(random.randint(0,2))
 print("a-wlan0: interface state COUNTRY_UPDATE->ENABLED")
 print("attacker-wlan0: AP-ENABLED\n\n")
 
-signal.signal(signal.SIGALRM, NTLMNET)
+signal.signal(signal.SIGALRM, partial(NTLMNET, message))
 exit_input = "0"
 signal.alarm(random.randint(2,20))
 while exit_input != "":

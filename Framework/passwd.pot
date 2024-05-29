@@ -1,0 +1,1 @@
+Loaded 2 password hashes with no different salts (LM [DES 128/128 SSE2])
