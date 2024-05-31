@@ -3,6 +3,7 @@ import os
 import importlib.util
 import inspect
 
+'''
 with open("first_install_check","r+") as file:
 	content = file.read()
 	if "1" in content:
@@ -13,6 +14,7 @@ with open("first_install_check","r+") as file:
 		file.write('0')
 		print("First Time Setup Successful! Run WifiForge again!")
 		exit()
+'''
 # ANSI escape codes for colors
 RED = "\033[91m"
 GREEN = "\033[92m"
