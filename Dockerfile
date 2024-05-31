@@ -2,8 +2,6 @@ FROM ubuntu:24.04 as base
 
 USER root
 
-WORKDIR /wififorge
-
 COPY . .
 COPY xhost /usr/bin
 RUN apt-get update -y && apt-get upgrade --fix-missing -y --no-install-recommends
@@ -33,3 +31,4 @@ RUN ./Framework/mininet-wifi/util/install.sh -Wlnfv
 RUN sudo make -C Framework/mininet-wifi install
 RUN sudo /usr/share/openvswitch/scripts/ovs-ctl start
 #CMD python3 Framework/WifiForge.py
+
