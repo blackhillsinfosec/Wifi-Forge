@@ -16,6 +16,27 @@ Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Bas
 
 ### Docker (recommended)
 
+#### Install from release
+
+1. Download from releases
+2. Load the image
+  ```bash
+  sudo docker load < wififorge.tar
+  ```
+3. Start a new container
+  ```bash
+  sudo docker run --privileged=true -it --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v /sys/:/sys -v /lib/modules/:/lib/modules/ --name mininet-wifi --network=host --hostname mininet-wifi wififorge /bin/bash
+  ```
+4. Within docker, initiate the controller to simulate APs
+```bash
+RUN service openvswitch-switch start
+```
+5. Run wififorge.py
+```bash
+sudo python3 Framework/WifiForge.py
+```
+#### Build from Dockerfile
+
 1. Install Docker
 ```bash
 sudo snap install docker
