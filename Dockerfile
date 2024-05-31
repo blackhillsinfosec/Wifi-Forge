@@ -17,16 +17,16 @@ RUN git submodule update
 
 RUN apt-get install -y --no-install-recommends \
     curl \
-    aircrack-ng \
-    john \
-    dsniff \
+#    aircrack-ng \
+#    john \
+#    dsniff \
     mininet --allow-downgrades\
-    openvswitch-testcontroller \
-    openvswitch-switch
+#    openvswitch-testcontroller \
+#    openvswitch-switch
 #RUN chmod u+x Framework/dependenci es.sh
 #RUN ./Framework/dependencies.sh
 #RUN apt update -y && apt upgrade -y
 RUN ./Framework/mininet-wifi/util/install.sh -Wlnfv
 RUN ln /usr/bin/ovs-testcontroller /usr/bin/controller
-RUN make install
+RUN sudo make install
 #CMD python3 Framework/WifiForge.py
