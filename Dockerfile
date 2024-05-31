@@ -2,7 +2,7 @@ FROM ubuntu:24.04 as base
 
 USER root
 
-COPY xhost /usr/bin
+COPY xhost /usr/bin/
 
 WORKDIR /wififorge
 
@@ -21,10 +21,14 @@ RUN apt install -y \
      iputils-ping
 
 RUN git config --global --add safe.directory $PWD
+RUN git config --global --add safe.directory $PWD/Framework/john
 RUN git submodule init
 RUN git submodule update
 
+RUN git config --global --add safe.directory $PWD/Framework/mininet-wifi/hostapd
+
 RUN python3 -m pip config set global.break-system-packages true
+
 
 RUN chmod +x ./Framework/dependencies.sh
 RUN ./Framework/dependencies.sh 
@@ -32,3 +36,10 @@ RUN ./Framework/dependencies.sh
 RUN ./Framework/mininet-wifi/util/install.sh -Wlnfv
 RUN sudo make -C Framework/mininet-wifi install
 RUN service openvswitch-switch start
+
+#setup john
+RUN apt install libssl-dev
+RUN ./Framework/john/src/configure
+RUN make -C Framework/john/src
+RUN make -C Framework/john/src -s clean && make -C Framework/john/src -sj4
+

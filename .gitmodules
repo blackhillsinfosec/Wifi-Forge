@@ -1,3 +1,6 @@
 [submodule "mininet-wifi"]
 	path = Framework/mininet-wifi
 	url = https://github.com/JsphByd/mininet-wifi.git
+[submodule "Framework/john"]
+	path = Framework/john
+	url = https://github.com/openwall/john.git
