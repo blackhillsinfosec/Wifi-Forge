@@ -5,6 +5,7 @@ USER root
 WORKDIR /wififorge
 
 COPY . .
+COPY xhost /usr/bin
 RUN apt-get update -y && apt-get upgrade --fix-missing -y --no-install-recommends
 RUN apt install -y git
 RUN apt install -y sudo
