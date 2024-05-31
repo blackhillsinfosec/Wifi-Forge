@@ -2,6 +2,8 @@ FROM ubuntu:24.04
 
 USER root
 
+COPY xhost /usr/bin
+
 WORKDIR /wififorge
 
 COPY . .
@@ -11,5 +13,3 @@ COPY . .
     sudo \
     iputils-ping \
     nano
-#RUN ./Framework/setup.sh
-#CMD service openvswitch-switch 
