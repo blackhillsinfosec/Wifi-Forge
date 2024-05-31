@@ -22,11 +22,12 @@ RUN apt-get install -y --no-install-recommends \
 #    aircrack-ng \
 #    john \
 #    dsniff \
-     mininet --allow-downgrades
+     mininet --allow-downgrades \
+     apt install -y iputils-ping
 #    openvswitch-testcontroller \
 #    openvswitch-switch
 
 RUN ./Framework/mininet-wifi/util/install.sh -Wlnfv
 RUN ln /usr/bin/ovs-testcontroller /usr/bin/controller
-RUN sudo make install
+RUN sudo make -C Framework/mininet-wifi install
 #CMD python3 Framework/WifiForge.py
