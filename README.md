@@ -38,7 +38,7 @@ sudo docker run --privileged=true -it --env="DISPLAY" --env="QT_X11_NO_MITSHM=1"
 
 5. Within docker, initiate the controller to simulate APs
 ```bash
-RUN sudo /usr/share/openvswitch/scripts/ovs-ctl start
+RUN service openvswitch-switch start
 ```
 
 6. Within docker, run WifiForge.py
