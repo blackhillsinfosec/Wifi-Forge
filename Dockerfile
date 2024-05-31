@@ -8,24 +8,24 @@ COPY . .
 RUN apt-get update -y && apt-get upgrade --fix-missing -y --no-install-recommends
 RUN apt install -y git
 RUN apt install -y sudo
+RUN apt install -y python3-pip
 RUN echo $PWD
 RUN git config --global --add safe.directory $PWD
 RUN git submodule init
 RUN git submodule update
 
+RUN python3 -m pip config set global.break-system-packages true
 
 
 RUN apt-get install -y --no-install-recommends \
-    curl \
+     curl \
 #    aircrack-ng \
 #    john \
 #    dsniff \
-    mininet --allow-downgrades\
+     mininet --allow-downgrades
 #    openvswitch-testcontroller \
 #    openvswitch-switch
-#RUN chmod u+x Framework/dependenci es.sh
-#RUN ./Framework/dependencies.sh
-#RUN apt update -y && apt upgrade -y
+
 RUN ./Framework/mininet-wifi/util/install.sh -Wlnfv
 RUN ln /usr/bin/ovs-testcontroller /usr/bin/controller
 RUN sudo make install
