@@ -35,11 +35,10 @@ RUN ./Framework/dependencies.sh
 
 RUN ./Framework/mininet-wifi/util/install.sh -Wlnfv
 RUN sudo make -C Framework/mininet-wifi install
-RUN service openvswitch-switch start
 
 #setup john
 RUN apt install libssl-dev
 RUN ./Framework/john/src/configure
-RUN make -C Framework/john/src
 RUN make -C Framework/john/src -s clean && make -C Framework/john/src -sj4
 
+CMD /wififorge# printf "nameserver 8.8.8.8\noptions edns0 trust-ad\nsearch home\n" > /etc/resolv.conf;service openvswitch-switch start
