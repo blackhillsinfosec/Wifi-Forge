@@ -44,7 +44,7 @@ sudo snap install docker
 
 2. Clone the repository
 ```bash
-git clone https://github.com/her3ticAVI/MiniNet-Framework
+git clone https://github.com/her3ticAVI/Wifi-Forge
 ```
 
 3. Run the Dockerfile (may take up to 10 minutes)
@@ -73,12 +73,16 @@ NOTE: While the setup script is generally stable, running the auto installer dir
 
 1. Clone the repository
 ```bash
-git clone https://github.com/her3ticAVI/MiniNet-Framework
+git clone https://github.com/her3ticAVI/Wifi-Forge
+```
+2. Run setup.sh
+```bash
+cd Wifi-Forge/Framework/
+sudo ./setup.sh
 ```
 
-2. Run Wi-Fi Forge to perform first time setup (may take up to 10 minutes)
+2. Run Wi-Fi Forge
 ```bash
-cd MiniNet-Framework/Framework
 sudo python3 WifiForge.py
 ```
 
