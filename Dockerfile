@@ -2,7 +2,7 @@ FROM ubuntu:24.04 as base
 
 USER root
 
-COPY xhost /usr/bin
+COPY xhost /usr/bin/
 
 WORKDIR /wififorge
 
@@ -20,6 +20,12 @@ RUN git submodule update
 RUN git config --global --add safe.directory $PWD/Framework/mininet-wifi/hostapd
 
 RUN python3 -m pip config set global.break-system-packages true
+
+#setup john
+RUN apt install libssl-dev
+RUN ./Framework/john/src/configure
+RUN make -C Framework/john/src
+RUN make -C Framework/john/src -s clean && make -C Framework/john/src -sj4
 
 RUN apt install -y curl wget
 RUN chmod +x ./Framework/dependencies.sh
