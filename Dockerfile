@@ -2,7 +2,7 @@ FROM kalilinux/kali-rolling
 
 USER root
 
-COPY xhost /usr/bin/
+COPY xhost /usr/bin
 
 WORKDIR /wififorge
 
