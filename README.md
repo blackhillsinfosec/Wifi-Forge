@@ -94,7 +94,17 @@ Wi-Fi Forge provides pre-built labs that cover the following:
 - Evil twin 
 - WEP cracking
 - WPA2 cracking
-- WPS exploitation 
+- WPS exploitation
+
+## Common Issues
+
+### Xterm does not work!
+
+Intializing graphical interfaces as root between the docker image and host machine is restricted on most modern distributions. Run the following command to provide the appropriate permissions - 
+```bash
+xhost si:localuser:root
+```
+If other issues are encountered, start a thread in the issues section of the repo! :) 
 
 ## Links and Further Reading 
 
