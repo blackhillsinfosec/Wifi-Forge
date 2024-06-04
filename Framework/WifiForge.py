@@ -75,7 +75,7 @@ def load_functions_from_py_files(directory):
                 function_dict[filename] = (function_name, function)
     return function_dict
 
-directory = os.getcwd()  # Current directory
+directory = os.path.dirname(os.path.realpath(__file__))  # Current directory
 functions = load_functions_from_py_files(directory)
     
 # Display the loaded functions

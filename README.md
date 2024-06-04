@@ -8,8 +8,8 @@ Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Bas
 
 ## Disclaimer/Notes
 
-- The installation script will only run on Ubuntu, Debian, or Fedora systems. 
-- It is suggested to run Wifi Forge on Ubuntu version 14.04 or greater. 
+- The installation script will only run on Ubuntu, Debian, Fedora, or Kali. 
+- It is suggested to run Wifi Forge on Ubuntu version 14.04 or the lastest version of Kali. 
 - The Wifi Forge installation script may disrupt normal operating system use, it is suggested to use a fresh install, virtual machine, or build using the provided dockerfile (see Set-Up Guide/Docker)
 
 ## Set-Up Guide
