@@ -15,6 +15,7 @@ Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Bas
 ## Set-Up Guide
 
 ### Docker (recommended)
+Note: Dockerfile will fail if mininet-wifi is already installed locally
 
 #### Install from release
 
