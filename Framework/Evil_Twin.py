@@ -10,7 +10,6 @@ See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 '''
 
 def Evil_Twin_Lab():
-	"PUT CODE HERE"
 	net = Mininet_wifi(controller=Controller)
 
 	print("Creating Stations...")
@@ -21,6 +20,7 @@ def Evil_Twin_Lab():
 	ap1 = net.addAccessPoint('ap1', ssid="CORP_NET", mode='g', channel='1', passwd="JERRY277626AA", encrypt="wpa2")
 	c0 = net.addController('c0')
 	net.configureWifiNodes()
+
 	print('Adding Stations')
 	net.addLink(host1, ap1)
 	net.addLink(host2, ap1)
@@ -43,7 +43,7 @@ def Evil_Twin_Lab():
 	CLI(net)
 
 	net.stop()
-        os.system("clear")
+	os.system("clear")
 	exit()
 
 

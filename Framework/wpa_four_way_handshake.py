@@ -7,7 +7,7 @@ import os
 def WPA2_attack():
     net = Mininet_wifi(controller=Controller)
 
-    print('Creating stations...')
+    print('Creating Stations...')
     attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
     host1 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
     host2 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
@@ -17,8 +17,7 @@ def WPA2_attack():
     c0 = net.addController('c0', controller=Controller)
     net.configureWifiNodes()
 
-
-    print('Adding stations...')
+    print('Adding Stations...')
     net.addLink(attacker,ap)
     net.addLink(host1, ap)
     net.addLink(host2, ap)

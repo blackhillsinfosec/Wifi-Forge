@@ -20,7 +20,8 @@ RUN apt install -y \
      wifiphisher \
      net-tools \
      dsniff \
-     iputils-ping
+     iputils-ping \
+     wifite
 
 RUN git config --global --add safe.directory $PWD
 RUN git submodule init

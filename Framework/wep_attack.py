@@ -4,10 +4,9 @@ from time import sleep
 
 
 def WEP_attack():
-    "Create a network."
     net = Mininet_wifi()
 
-    print("*** Creating nodes\n")
+    print("Creating Stations...\n")
     attacker = net.addStation('a', passwd='123456789a', encrypt='wep')
     host1 = net.addStation('host1', passwd='123456789a', encrypt='wep')
     host2 = net.addStation('host2', passwd='123456789a', encrypt='wep')
@@ -15,15 +14,14 @@ def WEP_attack():
                              passwd='123456789a', encrypt='wep',
                              failMode="standalone", datapath='user')
 
-    print("*** Configuring wifi nodes\n")
+    print("Creating the Access Point..\n")
     net.configureWifiNodes()
 
-    print("*** Associating Stations\n")
+    print("Adding Stations...\n")
     net.addLink(attacker, ap1)
     net.addLink(host1, ap1)
     net.addLink(host2, ap1)
 
-    print("*** Starting network\n")
     net.build()
     ap1.start([])
 
