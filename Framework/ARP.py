@@ -35,3 +35,4 @@ def create_arp_spoof():
     CLI(net)
     
     net.stop()
+    exit()

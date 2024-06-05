@@ -43,6 +43,6 @@ def Evil_Twin_Lab():
 	CLI(net)
 
 	net.stop()
+	exit()
 
-setLogLevel('info')
 

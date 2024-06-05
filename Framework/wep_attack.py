@@ -38,3 +38,4 @@ def WEP_attack():
 
     print("*** Stopping network\n")
     net.stop()
+    exit()
