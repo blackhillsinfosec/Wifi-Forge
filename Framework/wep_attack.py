@@ -9,8 +9,8 @@ def WEP_attack():
 
     print("*** Creating nodes\n")
     attacker = net.addStation('a', passwd='123456789a', encrypt='wep')
-    sta2 = net.addStation('sta2', passwd='123456789a', encrypt='wep')
-    sta3 = net.addStation('sta3', passwd='123456789a', encrypt='wep')
+    host1 = net.addStation('host1', passwd='123456789a', encrypt='wep')
+    host2 = net.addStation('host2', passwd='123456789a', encrypt='wep')
     ap1 = net.addAccessPoint('ap1', ssid="simplewifi", mode="g", channel="6",
                              passwd='123456789a', encrypt='wep',
                              failMode="standalone", datapath='user')
@@ -20,17 +20,23 @@ def WEP_attack():
 
     print("*** Associating Stations\n")
     net.addLink(attacker, ap1)
-    net.addLink(sta2, ap1)
-    net.addLink(sta3, ap1)
+    net.addLink(host1, ap1)
+    net.addLink(host2, ap1)
 
     print("*** Starting network\n")
     net.build()
     ap1.start([])
 
-    sleep(10)
+    print_banner()
+    print("\n")
+    print('                          +-_-_-_- WEP lab started Sucessfully -_-_-_-+')
+    print('                             Type "xterm a" and press enter to begin')
+    print('                            Type exit when the simulation is completed\n')
 
     print("*** Running CLI\n")
     CLI(net)
 
     print("*** Stopping network\n")
+    os.system('clear')
     net.stop()
+    exit()

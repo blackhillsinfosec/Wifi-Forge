@@ -85,43 +85,50 @@ functions = load_functions_from_py_files(directory)
 # SWITCH CASE WITH FUNCTION CALLS
 
 def main_menu():
-    print_banner()
-    print("\n\n                             " + GREEN + "Brought to you by Black Hills InfoSec" + RESET)
-    print("                   +==================Simulation Selection==================+")
-    for i, (filename, (function_name, _)) in enumerate(functions.items(), start=1):
-        formatted_name = function_name.replace('_', ' ').title()
-        print("                   | [{: <1}] {: <50} |".format(i, formatted_name))                                       
-    print("                   +========================================================+")
-    print("                   |  " + MAGENTA  + "Last Updated 5/15/2024 " + RESET  + "   |    " + RED + "Version 1.0.0" + RESET + "          |")
-    print("                   +========================================================+")
-    print("                   |                Version Name: "+CYAN+"New Frontier"+RESET+"              |")
-    print("                   +========================================================+")
-    choice = input("\n                    Select Lab: ")
+    choice = ''
+    while choice != 'q':
+        if choice != '':
+            os.system('mn -c')
 
-    choice.lower()     
-    if choice == 'h':
-        os.system("clear")
         print_banner()
-        print("\n\n                   +=========================Help Page==============================+")
-        print("                   | This tool was created with the intent to help upcoming testers |")
-        print("                   | learn how to pentest Wireless networks. This is achieved by    |")
-        print("                   | using Mininet. Mininet is a Software Defined network that was  |")
-        print("                   | created to help learn and understand how networks work. By     |")
-        print("                   | using tool we have created a foundation for learning about     |")
-        print("                   | Wifi and security risks that come with it. To get start please |")
-        print("                   | select a simulation and complete the given task.               |")
-        print("                   +================================================================+")
-        input("                   Press any key to continue...")
-    elif choice == 'q':
-        os.system("sudo mn -c")
-        print("Exiting...")
-    elif choice.isdigit() and 1 <= int(choice) <= len(functions):
-        filename = list(functions.keys())[int(choice) - 1]
-        _, func = functions[filename]
-        os.system("clear")
-        func()
-    else:
-        print("Invalid choice. Please try again.")
+        print("\n\n                             " + GREEN + "Brought to you by Black Hills InfoSec" + RESET)
+        print("                   +==================Simulation Selection==================+")
+        for i, (filename, (function_name, _)) in enumerate(functions.items(), start=1):
+            formatted_name = function_name.replace('_', ' ').title()
+            print("                   | [{: <1}] {: <50} |".format(i, formatted_name))   
+        print(f"                   | [{'h':<1}] {'Help':<50} |")
+        print(f"                   | [{'q':<1}] {'quit':<50} |")                                    
+        print("                   +========================================================+")
+        print("                   |  " + MAGENTA  + "Last Updated 5/15/2024 " + RESET  + "   |    " + RED + "Version 1.0.0" + RESET + "          |")
+        print("                   +========================================================+")
+        print("                   |                Version Name: "+CYAN+"New Frontier"+RESET+"              |")
+        print("                   +========================================================+")
+        choice = input("\n                    Select Lab: ")
+
+        choice.lower()     
+        if choice == 'h':
+            os.system("clear")
+            print_banner()
+            print("\n\n                   +=========================Help Page==============================+")
+            print("                   | This tool was created with the intent to help upcoming testers |")
+            print("                   | learn how to pentest Wireless networks. This is achieved by    |")
+            print("                   | using Mininet. Mininet is a Software Defined network that was  |")
+            print("                   | created to help learn and understand how networks work. By     |")
+            print("                   | using tool we have created a foundation for learning about     |")
+            print("                   | Wifi and security risks that come with it. To get start please |")
+            print("                   | select a simulation and complete the given task.               |")
+            print("                   +================================================================+")
+            input("                   Press any key to continue...")
+        elif choice == 'q':
+            os.system("sudo mn -c")
+            print("Exiting...")
+        elif choice.isdigit() and 1 <= int(choice) <= len(functions):
+            filename = list(functions.keys())[int(choice) - 1]
+            _, func = functions[filename]
+            os.system("clear")
+            func()
+        else:
+            print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     os.system("service openvswitch-switch start")

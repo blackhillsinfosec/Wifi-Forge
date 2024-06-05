@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+'''
+Script generates a fake eaphammer response with NTLM hash for the eaphammer labs
+'''
 
 import time
 import random
