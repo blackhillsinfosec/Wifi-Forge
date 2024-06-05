@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WPA2_attack():
+def wifiphisher_attack():
     net = Mininet_wifi(controller=Controller)
 
     print('Creating stations...')
@@ -29,7 +29,7 @@ def WPA2_attack():
     
     print_banner()
     print("\n")
-    print('                          +-_-_-_- WifiPhisher started Sucessfully -_-_-_-+')
+    print('                    +-_-_-_- WPA 4 Way Hand-shake started Sucessfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
     
