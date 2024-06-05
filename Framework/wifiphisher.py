@@ -9,8 +9,8 @@ def wifiphisher_attack():
 
     print('Creating stations...')
     attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
-    sta1 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
-    sta2 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
+    host1 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
+    host2 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
 
     print('Creating the Access Point...')
     ap = net.addAccessPoint('ap1', ssid='mywifi', passwd='december2022', encrypt='wpa2', mode='g', channel='6')
@@ -20,8 +20,8 @@ def wifiphisher_attack():
 
     print('Adding stations...')
     net.addLink(attacker,ap)
-    net.addLink(sta1, ap)
-    net.addLink(sta2, ap)
+    net.addLink(host1, ap)
+    net.addLink(host2, ap)
 
     net.build()
     c0.start()
@@ -29,7 +29,7 @@ def wifiphisher_attack():
     
     print_banner()
     print("\n")
-    print('                    +-_-_-_- WPA 4 Way Hand-shake started Sucessfully -_-_-_-+')
+    print('                      +-_-_-_- Wifiphisher lab started Sucessfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
     

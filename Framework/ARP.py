@@ -12,8 +12,8 @@ def create_arp_spoof():
 
     print("Creating nodes...")
     attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
-    sta1 = net.addStation('sta1', position='10,20,0')
-    sta2 = net.addStation('sta2', position='10,30,0')
+    host1 = net.addStation('host1', position='10,20,0')
+    host2 = net.addStation('host2', position='10,30,0')
 
     print('Creating the Access Point...')
     ap = net.addAccessPoint('ap1', ssid='new-ssid', mode='g', channel='1', position='10,10,0', failMode="standalone")
@@ -23,7 +23,7 @@ def create_arp_spoof():
     net.build()
     net.addNAT().configDefault()
     ap.start([])
-    sta2.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
+    host2.cmd('echo 1 > /proc/sys/net/ipv4/ip_forward')
 
 
     print_banner()
