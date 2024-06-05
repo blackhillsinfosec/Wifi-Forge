@@ -43,3 +43,4 @@ def WPS_Pixie_attack():
     CLI(net)
 
     net.stop()
+    os.system('mn -c')
