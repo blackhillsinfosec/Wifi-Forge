@@ -1,4 +1,3 @@
-from mininet.term import makeTerm
 from mininet.net import Mininet
 from mininet.node import Controller
 from mininet.cli import CLI
@@ -6,7 +5,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WPS_Pixie_attack():
+def WPS_Pixie_Dust_attack():
     net = Mininet_wifi(controller=Controller)
 
     print("Creating Stations...")
@@ -29,12 +28,10 @@ def WPS_Pixie_attack():
     c0.start()
     ap1.start([c0])
 
-
     ap1.cmd('hostapd_cli -i ap1-wlan1 wps_ap_pin set 12345670')
     attacker.cmd('iw dev a-wlan0 interface add mon0 type monitor')
     attacker.cmd('ip link set mon0 up')
-    makeTerm(attacker)  #reaver -i mon0 -b 02:00:00:00:02:00 -vv
-
+    
     print_banner()
     print("\n")
     print('                      +-_-_-_- WPS pixie attack started Sucessfully -_-_-_-+')
