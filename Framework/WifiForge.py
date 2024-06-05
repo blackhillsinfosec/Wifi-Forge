@@ -87,6 +87,9 @@ functions = load_functions_from_py_files(directory)
 def main_menu():
     choice = ''
     while choice != 'q':
+        if choice != '':
+            os.system('mn -c')
+
         print_banner()
         print("\n\n                             " + GREEN + "Brought to you by Black Hills InfoSec" + RESET)
         print("                   +==================Simulation Selection==================+")
