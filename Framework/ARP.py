@@ -10,7 +10,7 @@ See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 def create_arp_spoof():
     net = Mininet_wifi()
 
-    print("Creating nodes...")
+    print("Creating stations...")
     attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
     host1 = net.addStation('host1', position='10,20,0')
     host2 = net.addStation('host2', position='10,30,0')
@@ -19,7 +19,7 @@ def create_arp_spoof():
     ap = net.addAccessPoint('ap1', ssid='new-ssid', mode='g', channel='1', position='10,10,0', failMode="standalone")
     net.configureWifiNodes()
 
-    print('Adding stations...')
+    print('Adding Stations...')
     net.build()
     net.addNAT().configDefault()
     ap.start([])
