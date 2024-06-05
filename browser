@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+import os
+import sys
+
+help = "Chrome broswer user-agent initialization script for Wifi-forge\n\nUSEAGE: browser [user agent option]\n\nUSER AGENT OPTIONS:\n\tlinux - linux user agent\n\twindows - windows user agent"
+
+if len(sys.argv) == 2:
+        if sys.argv[1] == "windows":
+                os.system("google-chrome --user-agent='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36' --no-sandbox")
+        elif sys.argv[1] == "linux":
+                os.system("google-chrome --no-sandbox") #assumed to be within a linux system (mininet only runs on linux)
+        else:
+                print(help)
+else:
+        print(help)
