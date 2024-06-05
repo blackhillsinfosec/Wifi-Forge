@@ -16,6 +16,10 @@ RUN apt install -y \
      curl \
      wget \
      mininet --allow-downgrades \
+     john \
+     wifiphisher \
+     net-tools \
+     dsniff \
      iputils-ping
 
 RUN git config --global --add safe.directory $PWD
