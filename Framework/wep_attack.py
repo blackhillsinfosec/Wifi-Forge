@@ -37,5 +37,6 @@ def WEP_attack():
     CLI(net)
 
     print("*** Stopping network\n")
+    os.system('clear')
     net.stop()
     exit()

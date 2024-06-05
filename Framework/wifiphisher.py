@@ -36,4 +36,5 @@ def wifiphisher_attack():
     CLI(net)
 
     net.stop()
+    os.system("clear")
     exit()

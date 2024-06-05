@@ -36,4 +36,5 @@ def WPA2_attack():
     CLI(net)
 
     net.stop()
+    os.system("clear")
     exit()

@@ -43,6 +43,7 @@ def Evil_Twin_Lab():
 	CLI(net)
 
 	net.stop()
+    os.system("clear")
 	exit()
 
 
