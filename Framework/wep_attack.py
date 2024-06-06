@@ -1,12 +1,14 @@
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
 from time import sleep
+from WifiForge import print_banner
+import os
 
 
 def WEP_attack():
     net = Mininet_wifi()
 
-    print("Creating Stations...\n")
+    print("Creating Stations...")
     attacker = net.addStation('a', passwd='123456789a', encrypt='wep')
     host1 = net.addStation('host1', passwd='123456789a', encrypt='wep')
     host2 = net.addStation('host2', passwd='123456789a', encrypt='wep')
@@ -14,10 +16,10 @@ def WEP_attack():
                              passwd='123456789a', encrypt='wep',
                              failMode="standalone", datapath='user')
 
-    print("Creating the Access Point..\n")
+    print("Creating the Access Point...")
     net.configureWifiNodes()
 
-    print("Adding Stations...\n")
+    print("Adding Stations...")
     net.addLink(attacker, ap1)
     net.addLink(host1, ap1)
     net.addLink(host2, ap1)
@@ -31,10 +33,8 @@ def WEP_attack():
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
 
-    print("*** Running CLI\n")
     CLI(net)
 
-    print("*** Stopping network\n")
     os.system('clear')
     net.stop()
     exit()
