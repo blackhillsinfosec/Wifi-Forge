@@ -21,7 +21,8 @@ RUN apt install -y \
      net-tools \
      dsniff \
      iputils-ping \
-     wifite
+     wifite \
+     pciutils
 
 RUN git config --global --add safe.directory $PWD
 RUN git submodule init
