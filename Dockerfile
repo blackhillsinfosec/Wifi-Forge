@@ -22,7 +22,9 @@ RUN apt install -y \
      dsniff \
      iputils-ping \
      wifite \
-     pciutils
+     pciutils \
+     python3-tqdm
+
 
 RUN git config --global --add safe.directory $PWD
 RUN git submodule init

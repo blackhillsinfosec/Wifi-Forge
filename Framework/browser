@@ -1,0 +1,86 @@
+#!/usr/bin/env python3
+import os
+import sys
+#import pdb; pdb.set_trace()
+
+help = "Chrome broswer user-agent initialization script for Wifi-forge\n\nUSEAGE: browser '[OS]' '[windows version]' \nEXAMPLES:\n\t./browser \"mac os\"\n\t./browser windows \"server 2003\" \nIf spaces present in OS name, wrap argument in quotes\nWindows versions must be provided as a seperate argument, within unique set of quotes if spaces present in version argument.\n \n\nUSER AGENT OPTIONS:\n\tlinux - linux user agent\n\twindows - windows user agent\nThe following can be used as arguments but are not guaranteed to work:\n\tAndroid\n\tOpen BSD\n\tSun OS\n\tiOS\n\tMac OS X\n\tMac OS\n\tQNX\n\tUNIX\n\tBeOS\n\tOS/2\n\tbot\nVERSIONS\nIf using windows, a windows version can be set as a seperate argument. If not specified, windows 10 will be used by default.\nNOTE: not all versions have been tested\n\t10 - Windows 10\n\t8.1 - Windows 8.1\n\t8 - Windows 8\n\t7 - Windows 7\n\tVista - Windows Vista\n\tServer 2003 - Windows Server 2003\n\tXP - Windows XP\n\t2000 - Windows 2000\n\tME - Windows ME\n\t98 - Windows 98\n\t95 - Windows 95\n\t4.0 - Windows NT 4.0\n\tCE - Windows CE\n\t3.11 - Windows 3.11\n"
+version = "10"
+user_agent = ""
+windows_version = ""
+user_agent_arg = "--user-agent="
+
+
+if sys.argv[1].lower() == "help":
+	print(help)
+elif len(sys.argv) < 2: #no args
+	print("No arguments provided! Use ./browser help to view use")
+elif len(sys.argv) >= 2: #appropriate number of arguments provided
+	if len(sys.argv) == 2:
+		if sys.argv[1].lower() == "windows": #defaults to Windows 10
+			user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+		elif sys.argv[1].lower() == "linux":
+			 #assumed to be within a linux system (mininet only runs on linux)
+			user_agent_arg = ""
+			user_agent = ""
+		elif sys.argv[1].lower() == "android":
+			user_agent = "Mozilla/5.0 (Linux; U; Android 4.0.2; en-us; Galaxy Nexus Build/ICL53F) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30"
+		elif sys.argv[1].lower() == "open bsd":
+			user_agent = "Mozilla/5.0 (X11; U; OpenBSD arm; en-us) AppleWebKit/531.2 (KHTML, like Gecko) Safari/531.2 Epiphany/2.30.0"
+		elif sys.argv[1].lower() == "sun os":
+			user_agent = "Mozilla/5.0 (compatible; Konqueror/3.3; SunOS) (KHTML, like Gecko)"
+		elif sys.argv[1].lower() == "ios":
+			user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.0.0 Mobile/15E148 Safari/604.1"
+		elif sys.argv[1].lower() == "mac os x":
+			user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.0.0 Mobile/15E148 Safari/604.1"
+		elif sys.argv[1].lower() == "mac os":
+			user_agent = "Mozilla/5.0 (Macintosh; JAT-LX1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+		elif sys.argv[1].lower() == "qnx":
+			user_agent = "Mozilla/5.0 (QNX Neutrino 6.5.0; armle) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2182.0 Safari/537.36"
+		elif sys.argv[1].lower() == "unix":
+			user_agent = "Mozilla/5.0 (Unix) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.77 Safari/535.7"
+		elif sys.argv[1].lower() == "beos":
+			user_agent = "Mozilla/5.0 (BeOS; U; BeOS BePC; en-US; rv:1.9a1) Gecko/20060702 SeaMonkey/1.5a"
+		elif sys.argv[1].lower() == "os/2":
+			user_agent = "Mozilla/5.0 (OS/2; Warp 4.5; rv:31.0) Gecko/20100101 Firefox/31.0"
+		elif sys.argv[1].lower() == "bot":
+			user_agent = "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/41.0.2272.96 Safari/537.36"
+		else:
+			print(help)
+		os.system(f"google-chrome {user_agent_arg}'{user_agent}' --no-sandbox")
+	elif sys.argv[1].lower() == "windows" and len(sys.argv) == 3: #operating version also included, windows only
+		if sys.argv[2].lower() == "10":
+			windows_version = "Windows NT 10.0"
+		elif sys.argv[2].lower() == "8.1":
+			windows_version = "Windows NT 6.3"
+		elif sys.argv[2].lower() == "8":
+			windows_version = "Windows NT 6.2"
+		elif sys.argv[2].lower() == "7":
+			windows_version = "Windows NT 6.1"
+		elif sys.argv[2].lower() == "vista":
+			windows_version = "Windows NT 6.0"
+		elif sys.argv[2].lower() == "server 2003":
+			windows_version = "Windows NT 5.2"
+		elif sys.argv[2].lower() == "xp":
+			windows_version = "Windows NT 5.1"
+		elif sys.argv[2].lower() == "2000":
+			windows_version = "Windows NT 5.0"
+		elif sys.argv[2].lower() == "me":
+			windows_version = "Windows ME"
+		elif sys.argv[2].lower() == "98":
+			windows_version = "Windows 98"
+		elif sys.argv[2].lower() == "95":
+			windows_version = "Windows 95"
+		elif sys.argv[2].lower() == "nt 4.0":
+			windows_version = "Windows NT 4.0"
+		elif sys.argv[2].lower() == "ce":
+			windows_version = "Windows CE"
+		elif sys.argv[2].lower() == "3.11":
+			windows_version = "Win16"
+		else:
+			print("invalid version, booting windows 10")
+
+		os.system(f"google-chrome --user-agent='Mozilla/5.0 (Windows {windows_version}; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36' --no-sandbox")
+	else:
+		print("invalid arguments")
+else:
+	print(help)
