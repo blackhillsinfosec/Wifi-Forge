@@ -19,8 +19,11 @@ Note: Dockerfile will fail if mininet-wifi is already installed locally
 
 #### Install from release
 
-1. Download from releases
-2. Load the image
+1. Pull image from dockerhub
+   ```bash
+   sudo docker pull redblackbird/wififorge:v1
+   ```
+3. Load the image
   ```bash
   sudo docker load < wififorge.tar
   ```
