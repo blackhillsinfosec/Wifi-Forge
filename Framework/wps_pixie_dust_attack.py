@@ -1,3 +1,4 @@
+from mininet.term import makeTerm
 from mininet.net import Mininet
 from mininet.node import Controller
 from mininet.cli import CLI
@@ -31,7 +32,8 @@ def WPS_Pixie_Dust_attack():
     ap1.cmd('hostapd_cli -i ap1-wlan1 wps_ap_pin set 12345670')
     attacker.cmd('iw dev a-wlan0 interface add mon0 type monitor')
     attacker.cmd('ip link set mon0 up')
-    
+    makeTerm(attacker)
+
     print_banner()
     print("\n")
     print('                      +-_-_-_- WPS pixie attack started Sucessfully -_-_-_-+')
