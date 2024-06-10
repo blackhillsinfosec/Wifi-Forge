@@ -316,6 +316,7 @@ Within the xterm terminal, use the command "ip a" to view the IPs of the interfa
 ![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/a6b34730-5115-4e44-a9cf-11d987657db3)
 
 Type wifiphisher -h to view the help menu
+
 ![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/0bacbfe2-4100-425d-b2f7-1d3b18dab615)
 
 The next command will use wifiphisher to create a lookalike corporate network to entice wireless client connections.
