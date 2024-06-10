@@ -1,4 +1,4 @@
-[Labs](https://github.com/her3ticAVI/Wifi-Forge/edit/Updated-Documentation/README.md/docs/labs.md)
+[Labs](https://github.com/her3ticAVI/Wifi-Forge/edit/docs/labs.md)
 
 <div style="text-align: center;">
   <img src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/wifi.png" alt="Wi-Fi Forge Banner">
