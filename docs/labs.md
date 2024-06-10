@@ -1,9 +1,14 @@
 # Contents
 [WPA 2](#WPA-2)
+
 [WEP](#WEP)
+
 [WPS Pixie Dust Attack](#WPS-Pixie-Dust-Attack)
+
 [Evil Twin Attack](#Evil-Twin-Attack)
+
 [Wifiphisher](#Wifiphisher)
+
 [ARPspoof](#ARPspoof)
 
 # WPA 2
