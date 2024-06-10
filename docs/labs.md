@@ -1,7 +1,5 @@
-# Lab Instructions 
-
 # Contents
-
+[WPA 2](#WPA-2)
 
 
 # WPA 2
