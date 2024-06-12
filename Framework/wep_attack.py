@@ -5,7 +5,7 @@ from WifiForge import print_banner
 import os
 
 
-def WEP_attack():
+def WEP_NETWORK():
     net = Mininet_wifi()
 
     print("Creating Stations...")

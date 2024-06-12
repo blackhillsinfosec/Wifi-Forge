@@ -10,7 +10,7 @@ Estbalish an environment for learning WEP attacks
 See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 '''
 
-def Evil_Twin_Lab():
+def EAPHAMMER_AND_NETNTLM_CRACKING():
 	net = Mininet_wifi(controller=Controller)
 
 	print("Creating Stations...")

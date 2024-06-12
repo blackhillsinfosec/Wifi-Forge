@@ -7,7 +7,7 @@ Estbalish an environment for learning ARP spoofing
 See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 '''
 
-def create_arp_spoof():
+def ARPSPOOF():
     net = Mininet_wifi()
 
     print("Creating stations...")

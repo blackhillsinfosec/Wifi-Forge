@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WPA2_attack():
+def WPA2_NETWORK():
     net = Mininet_wifi(controller=Controller)
 
     print('Creating Stations...')

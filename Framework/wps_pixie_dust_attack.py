@@ -6,7 +6,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WPS_Pixie_Dust_attack():
+def WPS_NETWORK():
     net = Mininet_wifi(controller=Controller)
 
     print("Creating Stations...")
