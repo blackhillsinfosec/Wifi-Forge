@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WIFIPHSIHER():
+def PASSWORD_SPRAY():
     net = Mininet_wifi(controller=Controller)
 
     print('Creating Stations...')
@@ -28,7 +28,7 @@ def WIFIPHSIHER():
     
     print_banner()
     print("\n")
-    print('                     +-_-_-_- Wifiphisher environment started successfully -_-_-_-+')
+    print('                    +-_-_-_- Password Spray environment started successfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
     

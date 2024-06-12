@@ -28,7 +28,7 @@ def WPA2_NETWORK():
     
     print_banner()
     print("\n")
-    print('                        +-_-_-_- WPA2 environment started Sucessfully -_-_-_-+')
+    print('                        +-_-_-_- WPA2 environment started successfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
     
