@@ -36,7 +36,7 @@ def WPS_NETWORK():
 
     print_banner()
     print("\n")
-    print('                      +-_-_-_- WPS pixie attack started Sucessfully -_-_-_-+')
+    print('                      +-_-_-_- WPS environment started Sucessfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
 

@@ -37,7 +37,7 @@ def EAPHAMMER_AND_NETNTLM_CRACKING():
 	os.system("clear")
 	print_banner()
 	print("\n")
-	print('                       +-_-_-_- Evil Twin Lab started Sucessfully -_-_-_-+')
+	print('                    +-_-_-_- Eaphammer environment started Sucessfully -_-_-_-+')
 	print('                             Type "xterm a" and press enter to begin')
 	print('                            Type exit when the simulation is completed\n')
 
