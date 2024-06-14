@@ -18,7 +18,7 @@ def WPA2_NETWORK():
     net.configureWifiNodes()
 
     print('Adding Stations...')
-    net.addLink(attacker,ap)
+    #net.addLink(attacker,ap)
     net.addLink(host1, ap)
     net.addLink(host2, ap)
 
