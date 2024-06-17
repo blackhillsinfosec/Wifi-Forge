@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def AIRSUITE():
+def BETTERCAP_WIFI_AUTH_CAPTURE():
     net = Mininet_wifi()
 
     print('Creating Stations')
@@ -34,7 +34,7 @@ def AIRSUITE():
     ap3 = net.addAccessPoint('ap3', ssid='FBI_Van', passwd='supersecurepassword', encrypt='wpa2', mode='g', channel='1')
 
 
-    #Hidden_SSID - doesn't work as of 6/14
+    #Hidden_SSID
     host9 = net.addStation('host9', passwd='iamhidden', encrypt='wpa2')
     ap4 = net.addAccessPoint('ap4', ssid='cantseeme', passwd='iamhidden', encrypt='wpa2', mode='g', channel='11')
        
@@ -57,15 +57,11 @@ def AIRSUITE():
     net.addLink(host9, ap4)
 
     net.build()
-    ap0.start([])
-    ap1.start([])
-    ap2.start([])
-    ap3.start([])
-    #ap4.start([])
+    ap.start([])
     
     print_banner()
     print("\n")
-    print('                       +-_-_-_- Recon environment started successfully -_-_-_-+')
+    print('                        +-_-_-_- Environment started successfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
     
