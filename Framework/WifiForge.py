@@ -95,11 +95,12 @@ def main_menu():
         print("                   +==================Simulation Selection==================+")
         for i, (filename, (function_name, _)) in enumerate(functions.items(), start=1):
             formatted_name = function_name.replace('_', ' ').title()
-            spaces = 50
+            sd_spaces = 50 #single digit, double digit
+            dd_spaces = 49
             if i < 10:
-                print("                   | [{: <{}}] {: <{}} |".format(i, spaces, formatted_name, spaces))
+                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, spaces))
             else:
-                print("                   | [{: <1}] {: <49} |".format(i, formatted_name))  
+                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, spaces))  
         print(f"                   | [{'h':<1}] {'Help':<50} |")
         print(f"                   | [{'q':<1}] {'quit':<50} |")                                    
         print("                   +========================================================+")
