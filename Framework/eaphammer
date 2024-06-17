@@ -1,0 +1,146 @@
+#!/usr/bin/env python3
+
+'''
+Script generates a fake eaphammer response with NTLM hash for the eaphammer labs
+'''
+
+import time
+import random
+import os
+import string
+from tqdm import tqdm
+from datetime import datetime
+import sys
+import signal
+from functools import partial
+
+#variables
+interface = "a-wlan0"
+MAC = "02:00:00:00:02:00"
+
+def echo(text, file_path):
+    os.system(f"echo '{text}' >> {file_path}")
+
+def NTLMNET(message, signum, frame):
+    print(f"a-wlan0: STA {MAC} IEEE 802.11: authenticated")
+    print(f"a-wlan0: STA {MAC} IEEE 802.11: associated (aid 1)")
+    print(f"a-wlan0: CTRL-EVENT-EAP-STARTED {MAC}")
+    print("a-wlan0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=1")
+    print("a-wlan0: CTRL-EVENT-EAP-PROPOSED-METHOD vendor=0 method=25\n\n")
+
+    print(f"mschapv2: {datetime.today()}")
+    print("\tdomain\\username\t\tjohnnie.doyle@lab.local")
+    print("\tusername:\t\tjohnnie.doyle@lab.local")
+    print("\tchallenge:\t\tf1:ed:0e:75:f1:27:8a:a2")
+    print("\tresponse:\t\t22:93:c5:38:2d:a0:91:b7:00:4c:fa:f4:98:18:62:ff:ed:22:2f:50:76:5c:86:9e")
+    print("\n\tjtr NETNTLM\t\tjohnnie.doyle@lab.local:$NETNTLM$65c09d9d0f121f7d$5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff")
+    print("\n\thashcat NETNTLM:\tjohnnie.doyle@lab.local::::5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff:65c09d9d0f121f7d")
+
+    os.system(f"echo 'mschapv2: {datetime.today()}' > {message}")
+    echo("\tdomain\\username\t\tjohnnie.doyle@lab.local", message)
+    echo("\tusername:\t\tjohnnie.doyle@lab.local", message)
+    echo("\tchallenge:\t\tf1:ed:0e:75:f1:27:8a:a2", message)
+    echo("\tresponse:\t\t22:93:c5:38:2d:a0:91:b7:00:4c:fa:f4:98:18:62:ff:ed:22:2f:50:76:5c:86:9e", message)
+    echo("\n\tjtr NETNTLM\t\tjohnnie.doyle@lab.local:$NETNTLM$65c09d9d0f121f7d$5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff", message)
+    echo("\n\thashcat NETNTLM:\tjohnnie.doyle@lab.local::::5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff:65c09d9d0f121f7d", message)
+
+
+    exit()
+
+def print_file_names(message):
+    datestring = datetime.strftime(datetime.now(), '%Y-%m-%d-%H-%M-%S')
+    randstring = ''.join(random.choice(string.ascii_letters+string.digits) for _ in range(32))
+    message += '-'.join([datestring,randstring])
+    print(message)
+    return message
+
+#check argv
+if len(sys.argv) != 6:
+    print("Invalid Arguments!")
+    exit()
+
+if sys.argv[1] != "-e":
+    print("Missing SSID")
+    exit()
+
+if sys.argv[2] and sys.argv[2] != "--creds":
+    ssid = sys.argv[2]
+else:
+    print("Invalid SSID")
+    exit()
+
+if sys.argv[3] != "--creds":
+    print("Specify --creds")
+    exit()
+
+if sys.argv[4] != "--interface":
+    print("Specify --interface")
+    exit()
+
+if not sys.argv[5] or sys.argv[5] != "a-wlan0":
+    print("Invalid Interface!")
+    exit()
+
+
+print('''
+                     .__                                         
+  ____ _____  ______ |  |__ _____    _____   _____   ___________ 
+_/ __ \\\\__  \\ \\____ \\|  |  \\\\__  \\  /     \\ /     \\_/ __ \\_  __ \\
+\\  ___/ / __ \\|  |_> >   Y  \\/ __ \\|  Y Y  \\  Y Y  \\  ___/|  | \\/
+ \\___  >____  /   __/|___|  (____  /__|_|  /__|_|  /\\___  >__|   
+     \\/     \\/|__|        \\/     \\/      \\/      \\/     \\/       
+
+
+                        Now with  more fast travel than a next-gen Bethesda game. >:D
+
+                             Version:  1.14.0
+                            Codename:  Final Frontier
+                              Author:  @s0lst1c3
+                             Contact:  gabriel<<at>>transmitengage.com
+
+    ''')
+
+
+time.sleep(2)
+
+print("[?] Am I root?")
+print("[*] Checking for rootness...")
+time.sleep(random.randint(0,2))
+if os.getuid() != 0:
+    print("[!] Error: this script must be run as root.")
+    exit()
+else:
+    print("[*] I AM ROOOOOOOOOOOT")
+print("[*] Root privs confirmed 8D")
+print("[*] Saving current iptables configuration...")
+time.sleep(random.randint(0,2))
+print("[*] Reticulating radio frequency splines...\n\n")
+time.sleep(random.randint(0,2))
+print("[*] Using nmcli to tell NetworkManager not to manage attacker-wlan0...")
+for i in tqdm(range(int(9e6))):
+    pass
+
+print("\n\n")
+print("[*] Success: a-wlan0 no longer controlled by NetworkManager")
+
+message = print_file_names(f"[*] WPA handshakes will be saved to {os.getcwd()}/loot/wpa_handshake_capture")
+message = message[35:]
+print(message)
+print_file_names(f"Configuration file: {os.getcwd()}/wpa_handshake_capture")
+
+print("\n\n[hostapd] AP starting...\n\n")
+time.sleep(random.randint(1,4))
+
+print("a-wlan0: interface state UNINITIALIZED->COUNTRY_UPDATE")
+time.sleep(random.randint(0,2))
+print(f"Using interface a-wlan0 with hwaddr 00:11:22:33:44:00 and ssid {ssid}")
+time.sleep(random.randint(0,2))
+print("a-wlan0: interface state COUNTRY_UPDATE->ENABLED")
+print("attacker-wlan0: AP-ENABLED\n\n")
+
+signal.signal(signal.SIGALRM, partial(NTLMNET, message))
+exit_input = "0"
+signal.alarm(random.randint(2,20))
+while exit_input != "":
+    exit_input = input("Press enter to quit...\n\n")
+
