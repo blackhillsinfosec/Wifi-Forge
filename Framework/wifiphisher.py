@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WIFIPHSIHER():
+def WIFIPHISHER():
     net = Mininet_wifi(controller=Controller)
 
     print('Creating Stations...')

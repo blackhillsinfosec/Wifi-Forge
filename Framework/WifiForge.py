@@ -100,7 +100,7 @@ def main_menu():
             td_spaces = 48
             if i > 0 and i < 10:
                 print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, sd_spaces))
-            elif i >= 10 and i < 100
+            elif i >= 10 and i < 100:
                 print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, dd_spaces))
             else:
                 print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, td_spaces))
