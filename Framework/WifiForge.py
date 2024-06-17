@@ -97,10 +97,13 @@ def main_menu():
             formatted_name = function_name.replace('_', ' ').title()
             sd_spaces = 50 #single digit, double digit
             dd_spaces = 49
-            if i < 10:
+            td_spaces = 48
+            if i > 0 and i < 10:
                 print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, sd_spaces))
+            elif i >= 10 and i < 100
+                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, dd_spaces))
             else:
-                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, dd_spaces))  
+                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, td_spaces))
         print(f"                   | [{'h':<1}] {'Help':<50} |")
         print(f"                   | [{'q':<1}] {'quit':<50} |")                                    
         print("                   +========================================================+")
