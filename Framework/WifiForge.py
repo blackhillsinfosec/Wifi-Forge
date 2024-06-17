@@ -98,9 +98,9 @@ def main_menu():
             sd_spaces = 50 #single digit, double digit
             dd_spaces = 49
             if i < 10:
-                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, spaces))
+                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, sd_spaces))
             else:
-                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, spaces))  
+                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, dd_spaces))  
         print(f"                   | [{'h':<1}] {'Help':<50} |")
         print(f"                   | [{'q':<1}] {'quit':<50} |")                                    
         print("                   +========================================================+")
