@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def RECON():
+def BETTERCAP_WIFI_AUTH_CAPTURE():
     net = Mininet_wifi()
 
     print('Creating Stations')
@@ -61,7 +61,7 @@ def RECON():
     
     print_banner()
     print("\n")
-    print('                       +-_-_-_- Recon environment started successfully -_-_-_-+')
+    print('                        +-_-_-_- Environment started successfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
     
