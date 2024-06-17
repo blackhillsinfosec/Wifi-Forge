@@ -1,0 +1,13 @@
+interface=ap1-wlan1
+driver=nl80211
+ssid=WPA2_Network
+wds_sta=1
+hw_mode=g
+channel=6
+auth_algs=1
+wpa=2
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=CCMP
+wpa_passphrase=december2022
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0

@@ -57,7 +57,11 @@ def BETTERCAP_RECON():
     net.addLink(host9, ap4)
 
     net.build()
-    ap.start([])
+    ap0.start([])
+    ap1.start([])
+    ap2.start([])
+    ap3.start([])
+    ap4.start([])
     
     print_banner()
     print("\n")

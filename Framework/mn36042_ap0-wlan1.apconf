@@ -1,0 +1,11 @@
+interface=ap0-wlan1
+driver=nl80211
+ssid=WEP_Network
+wds_sta=1
+hw_mode=g
+channel=1
+auth_algs=2
+wep_default_key=0
+wep_key0=123456789a
+ctrl_interface=/var/run/hostapd
+ctrl_interface_group=0
