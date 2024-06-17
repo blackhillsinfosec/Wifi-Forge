@@ -36,10 +36,10 @@ def EAPHAMMER_CRED_CAPTURE():
 
 	os.system("clear")
 	print_banner()
-    print("\n")
-    print('                        +-_-_-_- Environment started successfully -_-_-_-+')
-    print('                             Type "xterm a" and press enter to begin')
-    print('                            Type exit when the simulation is completed\n')
+	print("\n")
+	print('                        +-_-_-_- Environment started successfully -_-_-_-+')
+	print('                             Type "xterm a" and press enter to begin')
+	print('                            Type exit when the simulation is completed\n')
 
 	CLI(net)
 

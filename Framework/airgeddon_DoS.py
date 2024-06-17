@@ -4,11 +4,8 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-<<<<<<<< HEAD:Framework/Airsuite.py
-def AIRSUITE():
-========
+
 def Airgeddon_DoS():
->>>>>>>> 5a0f13fa04f8f81608f4b93cf482b4fb0f040b78:Framework/airgeddon_DoS.py
     net = Mininet_wifi()
 
     print('Creating Stations')
