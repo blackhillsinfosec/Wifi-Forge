@@ -96,13 +96,10 @@ def main_menu():
         for i, (filename, (function_name, _)) in enumerate(functions.items(), start=1):
             formatted_name = function_name.replace('_', ' ').title()
             spaces = 50
-            single_digit_format_string = "                   | [{: <1}] {: <"+str(spaces)+"} |".format(i, formatted_name)
-            double_digit_format_string = "                   | [{: <1}] {: <"+str(spaces+1)+"} |".format(i, formatted_name)
-
             if i < 10:
-                print(format_string)
+                print("                   | [{: <{}}] {: <{}} |".format(i, spaces, formatted_name, spaces))
             else:
-                print(format_string)  
+                print("                   | [{: <1}] {: <49} |".format(i, formatted_name))  
         print(f"                   | [{'h':<1}] {'Help':<50} |")
         print(f"                   | [{'q':<1}] {'quit':<50} |")                                    
         print("                   +========================================================+")
