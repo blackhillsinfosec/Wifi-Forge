@@ -19,7 +19,7 @@ def BETTERCAP_WIFI_AUTH_CAPTURE():
     #WPA-LAB
     host3 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
     host4 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
-    ap1 = net.addAccessPoint('ap1', ssid='WPA2_Network', passwd='december2022', encrypt='wpa2', mode='g', channel='6')
+    ap1 = net.addAccessPoint('ap1', ssid='WPA2_Network', passwd='december2022', encrypt='wpa2', mode='g', channel='6', mac="76:df:71:67:40:2b")
 
 
     #Harlow_Home
@@ -57,7 +57,11 @@ def BETTERCAP_WIFI_AUTH_CAPTURE():
     net.addLink(host9, ap4)
 
     net.build()
-    ap.start([])
+    ap0.start([])
+    ap1.start([])
+    ap2.start([])
+    ap3.start([])
+    ap4.start([])
     
     print_banner()
     print("\n")
