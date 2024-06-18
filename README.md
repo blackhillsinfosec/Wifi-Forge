@@ -14,11 +14,12 @@ Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Bas
 - The Wifi Forge installation script may disrupt normal operating system use, it is suggested to use a fresh install, virtual machine, or build using the provided dockerfile (see Set-Up Guide/Docker)
 
 ## Set-Up Guide
+The best method of installation is through the release as it receives updates more often than the other installation methods. 
 
 ### Docker (recommended)
 Note: Dockerfile will fail if mininet-wifi is already installed locally
 
-#### Install from release
+#### Install from release (best option)
 
 1. Pull image from dockerhub
 ```bash
