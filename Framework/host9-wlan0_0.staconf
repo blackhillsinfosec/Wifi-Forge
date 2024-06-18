@@ -1,8 +1,0 @@
-ctrl_interface=/var/run/wpa_supplicant
-network={
-   ssid="cantseeme"
-   psk="iamhidden"
-   proto=WPA2
-   pairwise=CCMP
-   key_mgmt=WPA-PSK
-}

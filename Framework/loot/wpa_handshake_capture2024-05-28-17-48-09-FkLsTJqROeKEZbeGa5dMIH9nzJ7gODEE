@@ -1,9 +1,0 @@
-mschapv2: 2024-05-28 17:48:27.680574
-	domain\username		johnnie.doyle@lab.local
-	username:		johnnie.doyle@lab.local
-	challenge:		f1:ed:0e:75:f1:27:8a:a2
-	response:		22:93:c5:38:2d:a0:91:b7:00:4c:fa:f4:98:18:62:ff:ed:22:2f:50:76:5c:86:9e
-
-	jtr NETNTLM		johnnie.doyle@lab.local:$NETNTLM$65c09d9d0f121f7d$5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff
-
-	hashcat NETNTLM:	johnnie.doyle@lab.local::::5eb76975d83fee344ededca6fb86e8b04fde87c3cde150ff:65c09d9d0f121f7d

@@ -1,8 +1,0 @@
-ctrl_interface=/var/run/wpa_supplicant
-network={
-   ssid="Harlow_Home_Wifi"
-   psk="password"
-   proto=WPA2
-   pairwise=CCMP
-   key_mgmt=WPA-PSK
-}

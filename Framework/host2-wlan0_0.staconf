@@ -1,8 +1,0 @@
-ctrl_interface=/var/run/wpa_supplicant
-network={
-   ssid="WPA2_Network"
-   psk="december2022"
-   proto=WPA2
-   pairwise=CCMP
-   key_mgmt=WPA-PSK
-}
