@@ -12,12 +12,13 @@ from os import path
 
 def topology():
     "Create a network."
-    cwd = os.getcwd()
+    cwd = os.getcwd() #/wififorge/Framework/eap-tls
+    print(cwd)
     net = Mininet_wifi()
 
     info("*** Creating nodes\n")
     sta1 = net.addStation('sta1',
-                          wpasup_flags='-dd > /tmp/debug1.txt',
+                          wpasup_flags='-dd -f /tmp/debug1.txt',
                           wpasup_globals='eapol_version=2',
                           encrypt='wpa2',
                           config='key_mgmt=WPA-EAP,'
@@ -25,13 +26,13 @@ def topology():
                                  'ssid="simplewifi",'
                                  'eap=TLS,'
                                  'scan_ssid=1,'
-                                 'ca_cert="{}/examples/eap-tls/CA/ca.crt",'
-                                 'client_cert="{}/examples/eap-tls/CA/client.crt",'
-                                 'private_key="{}/examples/eap-tls/CA/client.key"'
+                                 'ca_cert="{}/CA/ca.crt",'
+                                 'client_cert="{}/CA/client.crt",'
+                                 'private_key="{}/CA/client.key"'
                           .format(cwd, cwd, cwd))
 
     sta2 = net.addStation('sta2',
-                          wpasup_flags='-dd > /tmp/debug2.txt',
+                          wpasup_flags='-dd -f /tmp/debug2.txt',
                           wpasup_globals='eapol_version=2',
                           encrypt='wpa2',
                           config='key_mgmt=WPA-EAP,'
@@ -39,14 +40,14 @@ def topology():
                                  'identity="mranga@nist.gov",'
                                  'eap=TLS,'
                                  'ssid="simplewifi",'
-                                 'ca_cert="{}/examples/eap-tls/CA/ca.crt",'
-                                 'client_cert="{}/examples/eap-tls/CA/client.crt",'
-                                 'private_key="{}/examples/eap-tls/CA/client.key"'
+                                 'ca_cert="{}/CA/ca.crt",'
+                                 'client_cert="{}/CA/client.crt",'
+                                 'private_key="{}/CA/client.key"'
                           .format(cwd, cwd, cwd))
 
     ap1 = net.addAccessPoint('ap1', 
                             ssid="simplewifi", 
-                            hostapd_flags='-dd > /tmp/hostapd.txt',
+                            hostapd_flags='-dd -f /tmp/hostapd.txt',
                             mode="g", channel="1", 
                             failMode="standalone", datapath='user', 
                             config='eap_server=1,'
@@ -55,14 +56,14 @@ def topology():
                                    'eap_message=howdy,'
                                    'eapol_version=2,'
                                    'wpa_key_mgmt=WPA-EAP,'
-                                   'logger_syslog=-1,'
+                                   'logger_syslog=1,'
                                    'logger_syslog_level=0,'
-                                   'ca_cert={}/examples/eap-tls/CA/ca.crt,'
-                                   'server_cert={}/examples/eap-tls/CA/server.crt,'
-                                   'private_key={}/examples/eap-tls/CA/server.key,'
-                                   'eap_user_file={}/examples/eap-tls/eap_users'
+                                   'ca_cert={}/CA/ca.crt,'
+                                   'server_cert={}/CA/server.crt,'
+                                   'private_key={}/CA/server.key,'
+                                   'eap_user_file={}/eap_users'
                              .format(cwd, cwd, cwd, cwd),
-                             client_isolation=True)
+                             client_isolation=False)
 
     info("*** Configuring nodes\n")
     net.configureNodes()
@@ -97,5 +98,5 @@ if __name__ == '__main__':
         os.remove("/tmp/debug2.txt")
     if path.exists("/tmp/hostapd.txt"):
         os.remove("/tmp/hostapd.txt")
-    setLogLevel('info')
+    setLogLevel('debug')
     topology()

@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def WPA2_attack():
+def WPA2_NETWORK():
     net = Mininet_wifi(controller=Controller)
 
     print('Creating Stations...')
@@ -18,7 +18,7 @@ def WPA2_attack():
     net.configureWifiNodes()
 
     print('Adding Stations...')
-    net.addLink(attacker,ap)
+    #net.addLink(attacker,ap)
     net.addLink(host1, ap)
     net.addLink(host2, ap)
 
@@ -28,7 +28,7 @@ def WPA2_attack():
     
     print_banner()
     print("\n")
-    print('                        +-_-_-_- WPA2 attack started Sucessfully -_-_-_-+')
+    print('                        +-_-_-_- Environment started successfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
     

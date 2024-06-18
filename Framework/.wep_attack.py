@@ -18,6 +18,10 @@ def WEP_NETWORK():
                              passwd='123456789a', encrypt='wep',
                              failMode="standalone", datapath='user')
 
+    host3 = net.addStation('host3', passwd="0864213245", encrypt="wep")
+    host4 = net.addStation('host4', passwd="0864213245", ecnrypt="wep")
+    ap2 = net.addAccessPoint('ap2', ssid="home_wifi", mode="g", channel="1", passwd="0864213245", encrypt="wep", failMode="standalone",datapath="user")
+
     print("Creating the Access Point...")
     net.configureWifiNodes()
 
@@ -26,9 +30,12 @@ def WEP_NETWORK():
     net.addLink(host1, ap1)
     net.addLink(host2, ap1)
 
+    net.addLink(host3, ap2)
+    net.addLink(host4, ap2)
+
     net.build()
     ap1.start([])
-    
+    ap2.start([])
 
     print_banner()
     print("\n")

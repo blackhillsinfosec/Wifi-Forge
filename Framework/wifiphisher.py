@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
 import os
 
-def wifiphisher_attack():
+def WIFIPHISHER():
     net = Mininet_wifi(controller=Controller)
 
     print('Creating Stations...')
@@ -28,7 +28,7 @@ def wifiphisher_attack():
     
     print_banner()
     print("\n")
-    print('                      +-_-_-_- Wifiphisher lab started Sucessfully -_-_-_-+')
+    print('                        +-_-_-_- Environment started successfully -_-_-_-+')
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
     
