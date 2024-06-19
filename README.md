@@ -13,6 +13,18 @@ Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Bas
 - It is suggested to run Wifi Forge on Ubuntu version 14.04 or the lastest version of Kali. 
 - The Wifi Forge installation script may disrupt normal operating system use, it is suggested to use a fresh install, virtual machine, or build using the provided dockerfile (see Set-Up Guide/Docker)
 
+## Compatibility
+Wifi-Forge should work on any linux operating system using the docker image. The following Operating Systems have been tested and are confirmed to work.
+
+Kali Linux
+![kali]()
+
+Parrot OS
+![Parrot OS]()
+
+Ubuntu
+![Ubuntu]()
+
 ## Set-Up Guide
 The best method of installation is through the release as it receives updates more often than the other installation methods. 
 
