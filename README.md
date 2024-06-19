@@ -1,4 +1,4 @@
-## Lab Instructions: [Labs](https://github.com/her3ticAVI/Wifi-Forge/blob/main/docs/labs.md)
+## Lab Walkthroughs: [Labs](https://github.com/her3ticAVI/Wifi-Forge/blob/main/docs/labs.md)
 
 <div style="text-align: center;">
   <img src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/wifi.png" alt="Wi-Fi Forge Banner">
@@ -17,13 +17,13 @@ Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Bas
 Wifi-Forge should work on any linux operating system using the docker image. The following Operating Systems have been tested and are confirmed to work.
 
 Kali Linux
-![kali]()
+![kali](./images/kali.png)
 
 Parrot OS
-![Parrot OS]()
+![Parrot OS](./images/Parrot.png)
 
 Ubuntu
-![Ubuntu]()
+![Ubuntu](./images/Ubuntu.png)
 
 ## Set-Up Guide
 The best method of installation is through the release as it receives updates more often than the other installation methods. 
