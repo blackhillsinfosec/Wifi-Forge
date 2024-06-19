@@ -20,6 +20,8 @@ RED = "\033[91m"
 GREEN = "\033[92m"
 MAGENTA = "\033[35m"
 CYAN = "\033[36m"
+PURPLE = "\033[35m"
+BLUE = "\033[34m"
 RESET = "\033[0m"
 
 # BANNER CALL
@@ -91,7 +93,7 @@ def main_menu():
             os.system('mn -c')
 
         print_banner()
-        print("\n\n                             " + GREEN + "Brought to you by Black Hills InfoSec" + RESET)
+        print("\n\n                             " + GREEN + "Brought to you by "+ RED +"Black Hills InfoSec"+ RESET +"and"+ PURPLE +"Antisyphon"+ RESET)
         print("                   +==================Simulation Selection==================+")
         for i, (filename, (function_name, _)) in enumerate(functions.items(), start=1):
             formatted_name = function_name.replace('_', ' ').title()
