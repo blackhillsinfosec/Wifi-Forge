@@ -104,11 +104,13 @@ sudo python3 WifiForge.py
 
 Wi-Fi Forge provides pre-built labs that cover the following:
 
-- ARP spoofing
-- Evil twin 
-- WEP cracking
-- WPA2 cracking
-- WPS exploitation
+- Evil twin AP
+- WEP PIN Recovery
+- WPA2 4 Way Handshake
+- WPS Pixie Attacks
+- WifiPhisher
+- Eaphammer
+- etc...
 
 ## Common Issues
 
