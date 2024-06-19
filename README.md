@@ -26,7 +26,7 @@ Ubuntu
 ![Ubuntu](./images/Ubuntu.png)
 
 ## Set-Up Guide
-The best method of installation is through the release as it receives updates more often than the other installation methods. 
+Note: As of June, pulling from Dockerhub is the most up-to-date version of wififorge. Installing from any other method (including building directly from the Dockerfile) will not guarantee a stable release.
 
 ### Docker (recommended)
 Note: Dockerfile will fail if mininet-wifi is already installed locally
@@ -39,7 +39,7 @@ sudo docker pull redblackbird/wififorge:v1.0.0
 ```
 2.. Start a new container
   ```bash
-  sudo docker run --privileged=true -it --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v /sys/:/sys -v /lib/modules/:/lib/modules/ --name mininet-wifi --network=host --hostname mininet-wifi wififorge /bin/bash
+  sudo docker run --privileged=true -it --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v /sys/:/sys -v /lib/modules/:/lib/modules/ --name mininet-wifi --network=host --hostname mininet-wifi redblackbird/wififorge:v1.0.0 /bin/bash
   ```
 3.. Within docker, initiate the controller to simulate APs
 ```bash
