@@ -77,7 +77,7 @@ def load_functions_from_py_files(directory):
                 function_dict[filename] = (function_name, function)
     return function_dict
 
-directory = os.path.dirname(os.path.realpath(__file__))  # Current directory
+directory = os.path.dirname(os.path.realpath(__file__)) + "/labs"  # Current directory
 functions = load_functions_from_py_files(directory)
     
 # Display the loaded functions
@@ -93,7 +93,7 @@ def main_menu():
             os.system('mn -c')
 
         print_banner()
-        print("\n\n                             " + GREEN + "Brought to you by "+ RED +"Black Hills InfoSec"+ RESET +"and"+ PURPLE +"Antisyphon"+ RESET)
+        print("\n\n                             " + GREEN + "Brought to you by "+ RED +"Black Hills InfoSec "+ RESET +"and "+ PURPLE +"Antisyphon"+ RESET)
         print("                   +==================Simulation Selection==================+")
         for i, (filename, (function_name, _)) in enumerate(functions.items(), start=1):
             formatted_name = function_name.replace('_', ' ').title()
