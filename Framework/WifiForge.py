@@ -2,19 +2,8 @@ from subprocess import Popen, DEVNULL
 import os
 import importlib.util
 import inspect
+import keyboard  # Import the keyboard module for key handling
 
-'''
-with open("first_install_check","r+") as file:
-	content = file.read()
-	if "1" in content:
-		print("Performing First Time Setup! Please Allow up to 5 Minutes for Installation")
-		Popen("./setup.sh", stdout=DEVNULL, stderr=DEVNULL).wait()
-		os.system("clear")
-		file.truncate(0)
-		file.write('0')
-		print("First Time Setup Successful! Run WifiForge again!")
-		exit()
-'''
 # ANSI escape codes for colors
 RED = "\033[91m"
 GREEN = "\033[92m"
@@ -22,7 +11,9 @@ MAGENTA = "\033[35m"
 CYAN = "\033[36m"
 PURPLE = "\033[35m"
 BLUE = "\033[34m"
+YELLOW = "\033[93m"  # Yellow for highlighting
 RESET = "\033[0m"
+BOLD_WHITE = "\033[1;97m"
 
 # BANNER CALL
 def print_banner():
@@ -77,68 +68,60 @@ def load_functions_from_py_files(directory):
                 function_dict[filename] = (function_name, function)
     return function_dict
 
+# Ensure this variable is populated before it's used
 directory = os.path.dirname(os.path.realpath(__file__)) + "/labs"  # Current directory
 functions = load_functions_from_py_files(directory)
-    
-# Display the loaded functions
-# for filename, (function_name, function) in functions.items():
-#     print(f"FUNCTION '{function_name}' FROM '{filename}'")
-    
-# SWITCH CASE WITH FUNCTION CALLS
 
 def main_menu():
-    choice = ''
-    while choice != 'q':
-        if choice != '':
-            os.system('mn -c')
+    selected_index = 0
+    total_functions = len(functions)
+    redraw_needed = True  # Flag to track when to redraw
 
-        print_banner()
-        print("\n\n                             " + GREEN + "Brought to you by "+ RED +"Black Hills InfoSec "+ RESET +"and "+ PURPLE +"Antisyphon"+ RESET)
-        print("                   +==================Simulation Selection==================+")
-        for i, (filename, (function_name, _)) in enumerate(functions.items(), start=1):
-            formatted_name = function_name.replace('_', ' ').title()
-            sd_spaces = 50 #single digit, double digit
-            dd_spaces = 49
-            td_spaces = 48
-            if i > 0 and i < 10:
-                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, sd_spaces))
-            elif i >= 10 and i < 100:
-                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, dd_spaces))
-            else:
-                print("                   | [{: <1}] {: <{}} |".format(i, formatted_name, td_spaces))
-        print(f"                   | [{'h':<1}] {'Help':<50} |")
-        print(f"                   | [{'q':<1}] {'quit':<50} |")                                    
-        print("                   +========================================================+")
-        print("                   |  " + MAGENTA  + "Last Updated 5/15/2024 " + RESET  + "   |    " + RED + "Version 1.0.0" + RESET + "          |")
-        print("                   +========================================================+")
-        print("                   |                Version Name: "+CYAN+"New Frontier"+RESET+"              |")
-        print("                   +========================================================+")
-        choice = input("\n                    Select Lab: ")
+    while True:
+        # Only clear the screen and redraw when an arrow key is pressed
+        if redraw_needed:
+            os.system("clear")  # Clear the terminal screen
 
-        choice.lower()     
-        if choice == 'h':
-            os.system("clear")
             print_banner()
-            print("\n\n                   +=========================Help Page==============================+")
-            print("                   | This tool was created with the intent to help upcoming testers |")
-            print("                   | learn how to pentest wireless networks. This is achieved by    |")
-            print("                   | using Mininet. Mininet is a Software Defined network that was  |")
-            print("                   | created to help learn and understand how networks operate. By  |")
-            print("                   | using tools we have created a foundation for learning about    |")
-            print("                   | wifi and security risks that come with it. To get start please |")
-            print("                   | select a simulation and complete the given task.               |")
-            print("                   +================================================================+")
-            input("                   Press any key to continue...")
-        elif choice == 'q':
-            os.system("sudo mn -c")
-            print("Exiting...")
-        elif choice.isdigit() and 1 <= int(choice) <= len(functions):
-            filename = list(functions.keys())[int(choice) - 1]
-            _, func = functions[filename]
-            os.system("clear")
-            func()
-        else:
-            print("Invalid choice. Please try again.")
+            print("\n\n                      " + GREEN + "Brought to you by "+ RED +"Black Hills InfoSec "+ RESET +"and "+ PURPLE +"Antisyphon"+ RESET)
+            print("                   ┌────────────────────────────────────────────────────────┐")
+            
+            # Sort the functions alphabetically by function_name (lab title)
+            sorted_functions = sorted(functions.items(), key=lambda x: x[1][0].lower())
+
+            # Display all labs with the current selection
+            for i, (filename, (function_name, _)) in enumerate(sorted_functions):
+                formatted_name = function_name.replace('_', ' ').title()
+                if i == selected_index:
+                    lab_display = f"{BOLD_WHITE}[•] {formatted_name:<50}{RESET}"  # Highlight selected lab
+                else:
+                    lab_display = f"[ ] {formatted_name}"
+                print(f"                   │ {lab_display:<54} │")  # Keep the borders white
+                              
+            print("                   ├────────────────────────────────────────────────────────┤")
+            print("                   │  " + MAGENTA  + "Last Updated 12/19/2024 " + RESET  + "   │    " + RED + "Version 2.0.0" + RESET + "         │")
+            print("                   ├────────────────────────────────────────────────────────┤")
+            print("                   │           Version Name: "+CYAN+"Time for an upgrade"+RESET+"            │")
+            print("                   └────────────────────────────────────────────────────────┘")
+            
+            redraw_needed = False  # Set the flag to false after drawing the screen
+
+        # Read a key event (without showing output)
+        event = keyboard.read_event(suppress=True)  # `suppress=True` suppresses key echoing
+
+        if event.event_type == keyboard.KEY_DOWN:  # Check if a key is pressed down
+            if event.name == 'up':
+                selected_index = (selected_index - 1) % total_functions
+                redraw_needed = True  # Set the flag to true to redraw
+            elif event.name == 'down':
+                selected_index = (selected_index + 1) % total_functions
+                redraw_needed = True  # Set the flag to true to redraw
+            elif event.name == 'enter':
+                # Call the function for the selected lab
+                filename = list(functions.keys())[selected_index]
+                _, func = functions[filename]
+                os.system("clear")
+                func()
 
 if __name__ == "__main__":
     os.system("service openvswitch-switch start")
