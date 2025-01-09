@@ -44,4 +44,3 @@ def WPS_NETWORK():
 
     net.stop()
     os.system("clear")
-    exit()

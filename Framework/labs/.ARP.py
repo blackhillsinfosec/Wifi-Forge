@@ -35,4 +35,3 @@ def ARPSPOOF():
     
     net.stop()
     os.system("clear")
-    exit()

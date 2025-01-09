@@ -73,4 +73,3 @@ def PACKET_CAPTURE_HCCAPX_AND_HASHCAT():
 
     net.stop()
     os.system("clear")
-    exit()

@@ -69,4 +69,3 @@ def AIRCRACK_NG_WPA_CRACK():
 
     net.stop()
     os.system("clear")
-    exit()

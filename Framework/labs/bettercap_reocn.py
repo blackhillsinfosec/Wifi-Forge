@@ -73,4 +73,3 @@ def BETTERCAP_RECON():
 
     net.stop()
     os.system("clear")
-    exit()

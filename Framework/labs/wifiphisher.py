@@ -36,4 +36,3 @@ def WIFIPHISHER():
 
     net.stop()
     os.system("clear")
-    exit()

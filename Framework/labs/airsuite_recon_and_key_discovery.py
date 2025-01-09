@@ -73,4 +73,3 @@ def AIRSUITE_RECON_AND_KEY_DISCOVERY():
 
     net.stop()
     os.system("clear")
-    exit()

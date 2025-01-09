@@ -45,6 +45,5 @@ def EAPHAMMER_CRED_CAPTURE():
 
 	net.stop()
 	os.system("clear")
-	exit()
 
 

@@ -45,6 +45,5 @@ def NTLM_CRACK_WITH_JOHN():
 
 	net.stop()
 	os.system("clear")
-	exit()
 
 

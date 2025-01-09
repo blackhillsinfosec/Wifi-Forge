@@ -73,4 +73,3 @@ def BETTERCAP_WIFI_AUTH_CAPTURE():
 
     net.stop()
     os.system("clear")
-    exit()
