@@ -129,6 +129,7 @@ def main_menu():
                 # Call the function for the selected lab
                 func = sorted_functions[selected_index][1][1]
                 os.system("clear")
+                input() #clears keyboard input buffer before moving to CLI - otherwise up arrow + enter will cause a command from history to execute in mininet CLI.
                 func()
                 redraw_needed = True
                 remove_old_variables()
