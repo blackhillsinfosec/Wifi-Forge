@@ -73,4 +73,3 @@ def CRACKING_WPA_WITH_AIRCRACK():
 
     net.stop()
     os.system("clear")
-    exit()
