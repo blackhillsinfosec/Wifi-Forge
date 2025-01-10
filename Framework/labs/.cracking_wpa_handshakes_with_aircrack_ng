@@ -57,7 +57,7 @@ def AIRCRACK_NG_WPA_CRACK():
     net.addLink(host9, ap4)
 
     net.build()
-    ap.start([])
+    ap0.start([])
     
     print_banner()
     print("\n")
