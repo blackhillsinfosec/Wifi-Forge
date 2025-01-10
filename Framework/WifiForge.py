@@ -127,8 +127,7 @@ def main_menu():
                 redraw_needed = True  # Set the flag to true to redraw
             elif event.name == 'enter':
                 # Call the function for the selected lab
-                filename = list(functions.keys())[selected_index]
-                _, func = functions[filename]
+                func = sorted_functions[selected_index][1][1]
                 os.system("clear")
                 func()
                 redraw_needed = True
