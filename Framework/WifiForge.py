@@ -133,6 +133,10 @@ def main_menu():
                 func()
                 redraw_needed = True
                 remove_old_variables()
+            elif event.name == 'q' or event.name == 'Q':
+                exit()
+            else:
+                redraw_needed = True
 
 if __name__ == "__main__":
     os.system("service openvswitch-switch start")
