@@ -47,4 +47,3 @@ def WEP_NETWORK():
 
     os.system('clear')
     net.stop()
-    exit()

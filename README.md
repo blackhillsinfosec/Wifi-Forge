@@ -81,7 +81,9 @@ sudo python3 Framework/WifiForge.py
 ### Build from Source
 
 
-NOTE: While the setup script is generally stable, running the auto installer directly on  your machine may disrupt your operating system in a way that renders it unusable. 
+NOTE: While the setup script is stable it is *highly* recommended to only use this install method within a virtual machine. The setup.sh script enables pip's "--break-system-packages," which may break packages important to your machine. 
+
+NOTE: The setup script does not install all the necessary tools to complete the labs - using a kali linux operating system will provide all the required tools. Otherwise, tools will have to be installed manually.
 
 1. Clone the repository
 ```bash
@@ -89,12 +91,13 @@ git clone https://github.com/her3ticAVI/Wifi-Forge
 ```
 2. Run setup.sh
 ```bash
-cd Wifi-Forge/Framework/
+cd Wifi-Forge/Framework/materials
 sudo ./setup.sh
 ```
 
 2. Run Wi-Fi Forge
 ```bash
+cd ..
 sudo python3 WifiForge.py
 ```
 

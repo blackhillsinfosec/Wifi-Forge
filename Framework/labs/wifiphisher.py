@@ -5,7 +5,7 @@ from WifiForge import print_banner
 import os
 
 def WIFIPHISHER():
-    net = Mininet_wifi(controller=Controller)
+    net = Mininet_wifi()
 
     print('Creating Stations...')
     attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
@@ -14,7 +14,6 @@ def WIFIPHISHER():
 
     print('Creating the Access Point...')
     ap = net.addAccessPoint('ap1', ssid='mywifi', passwd='december2022', encrypt='wpa2', mode='g', channel='6')
-    c0 = net.addController('c0', controller=Controller)
     net.configureWifiNodes()
 
     print('Adding Stations...')
@@ -23,8 +22,7 @@ def WIFIPHISHER():
     net.addLink(host2, ap)
 
     net.build()
-    c0.start()
-    ap.start([c0])
+    ap.start([])
     
     print_banner()
     print("\n")
@@ -36,4 +34,3 @@ def WIFIPHISHER():
 
     net.stop()
     os.system("clear")
-    exit()

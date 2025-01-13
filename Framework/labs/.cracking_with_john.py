@@ -45,6 +45,5 @@ def NETNTLM_CRACKING_WITH_JOHN	():
 
 	net.stop()
 	os.system("clear")
-	exit()
 
 

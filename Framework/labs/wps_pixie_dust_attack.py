@@ -7,7 +7,7 @@ from WifiForge import print_banner
 import os
 
 def WPS_NETWORK():
-    net = Mininet_wifi(controller=Controller)
+    net = Mininet_wifi()
 
     print("Creating Stations...")
     attacker = net.addStation('a', encrypt='wpa2')
@@ -18,7 +18,6 @@ def WPS_NETWORK():
                              passwd='123456789a', encrypt='wpa2',
                              failMode="standalone", datapath='user', wps_state='2',
                              config_methods='label display push_button keypad')
-    c0 = net.addController('c0', controller=Controller)
     net.configureWifiNodes()
 
     print("Adding Stations...")
@@ -26,8 +25,7 @@ def WPS_NETWORK():
     net.addLink(host1, ap1)
 
     net.build()
-    c0.start()
-    ap1.start([c0])
+    ap1.start([])
 
     ap1.cmd('hostapd_cli -i ap1-wlan1 wps_ap_pin set 12345670')
     attacker.cmd('iw dev a-wlan0 interface add mon0 type monitor')
@@ -44,4 +42,3 @@ def WPS_NETWORK():
 
     net.stop()
     os.system("clear")
-    exit()

@@ -3,6 +3,8 @@ import os
 import importlib.util
 import inspect
 import keyboard  # Import the keyboard module for key handling
+from mn_wifi.mobility import Mobility, ConfigMobLinks
+from mn_wifi.module import Mac80211Hwsim
 
 # ANSI escape codes for colors
 RED = "\033[91m"
@@ -41,6 +43,13 @@ def print_banner():
               ██╔╝ ╚██╔╝ ██║██║     ██║  ██║     ╚█████╔╝██║  ██║╚██████╔╝███████╗
               ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝      ╚════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝
     """)
+
+#The mininet-wifi API is not designed to be used within a menu loop,
+#this function clears out variables from previous loops. Removing will cause the program to crash between runs.
+def remove_old_variables():
+    ConfigMobLinks.aps = []
+    Mac80211Hwsim.hwsim_ids = []
+    os.system("mn -c")
 
 # Function to import module and get the first function from it
 def import_module_and_get_function(file_path, module_name):
@@ -118,10 +127,16 @@ def main_menu():
                 redraw_needed = True  # Set the flag to true to redraw
             elif event.name == 'enter':
                 # Call the function for the selected lab
-                filename = list(functions.keys())[selected_index]
-                _, func = functions[filename]
+                func = sorted_functions[selected_index][1][1]
                 os.system("clear")
+                input() #clears keyboard input buffer before moving to CLI - otherwise up arrow + enter will cause a command from history to execute in mininet CLI.
                 func()
+                redraw_needed = True
+                remove_old_variables()
+            elif event.name == 'q' or event.name == 'Q':
+                exit()
+            else:
+                redraw_needed = True
 
 if __name__ == "__main__":
     os.system("service openvswitch-switch start")

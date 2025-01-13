@@ -11,7 +11,7 @@ See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 '''
 
 def EAPHAMMER_CRED_CAPTURE():
-	net = Mininet_wifi(controller=Controller)
+	net = Mininet_wifi()
 
 	print("Creating Stations...")
 	host1 = net.addStation('a', passwd='JERRY277626AA', encrypt='wpa2', wlans=2)
@@ -19,7 +19,6 @@ def EAPHAMMER_CRED_CAPTURE():
 
 	print("Creating Access Point...")
 	ap1 = net.addAccessPoint('ap1', ssid="CORP_NET", mode='g', channel='1', passwd="JERRY277626AA", encrypt="wpa2")
-	c0 = net.addController('c0')
 	net.configureWifiNodes()
 
 	print('Adding Stations')
@@ -27,12 +26,7 @@ def EAPHAMMER_CRED_CAPTURE():
 	net.addLink(host2, ap1)
 
 	net.build()
-	c0.start()
-	ap1.start([c0])
-
-	net.build()
-	c0.start()
-	ap1.start([c0])
+	ap1.start([])
 
 	os.system("clear")
 	print_banner()
@@ -45,6 +39,5 @@ def EAPHAMMER_CRED_CAPTURE():
 
 	net.stop()
 	os.system("clear")
-	exit()
 
 

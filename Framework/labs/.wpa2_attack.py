@@ -36,4 +36,3 @@ def WPA2_NETWORK():
 
     net.stop()
     os.system("clear")
-    exit()

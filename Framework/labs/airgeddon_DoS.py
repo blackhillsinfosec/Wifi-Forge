@@ -74,4 +74,3 @@ def Airgeddon_DoS():
 
     net.stop()
     os.system("clear")
-    exit()
