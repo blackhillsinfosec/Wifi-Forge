@@ -63,5 +63,5 @@ sudo make install #> /dev/null 2>&1
 echo -e "[${GREEN}+${RESET}] Installing openvswitch-testcontroller..."
 sudo apt install openvswitch-testcontroller -y #> /dev/null 2>&1
 sudo ln /usr/bin/ovs-testcontroller /usr/bin/controller #> /dev/null 2>&1
-service openvswitch-switch start
+sudo service openvswitch-switch start
 echo -e "[${GREEN}+${RESET}] Install Complete - test use using 'sudo mn --wifi'"
