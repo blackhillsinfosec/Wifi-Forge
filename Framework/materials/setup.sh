@@ -46,9 +46,12 @@ sudo apt install mininet -y --allow-downgrades #> /dev/null 2>&1
 # Move to mininet-wifi directory
 cd "$cwd/mininet-wifi"
 
+#allow pip to break system packages
+sudo python3 -m pip config set global.break-system-packages true
+
 # Run Install Script
 echo -e "[${GREEN}+${RESET}] Running Install Script..."
-./mininet-wifi/util/install.sh -Wlnf #> /dev/null 2>&1
+../mininet-wifi/util/install.sh -Wlnf #> /dev/null 2>&1
 
 # Compile
 echo -e "[${GREEN}+${RESET}] Compiling..."
@@ -57,5 +60,5 @@ sudo make install #> /dev/null 2>&1
 # Install openvswitch-testcontroller
 echo -e "[${GREEN}+${RESET}] Installing openvswitch-testcontroller..."
 sudo apt install openvswitch-testcontroller -y #> /dev/null 2>&1
-sudo ln /usr/bin/ovs-testcontroller /usr/bin/controller #> /dev/null 2>&1
-
+sudo ln /usr/bin/ovs-testcontroller /usr/bin/controller true #> /dev/null 2>&1
+echo -e "[${GREEN}+${RESET}] Install Complete - test use using 'sudo mn --wifi'"
