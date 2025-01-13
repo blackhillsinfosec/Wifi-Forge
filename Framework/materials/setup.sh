@@ -48,7 +48,7 @@ cd "$cwd/mininet-wifi"
 
 # Run Install Script
 echo -e "[${GREEN}+${RESET}] Running Install Script..."
-./util/install.sh -Wlnfv #> /dev/null 2>&1
+./mininet-wifi/util/install.sh -Wlnf #> /dev/null 2>&1
 
 # Compile
 echo -e "[${GREEN}+${RESET}] Compiling..."
