@@ -28,6 +28,10 @@ git submodule init #> /dev/null 2>&1
 # Update Submodules
 git submodule update #> /dev/null 2>&1
 
+#set global pip variable break system packages to true
+sudo python3 -m pip config set global.break-system-packages true
+
+
 # Install Kali Tools
 echo -e "[${GREEN}+${RESET}] Installing Kali Tools..."
 sudo apt install curl -y #> /dev/null 2>&1
@@ -36,7 +40,8 @@ sudo apt install aircrack-ng -y #> /dev/null 2>&1
 sudo apt install john -y #> /dev/null 2>&1
 sudo apt install eaphammer -y #> /dev/null 2>&1
 sudo apt install dsniff -y #> /dev/null 2>&1
-pip install tqdm --break-system-packages
+pip install tqdm
+pip install keyboard
 
 
 # Install Mininet
@@ -45,9 +50,6 @@ sudo apt install mininet -y --allow-downgrades #> /dev/null 2>&1
 
 # Move to mininet-wifi directory
 cd "$cwd/mininet-wifi"
-
-#allow pip to break system packages
-sudo python3 -m pip config set global.break-system-packages true
 
 # Run Install Script
 echo -e "[${GREEN}+${RESET}] Running Install Script..."
@@ -60,5 +62,6 @@ sudo make install #> /dev/null 2>&1
 # Install openvswitch-testcontroller
 echo -e "[${GREEN}+${RESET}] Installing openvswitch-testcontroller..."
 sudo apt install openvswitch-testcontroller -y #> /dev/null 2>&1
-sudo ln /usr/bin/ovs-testcontroller /usr/bin/controller true #> /dev/null 2>&1
+sudo ln /usr/bin/ovs-testcontroller /usr/bin/controller #> /dev/null 2>&1
+service openvswitch-switch start
 echo -e "[${GREEN}+${RESET}] Install Complete - test use using 'sudo mn --wifi'"
