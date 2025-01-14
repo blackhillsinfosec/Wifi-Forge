@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tmux ls | grep 'WIFIFORGE' | awk -F: '{print $1}' | xargs -I {} tmux kill-session -t {}
