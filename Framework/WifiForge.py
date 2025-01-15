@@ -58,7 +58,7 @@ def import_module_and_get_function(file_path, module_name):
     spec.loader.exec_module(module)
     
     # Get the first function defined in the module, ignoring 'print_banner'
-    functions = {name: func for name, func in inspect.getmembers(module, inspect.isfunction) if name != 'print_banner'}
+    functions = {name: func for name, func in inspect.getmembers(module, inspect.isfunction) if name != 'print_banner' and name != "CONFIG_TMUX"}
     if functions:
         function_name, function = next(iter(functions.items()))
         return function_name, function

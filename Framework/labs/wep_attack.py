@@ -1,12 +1,16 @@
 from mininet.log import setLogLevel, info
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
+
+from helper_functions.CONNECT_TMUX import CONFIG_TMUX
 from time import sleep
 from WifiForge import print_banner
 import os
 
-
 def WEP_NETWORK():
+
+    # BUILD NETWORK 
+
     setLogLevel('info')
     net = Mininet_wifi()
 
@@ -22,7 +26,6 @@ def WEP_NETWORK():
     net.configureWifiNodes()
 
     print("Adding Stations...")
-    #net.addLink(attacker, ap1)
     net.addLink(host1, ap1)
     net.addLink(host2, ap1)
 
@@ -36,7 +39,8 @@ def WEP_NETWORK():
     print('                             Type "xterm a" and press enter to begin')
     print('                            Type exit when the simulation is completed\n')
 
-    CLI(net)
+    CONFIG_TMUX(['a', 'host1'], "WEP_ATTACK")
 
+    #KILL LAB
     os.system('clear')
     net.stop()
