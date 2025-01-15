@@ -24,10 +24,13 @@ def CONFIG_TMUX(nodes, lab_name):
 
         for index, node in enumerate(nodes):
             if index != len(nodes) - 1:
-                panes[node] = window.panes[len(window.panes) - 1].split(direction=PaneDirection.Left, attach=False)
+                panes[node] = window.panes[len(window.panes) - 1].split(direction=PaneDirection.Left, attach=True)
             process_id = check_output(["ps aux | grep -G 'mininet:"+node+"' | grep -v 'grep' | grep -v 'ap' | awk '{print $2}'"], shell=True).decode("utf-8")
             subprocess.Popen(["tmux", "send-keys", "-t", f"{session_name}:0.{index}", f"exec sudo nsenter -t {process_id.rstrip()} -m -u -i -n -p bash", "C-m"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            session.cmd("select-pane", "-T", node)
         
+        session.cmd("set", "-g", "pane-border-status", "top")
+        session.cmd("set", "-g", "mouse", "on")
         print(session.cmd("select-layout", "tiled").stderr)
 
         session.attach()
