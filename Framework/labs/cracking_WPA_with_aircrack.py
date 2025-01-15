@@ -1,5 +1,3 @@
-from mininet.node import Controller
-from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
 from helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
