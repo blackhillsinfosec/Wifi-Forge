@@ -1,9 +1,6 @@
-from WifiForge import print_banner
-from mininet.net import Mininet
-from mininet.log import setLogLevel, info
-from mininet.node import Controller
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
+from helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 '''
 Estbalish an environment for learning WEP attacks
@@ -29,14 +26,7 @@ def NTLM_CRACK_WITH_JOHN():
 	net.build()
 	ap1.start([])
 
-	os.system("clear")
-	print_banner()
-	print("\n")
-	print('                        +-_-_-_- Environment started successfully -_-_-_-+')
-	print('                             Type "xterm a" and press enter to begin')
-	print('                            Type exit when the simulation is completed\n')
-
-	CLI(net)
+	CONFIG_TMUX(["a"], "NTLM_JOHN_CRACK")
 
 	net.stop()
 	os.system("clear")

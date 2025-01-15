@@ -2,6 +2,7 @@ from mininet.node import Controller
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
 from WifiForge import print_banner
+from helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 
 
@@ -18,8 +19,8 @@ def Airgeddon_DoS():
                              passwd='123456789a', encrypt='wep',
                              failMode="standalone", datapath='user')
     #WPA-LAB
-    host3 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
-    host4 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
+    host3 = net.addStation('host3', passwd='december2022', encrypt='wpa2')
+    host4 = net.addStation('host4', passwd='december2022', encrypt='wpa2')
     ap1 = net.addAccessPoint('ap1', ssid='WPA2_Network', passwd='december2022', encrypt='wpa2', mode='g', channel='6')
 
 
@@ -62,15 +63,8 @@ def Airgeddon_DoS():
     ap1.start([])
     ap2.start([])
     ap3.start([])
-    #ap4.start([])
-    
-    print_banner()
-    print("\n")
-    print('                       +-_-_-_- Recon environment started successfully -_-_-_-+')
-    print('                             Type "xterm a" and press enter to begin')
-    print('                            Type exit when the simulation is completed\n')
-    
-    CLI(net)
 
+    CONFIG_TMUX(["a"], "BETTERCAP")
+    
     net.stop()
     os.system("clear")

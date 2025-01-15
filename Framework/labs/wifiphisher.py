@@ -1,7 +1,6 @@
-from mininet.node import Controller
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
-from WifiForge import print_banner
+from helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 
 def WIFIPHISHER():
@@ -24,13 +23,7 @@ def WIFIPHISHER():
     net.build()
     ap.start([])
     
-    print_banner()
-    print("\n")
-    print('                        +-_-_-_- Environment started successfully -_-_-_-+')
-    print('                             Type "xterm a" and press enter to begin')
-    print('                            Type exit when the simulation is completed\n')
-    
-    CLI(net)
+    CONFIG_TMUX(["a", "host1"], "WIFIPHISHER")
 
     net.stop()
     os.system("clear")

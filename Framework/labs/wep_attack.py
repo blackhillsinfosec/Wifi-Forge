@@ -32,14 +32,7 @@ def WEP_NETWORK():
     net.build()
     ap1.start([])
     
-
-    print_banner()
-    print("\n")
-    print('                        +-_-_-_- Environment started successfully -_-_-_-+')
-    print('                             Type "xterm a" and press enter to begin')
-    print('                            Type exit when the simulation is completed\n')
-
-    CONFIG_TMUX(['a', 'host1'], "WEP_ATTACK")
+    CONFIG_TMUX(['a', 'host1', 'host2'], "WEP_ATTACK")
 
     #KILL LAB
     os.system('clear')
