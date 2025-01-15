@@ -18,7 +18,7 @@ def CONFIG_TMUX(nodes, lab_name):
         session_name = f"WIFIFORGE-{lab_name}"
         session = server.new_session(session_name=session_name, attach=False)
         window = session.windows[0]
-        window.cmd("rename-window", node[0])
+        session.cmd("rename-window", node[0])
         panes = {}
 
         #Split the window up into panes
