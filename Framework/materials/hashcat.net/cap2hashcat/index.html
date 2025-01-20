@@ -1,0 +1,73 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <title>hashcat hcxpcapngtool - advanced password recovery</title>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+    <meta http-equiv="content-language" content="en">
+    <meta name="description" content="Online WPA/WPA2 handshake extraction">
+    <meta name="keywords" content="hashcat, oclhashcat, hash cat, ocl hashcat, wpa, wpa2, cap, hccap, hccapx, convert, converter">
+    <meta name="robots" content="index,follow">
+    <link rel="stylesheet" type="text/css" href="../s/style.css" media="screen">
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+  </head>
+
+  <body>
+    <div class="bdin">
+      <div class="header">
+        <H1><a href="https://hashcat.net/"><span>hashcat</span><br> advanced password recovery</a></H1>
+        <hr>
+      </div>
+
+      <div class="content">
+          <!-- cap2hashcat -->
+          <div class="section" id="cap2hashcat">
+              <h2><center>Upload and extract<br>a WPA / WPA2 handshake from a pcap capture file<br>to a modern hashcat compatible hash file</center></h2>
+              <hr>
+              <br>
+              <form method="post" action="https://hashcat.net/cap2hashcat/index.pl" enctype="multipart/form-data">
+                &nbsp;
+                PCAPNG, PCAP or CAP file:
+                &nbsp;
+                <input type="file" name="file"><br> <br>
+                <center><input type="submit" name="submit" value="Convert"></center>
+              </form>
+              <br>
+              &nbsp; Please read this <a href="https://hashcat.net/forum/thread-10253.html">forum post</a> for a short hashcat + WPA1/2 <b>tutorial</b>.
+              <hr>
+              <br>
+              &nbsp;
+              This site is using state of the art handshake extraction tool hcxpcapngtool from <a href="https://github.com/ZerBea/hcxtools">hcxtools</a> for converting.
+              <br>
+              &nbsp;
+              It is intended for users who dont want to struggle with compiling from sources.
+              <br>
+              <br>
+              &nbsp;
+              <b>Maximum size</b> for upload is <b>20MB.</b>
+              <br>
+              <br>
+              <center>ATTENTION! You need hashcat v6.0.0 or higher in order to work with hash-mode 22000.</center>
+              <hr>
+              <br>
+              &nbsp;
+              For best results, <b>avoid</b> tools that strip or modify capture files, such as:
+              <br>
+              <br>
+              <ul>
+              <li>airodump-ng (with filter options)</li>
+              <li>besside-ng</li>
+              <li>wpaclean</li>
+              <li>old bettercap versions</li>
+              <li>old pwnagotchi versions</li>
+              <li>tshark (with filter options)</li>
+              <li>wireshark (with filter options)</li>
+              </ul>
+              <br>
+              &nbsp;
+              The online converter works exclusively with default settings. Any additional in-depth tuning exceeds the scope of this online service.
+          </div>
+      </div>
+    </div>
+  </BODY>
+</HTML>

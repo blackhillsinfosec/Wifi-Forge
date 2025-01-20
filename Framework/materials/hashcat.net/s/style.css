@@ -1,0 +1,218 @@
+html {overflow-y: scroll; height: 100%;}
+body {height: 100%;}
+body, html, div {margin:0; padding:0;}
+a img {border:0;}
+
+/* content styles */
+body, th, td, input, textarea, select {font-family: "Bitstream Vera Sans", Arial, Helvetica; font-size: 11px; line-height: 15px;}
+h1 {font-size:18px; font-weight:normal;}
+h2 {font-size:15px; font-weight:bold;}
+h3 {font-size:13px; font-weight:bold;}
+p, h1, h2, h3, form {margin:0.5em 0; padding:0;}
+a {color:#898989;}
+a:visited {color:#999;}
+ul {list-style:none inside; margin:0; padding:0px;}
+ul li {background: url(i/point.png) 0 3px no-repeat; padding-left:10px;}
+ul li.gap-after {margin-bottom:1em;}
+ul li ul li {background-image: url(i/point-s.png);}
+
+
+/* content table styles */
+table {border-spacing:0; border-collapse:collapse;}
+caption {text-align:left; font-size:13px; padding-bottom:0.5em; font-weight:bold;}
+td, th {vertical-align:top; padding:4px 8px; margin-bottom:0.5em; text-align:left;}
+table {border-bottom:solid 1px #898989; border-right:solid 1px #898989;}
+th, td {border-top:solid 1px #898989; border-left:solid 1px #898989;}
+th {background:#f5f5f5;}
+td.nodata {border-top: solid 1px #fff; border-left: solid 1px #fff;}
+
+td[align=right] {text-align:right;}
+
+
+/* preserved styles */
+td, th {
+font-family: monospace;
+}
+
+/* layout */
+body .bdin
+{
+  max-width:990px;
+  margin:0 auto 0 auto;
+  background:url(i/sidebar-bg-208.png) 0 0 repeat-y;
+  min-height:100%;
+}
+
+body.homepage .bdin
+{
+  background:#fff;
+}
+
+.header
+{
+  position: fixed;
+  width:130px;
+}
+
+.social
+{
+  position: fixed;
+  width:200px;
+  top:148px;
+}
+
+.sidebar_l
+{
+  position: fixed;
+  width:130px;
+  top:170px;
+}
+
+.sidebar_r
+{
+  position: fixed;
+  margin-left:960px;
+  width:120px;
+  top:32px;
+}
+
+/* header */
+.header { color:#666666; font-size:0.7em; font-family: monospace; background:url(i/hashcat-icon.png) -4px 0 no-repeat; height:128px; line-height:2em; }
+.header hr {display: none;}
+.header h1 {}
+.header h1 span { color:#000000; font-family: "Bitstream Vera Sans", Arial, Helvetica; font-size:1.4em; display: block; margin-top:8px }
+.header h1 span i {display:none;}
+.header h1 a {color: inherit; display: block; padding: 0.5em 0 0 120px; text-decoration: none;}
+
+/* navigation */
+.navigation {}
+.navigation ul li {background-image:none; margin-bottom:0.5em; padding:0;}
+.navigation ul li ul {margin-top:0; margin-bottom: 0.5em;}
+.navigation h2 {display: none;}
+xxx .navigation a {font:15px/1.231 georgia,serif; color:#898989; font-weight:bold;}
+.navigation a {font:16px/1.75 Arial, Helvetica; color:#898989; font-weight:bold; text-decoration:none;}
+.navigation a {display:block; width:130px; padding:4px;}
+.navigation a:hover {background:#FEF6E4; color:#000;}
+.navigation ul li {}
+.navigation ul li.open > a {padding:3px; border:1px solid #898989;}
+.navigation ul li ul li {margin-bottom:0;}
+.navigation ul li ul li a {font-size:13px; padding-left:14px; width:190px;}
+
+
+/* content */
+
+
+.content {margin-left: 270px; width:720px;}
+.content .section {padding-top:0.5em; margin-bottom: 1em;} /* tweak jumps */
+.content .section h2 {margin: 1em 0; border-bottom:2px solid #f5f5f5;}
+
+.section {clear:both;} /* clears diverse floating ul / li combos following: */
+
+#email
+{
+    position: fixed;
+    top:20px;
+    height:450px;
+    width:720px;
+}
+
+#email table
+{
+	background:#eeeeee;
+}
+
+#cap2hccap
+{
+	background:#eeeeee;
+    position: fixed;
+    top:20px;
+    height:300px;
+    width:720px;
+    border:solid 1px #898989;
+}
+
+#cap2hccapx
+{
+	background:#eeeeee;
+    position: fixed;
+    top:20px;
+    height:300px;
+    width:720px;
+    border:solid 1px #898989;
+}
+
+#cap2hashcat
+{
+    background:#eeeeee;
+    position: fixed;
+    top:20px;
+    height:490px;
+    width:720px;
+    border:solid 1px #898989;
+}
+
+#cap2hashcat ul
+{
+    padding-left: 10pt;
+}
+
+#downloadlatest .older {font-size:0.7em; color: #898989;}
+
+#features .special
+{font:15px/20px georgia,serif; color:#006600; font-weight:bold; width:240px; float:left;}
+#features .special ul {list-style:none inside; margin:0 0.5em 0.5em 1.5em; padding:0px;}
+#features .special ul li {margin-bottom:0.5em; margin-left:0; padding-left:0; background: none;}
+
+#features .features {}
+#features .features li {float:left; width:230px; min-height:30px; margin-bottom:15px;}
+#features .features li.last {margin-bottom:0;}
+#features .features li.lite {font:12px/15px georgia,serif; color:#060; font-weight:bold;}
+
+#features .features li b,
+#features-algos b,
+#features-attackmodes b {font-weight:normal; background:#FEF6E4; border:0 solid #FEF6E4; border-width:0 1px; }
+
+#features-attackmodes ul li {float:left; width:134px;}
+#features-attackmodes p {clear:left; padding: 0.5em;}
+
+#performance ul {height:16px; background: url(i/icon-computer.png) 0 0 no-repeat; padding:2px 2px 2px 20px; width:normal; margin-top:1em;}
+#performance ul li {width:normal; float:left; background-image: url(i/point-s.png) }
+#performance table {clear:left;}
+#performance .image {background:#FEF6E4; width:550px; margin:auto; padding:10px;}
+
+#features-algos ul li { font-family:monospace; width:230px; float:left;}
+
+#features-algos .image.hash-browser {float:right; width:220px; text-align:center; padding:10px; font:15px/20px georgia,serif; background:#FEF6E4; color:#006600; font-weight:bold; height:241px}
+#features-algos .image.hash-browser img {display:block; margin-bottom:6px;}
+
+sup {color:#006600;}
+
+
+
+#help ul {height:3.5em;}
+#help ul li {width:118px; float:left; margin:0 10px; padding: 0; text-align:center; }
+#help ul li a {width:98px;}
+#help p {clear:left; margin-top:1em !important;}
+
+
+
+/* Elements */
+
+/* Button */
+a.button {background:#fef6e4; border:1px solid #ffd700; color:#060; display:block; font-size:1.5em; padding:10px; -moz-border-radius: 8px; -webkit-border-radius: 8px;}
+a.button:hover {color:#fff; background:#060; border:1px solid #060;}
+
+/* Flasher */
+body .flasher {padding:2em 0 0 0 !important;}
+.error {background:#FFEBE8; border: 1px solid #C00; margin:0 0 16px 8px; padding:12px; -moz-border-radius:3px; -webkit-border-radius:3px;}
+.error a {color:#c00;}
+
+
+/* Re-Listing */
+#features .special {float:right;}
+#features .features {clear:left;}
+#features .features li {float:none; width:100%; min-height:0; margin-bottom:0.5em;}
+#features .features li.last {margin-bottom:0.5em;}
+
+#features-attackmodes ul li,
+#features-algos ul li {float:none; width:100%; }
