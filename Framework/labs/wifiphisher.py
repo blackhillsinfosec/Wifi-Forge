@@ -23,7 +23,7 @@ def WIFIPHISHER():
     net.build()
     ap.start([])
     
-    CONFIG_TMUX(["a", "host1"], "WIFIPHISHER")
+    CONFIG_TMUX(["a", "host_machine"], "WIFIPHISHER")
 
     net.stop()
     os.system("clear")

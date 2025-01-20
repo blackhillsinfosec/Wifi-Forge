@@ -65,6 +65,6 @@ def BETTERCAP_WIFI_AUTH_CAPTURE():
 
     
     CONFIG_TMUX(["a"], "BETTERCAP_AUTH_CAP")
-
+    CLI(net)
     net.stop()
     os.system("clear")
