@@ -29,7 +29,7 @@ def CONFIG_TMUX(nodes, lab_name):
             #host machine pane used when needing to launch browser/chrome processes
             #guis do not play well with the "remote bash" with nsenter 
             if nodes[index] == "host_machine": 
-                session.cmd("select-pane", "-t", index, "-T", "")
+                session.cmd("select-pane", "-t", index, "-T", "host_machine")
             else:
                 process_id = check_output(["ps aux | grep -G 'mininet:"+nodes[index]+"' | grep -v 'grep' | grep -v 'ap' | awk '{print $2}'"], shell=True).decode("utf-8")
                 subprocess.Popen(["tmux", "send-keys", "-t", f"{session_name}:0.{index}", f"exec sudo nsenter -t {process_id.rstrip()} -m -u -i -n -p bash", "C-m"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
