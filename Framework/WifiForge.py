@@ -1,8 +1,11 @@
+#!/usr/bin/env python
+
+import curses
+from curses import panel
 from subprocess import Popen, DEVNULL
 import os
 import importlib.util
 import inspect
-import keyboard  # Import the keyboard module for key handling
 from mn_wifi.mobility import Mobility, ConfigMobLinks
 from mn_wifi.module import Mac80211Hwsim
 
@@ -44,8 +47,6 @@ def print_banner():
               ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝      ╚════╝ ╚═╝  ╚═╝ ╚═════╝ ╚══════╝
     """)
 
-#The mininet-wifi API is not designed to be used within a menu loop,
-#this function clears out variables from previous loops. Removing will cause the program to crash between runs.
 def remove_old_variables():
     ConfigMobLinks.aps = []
     Mac80211Hwsim.hwsim_ids = []
@@ -81,63 +82,79 @@ def load_functions_from_py_files(directory):
 directory = os.path.dirname(os.path.realpath(__file__)) + "/labs"  # Current directory
 functions = load_functions_from_py_files(directory)
 
-def main_menu():
-    selected_index = 0
-    total_functions = len(functions)
-    redraw_needed = True  # Flag to track when to redraw
+print(functions)
 
-    while True:
-        # Only clear the screen and redraw when an arrow key is pressed
-        if redraw_needed:
-            os.system("clear")  # Clear the terminal screen
+class Menu(object):
+    def __init__(self, items, stdscreen):
+        self.window = stdscreen.subwin(0, 0)
+        self.window.keypad(1)
+        self.panel = panel.new_panel(self.window)
+        self.panel.hide()
+        panel.update_panels()
 
-            print_banner()
-            print("\n\n                      " + GREEN + "Brought to you by "+ RED +"Black Hills InfoSec "+ RESET +"and "+ PURPLE +"Antisyphon"+ RESET)
-            print("                   ┌────────────────────────────────────────────────────────┐")
-            
-            # Sort the functions alphabetically by function_name (lab title)
-            sorted_functions = sorted(functions.items(), key=lambda x: x[1][0].lower())
+        self.position = 0
+        self.items = items
+        self.items.append(("exit", "exit"))
 
-            # Display all labs with the current selection
-            for i, (filename, (function_name, _)) in enumerate(sorted_functions):
-                formatted_name = function_name.replace('_', ' ').title()
-                if i == selected_index:
-                    lab_display = f"{BOLD_WHITE}[•] {formatted_name:<50}{RESET}"  # Highlight selected lab
+    def navigate(self, n):
+        self.position += n
+        if self.position < 0:
+            self.position = 0
+        elif self.position >= len(self.items):
+            self.position = len(self.items) - 1
+
+    def display(self):
+        self.panel.top()
+        self.panel.show()
+        self.window.clear()
+
+        while True:
+            self.window.refresh()
+            curses.doupdate()
+            for index, item in enumerate(self.items):
+                if index == self.position:
+                    mode = curses.A_REVERSE
                 else:
-                    lab_display = f"[ ] {formatted_name}"
-                print(f"                   │ {lab_display:<54} │")  # Keep the borders white
-                              
-            print("                   ├────────────────────────────────────────────────────────┤")
-            print("                   │  " + MAGENTA  + "Last Updated 12/19/2024 " + RESET  + "   │    " + RED + "Version 2.0.0" + RESET + "         │")
-            print("                   ├────────────────────────────────────────────────────────┤")
-            print("                   │           Version Name: "+CYAN+"Time for an upgrade"+RESET+"            │")
-            print("                   └────────────────────────────────────────────────────────┘")
-            
-            redraw_needed = False  # Set the flag to false after drawing the screen
+                    mode = curses.A_NORMAL
 
-        # Read a key event (without showing output)
-        event = keyboard.read_event(suppress=True)  # `suppress=True` suppresses key echoing
+                msg = "%d. %s" % (index, item[0])
+                self.window.addstr(1 + index, 1, msg, mode)
 
-        if event.event_type == keyboard.KEY_DOWN:  # Check if a key is pressed down
-            if event.name == 'up':
-                selected_index = (selected_index - 1) % total_functions
-                redraw_needed = True  # Set the flag to true to redraw
-            elif event.name == 'down':
-                selected_index = (selected_index + 1) % total_functions
-                redraw_needed = True  # Set the flag to true to redraw
-            elif event.name == 'enter':
-                # Call the function for the selected lab
-                func = sorted_functions[selected_index][1][1]
-                os.system("clear")
-                input() #clears keyboard input buffer before moving to CLI - otherwise up arrow + enter will cause a command from history to execute in mininet CLI.
-                func()
-                redraw_needed = True
-                remove_old_variables()
-            elif event.name == 'q' or event.name == 'Q':
-                exit()
-            else:
-                redraw_needed = True
+            key = self.window.getch()
+
+            if key in [curses.KEY_ENTER, ord("\n")]:
+                if self.position == len(self.items) - 1:
+                    break
+                else:
+                    self.items[self.position][1]()
+
+            elif key == curses.KEY_UP:
+                self.navigate(-1)
+
+            elif key == curses.KEY_DOWN:
+                self.navigate(1)
+
+        self.window.clear()
+        self.panel.hide()
+        panel.update_panels()
+        curses.doupdate()
+
+class MyApp(object):
+    def __init__(self, stdscreen):
+        self.screen = stdscreen
+        curses.curs_set(0)
+
+        test = [("HELLO", curses.beep), ("TEST", curses.flash)]
+        main_menu = []
+
+        for item in test:
+            main_menu.append(item)
+
+        print(main_menu)
+        main_menu = Menu(main_menu, self.screen)
+        main_menu.display()
+
+
 
 if __name__ == "__main__":
-    os.system("service openvswitch-switch start")
-    main_menu()
+    curses.wrapper(MyApp)
