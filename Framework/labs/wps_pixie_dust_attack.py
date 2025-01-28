@@ -27,7 +27,6 @@ def WPS_NETWORK():
     ap1.cmd('hostapd_cli -i ap1-wlan1 wps_ap_pin set 12345670')
     attacker.cmd('iw dev a-wlan0 interface add mon0 type monitor')
     attacker.cmd('ip link set mon0 up')
-    makeTerm(attacker) #is this required? 
 
     CONFIG_TMUX(["a", "host1"], "WPS")
 
