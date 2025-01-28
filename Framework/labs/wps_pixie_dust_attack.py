@@ -1,9 +1,6 @@
 from mininet.term import makeTerm
-from mininet.net import Mininet
-from mininet.node import Controller
-from mininet.cli import CLI
 from mn_wifi.net import Mininet_wifi
-from WifiForge import print_banner
+from helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 
 def WPS_NETWORK():
@@ -30,15 +27,8 @@ def WPS_NETWORK():
     ap1.cmd('hostapd_cli -i ap1-wlan1 wps_ap_pin set 12345670')
     attacker.cmd('iw dev a-wlan0 interface add mon0 type monitor')
     attacker.cmd('ip link set mon0 up')
-    makeTerm(attacker)
 
-    print_banner()
-    print("\n")
-    print('                        +-_-_-_- Environment started successfully -_-_-_-+')
-    print('                             Type "xterm a" and press enter to begin')
-    print('                            Type exit when the simulation is completed\n')
-
-    CLI(net)
+    CONFIG_TMUX(["a", "host1"], "WPS")
 
     net.stop()
     os.system("clear")

@@ -33,19 +33,20 @@ Note: Dockerfile will fail if mininet-wifi is already installed locally
 
 1. Pull image from dockerhub
 ```bash
-sudo docker pull redblackbird/wififorge:v1.0.0
+sudo docker pull redblackbird/wififorge:v2.0
 ```
 2.. Start a new container
   ```bash
-  sudo docker run --privileged=true -it --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v /sys/:/sys -v /lib/modules/:/lib/modules/ --name mininet-wifi --network=host --hostname mininet-wifi redblackbird/wififorge:v1.0.0 /bin/bash
+  sudo docker run --privileged=true -it --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v /sys/:/sys -v /lib/modules/:/lib/modules/ --name mininet-wifi --network=host --hostname mininet-wifi redblackbird/wififorge:v2.0 /bin/bash
   ```
 3.. Within docker, initiate the controller to simulate APs
 ```bash
-RUN service openvswitch-switch start
+service openvswitch-switch start
 ```
 4.. Run wififorge.py
 ```bash
-sudo python3 Framework/WifiForge.py
+cd /Wifi-Forge/Framework/
+sudo python3 WifiForge.py
 ```
 #### Build from Dockerfile
 

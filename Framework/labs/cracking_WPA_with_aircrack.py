@@ -1,7 +1,5 @@
-from mininet.node import Controller
-from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
-from WifiForge import print_banner
+from helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 
 def CRACKING_WPA_WITH_AIRCRACK():
@@ -63,13 +61,7 @@ def CRACKING_WPA_WITH_AIRCRACK():
     ap3.start([])
     ap4.start([])
     
-    print_banner()
-    print("\n")
-    print('                        +-_-_-_- Environment started successfully -_-_-_-+')
-    print('                             Type "xterm a" and press enter to begin')
-    print('                            Type exit when the simulation is completed\n')
-    
-    CLI(net)
+    CONFIG_TMUX(["a"], "WPA_CRACK")
 
     net.stop()
     os.system("clear")
