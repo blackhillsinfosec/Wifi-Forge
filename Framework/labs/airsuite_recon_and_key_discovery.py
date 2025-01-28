@@ -63,7 +63,7 @@ def AIRSUITE_RECON_AND_KEY_DISCOVERY():
     ap3.start([])
     ap4.start([])
     
-    CONFIG_TMUX(["a"], "AIRSUITE_RECON")
+    CONFIG_TMUX(["a", "a"], "AIRSUITE_RECON")
 
     net.stop()
     os.system("clear")
