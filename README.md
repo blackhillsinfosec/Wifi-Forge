@@ -15,13 +15,10 @@ Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Bas
 Wifi-Forge should work on any linux operating system using the docker image. The following Operating Systems have been tested and are confirmed to work.
 
 Kali Linux
-![kali](./images/kali.png)
 
 Parrot OS
-![Parrot OS](./images/Parrot.png)
 
 Ubuntu
-![Ubuntu](./images/Ubuntu.png)
 
 ## Set-Up Guide
 Note: As of June, pulling from Dockerhub is the most up-to-date version of wififorge. Installing from any other method (including building directly from the Dockerfile) will not guarantee a stable release.
