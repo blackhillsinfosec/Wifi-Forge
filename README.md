@@ -2,23 +2,19 @@
   <img src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/landpage.png" alt="Wi-Fi Forge Banner">
 </div>
 
-<center>Wi-Fi Forge</center>
+# Wi-Fi Forge
 Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Based on the open source [Mininet-Wifi](https://github.com/intrig-unicamp/mininet-wifi/tree/master?tab=readme-ov-file), this project automatically sets up the networks and tools needed to run a variety of WiFi exploitation labs, removing the need for the overhead and hardware normally required to perform these attacks. 
 
 ## Disclaimer/Notes
-
 - The installation script will only run on Ubuntu, Debian, Fedora, or Kali. 
 - It is suggested to run Wifi Forge on Ubuntu version 14.04 or the lastest version of Kali. 
 - The Wifi Forge installation script may disrupt normal operating system use, it is suggested to use a fresh install, virtual machine, or build using the provided dockerfile (see Set-Up Guide/Docker)
 
 ## Compatibility
 Wifi-Forge should work on any linux operating system using the docker image. The following Operating Systems have been tested and are confirmed to work.
-
-Kali Linux
-
-Parrot OS
-
-Ubuntu
+- Kali Linux
+- Parrot OS
+- Ubuntu
 
 ## Set-Up Guide
 Note: As of June, pulling from Dockerhub is the most up-to-date version of wififorge. Installing from any other method (including building directly from the Dockerfile) will not guarantee a stable release.
@@ -76,9 +72,8 @@ RUN service openvswitch-switch start
 ```bash
 sudo python3 Framework/WifiForge.py
 ```
+
 ### Build from Source
-
-
 NOTE: While the setup script is stable it is *highly* recommended to only use this install method within a virtual machine. The setup.sh script enables pip's "--break-system-packages," which may break packages important to your machine. 
 
 NOTE: The setup script does not install all the necessary tools to complete the labs - using a kali linux operating system will provide all the required tools. Otherwise, tools will have to be installed manually.
@@ -100,7 +95,6 @@ sudo python3 WifiForge.py
 ```
 
 ## Labs and Featured Tools
-
 Wi-Fi Forge provides pre-built labs that cover the following:
 
 - Evil twin AP
@@ -122,11 +116,9 @@ xhost si:localuser:root
 If other issues are encountered, start a thread in the issues section of the repo! :) 
 
 ### Dockerfile stops at apt update!
-
 Once in a while, the dockerfile will fail before installing packages. Though unconfirmed, this error usually occurs after running Wifi-forge (either on baremetal or within a docker). Rebooting and running the Dockerfile again typically solves the issue. 
 
 ## Links and Further Reading 
-
 - https://mininet-wifi.github.io/ 
 - [https://www.hackingarticles.in/wireless-penetration-testing-pmkid-attack/](https://www.hackingarticles.in/wireless-penetration-testing-pmkid-attack/)
 - [https://en.wikipedia.org/wiki/IEEE_802.11i-2004](https://en.wikipedia.org/wiki/IEEE_802.11i-2004)
