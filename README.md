@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-  <img src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/landpage.png" alt="Wi-Fi Forge Banner">
+  <img src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/landpage.png" alt="Wi-Fi Forge Banner" width="500" height="500">
 </div>
 
 # Wi-Fi Forge
