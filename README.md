@@ -23,7 +23,6 @@ Note: As of June, pulling from Dockerhub is the most up-to-date version of wifif
 Note: Dockerfile will fail if mininet-wifi is already installed locally
 
 #### Install from release (best option)
-
 1. Pull image from dockerhub
 ```bash
 sudo docker pull redblackbird/wififorge:v2.0
@@ -42,7 +41,6 @@ cd /Wifi-Forge/Framework/
 sudo python3 WifiForge.py
 ```
 #### Build from Dockerfile
-
 1. Install Docker
 ```bash
 sudo snap install docker
@@ -106,9 +104,7 @@ Wi-Fi Forge provides pre-built labs that cover the following:
 - etc...
 
 ## Common Issues
-
 ### Xterm does not work!
-
 Intializing graphical interfaces as root between the docker image and host machine is restricted on most modern distributions. Run the following command to provide the appropriate permissions - 
 ```bash
 xhost si:localuser:root
