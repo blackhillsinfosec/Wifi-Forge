@@ -36,7 +36,7 @@ sudo docker pull redblackbird/wififorge:v2.0
 service openvswitch-switch start
 ```
 4. Run wififorge.py
-```bash
+```python
 cd /Wifi-Forge/Framework/
 sudo python3 WifiForge.py
 ```
