@@ -83,6 +83,7 @@ git clone https://github.com/her3ticAVI/Wifi-Forge
 2. Run setup.sh
 ```bash
 cd Wifi-Forge/Framework/materials
+sudo python3 -m pip config set global.break-system-packages true
 sudo ./setup.sh
 ```
 
