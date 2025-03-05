@@ -40,6 +40,7 @@ sudo apt install aircrack-ng -y #> /dev/null 2>&1
 sudo apt install john -y #> /dev/null 2>&1
 sudo apt install eaphammer -y #> /dev/null 2>&1
 sudo apt install dsniff -y #> /dev/null 2>&1
+sudo apt install tmux -y #> /dev/null 2>&1
 pip install tqdm
 pip install keyboard
 pip install libtmux
