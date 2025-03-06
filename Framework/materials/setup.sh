@@ -41,9 +41,9 @@ sudo apt install aircrack-ng -y > /dev/null 2>&1
 sudo apt install john -y > /dev/null 2>&1
 sudo apt install dsniff -y > /dev/null 2>&1
 sudo apt install tmux -y > /dev/null 2>&1
-sudo pip install tqdm --break-system-packages > /dev/null 2>&1
-sudo pip install keyboard --break-system-packages > /dev/null 2>&1
-sudo pip install libtmux --break-system-packages > /dev/null 2>&1
+sudo -E pip install tqdm --break-system-packages > /dev/null 2>&1
+sudo -E pip install keyboard --break-system-packages > /dev/null 2>&1
+sudo -E pip install libtmux --break-system-packages > /dev/null 2>&1
 
 
 # Install Mininet
