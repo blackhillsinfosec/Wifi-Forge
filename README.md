@@ -84,6 +84,7 @@ git clone https://github.com/her3ticAVI/Wifi-Forge
 ```bash
 cd Wifi-Forge/Framework/materials
 sudo apt install python3-pip
+sudo pip install libtmux --break-system-packages
 sudo python3 -m pip config set global.break-system-packages true
 sudo ./setup.sh
 ```
