@@ -43,7 +43,7 @@ sudo apt install dsniff -y > /dev/null 2>&1
 sudo apt install tmux -y > /dev/null 2>&1
 sudo -E pip install tqdm --break-system-packages > /dev/null 2>&1
 sudo -E pip install keyboard --break-system-packages > /dev/null 2>&1
-sudo -E pip install libtmux --break-system-packages > /dev/null 2>&1
+sudo -E pip install --user libtmux --break-system-packages > /dev/null 2>&1
 
 
 # Install Mininet
