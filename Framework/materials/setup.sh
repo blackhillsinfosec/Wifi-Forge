@@ -41,7 +41,6 @@ sudo apt install aircrack-ng -y > /dev/null 2>&1
 sudo apt install john -y > /dev/null 2>&1
 sudo apt install dsniff -y > /dev/null 2>&1
 sudo apt install tmux -y > /dev/null 2>&1
-sudo -E pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
 
 # Install Mininet
 echo -e "[${GREEN}+${RESET}] Installing Mininet..."
@@ -55,6 +54,9 @@ echo -e "[${GREEN}+${RESET}] Running Install Script..."
 # Compile
 echo -e "[${GREEN}+${RESET}] Compiling..."
 sudo make install > /dev/null 2>&1
+
+sudo -E pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
+
 
 # Install openvswitch-testcontroller
 echo -e "[${GREEN}+${RESET}] Installing openvswitch-testcontroller..."
