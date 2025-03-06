@@ -29,7 +29,7 @@ git submodule init > /dev/null 2>&1
 git submodule update > /dev/null 2>&1
 
 #set global pip variable break system packages to true
-sudo python3 -m pip config set global.break-system-packages true  > /dev/null 2>&1
+sudo -E python3 -m pip config set global.break-system-packages true  > /dev/null 2>&1
 
 
 # Install Kali Tools
