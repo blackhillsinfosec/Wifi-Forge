@@ -2,6 +2,8 @@
   <img src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/landpage.png" alt="Wi-Fi Forge Banner" width="700" height="700">
 </div>
 
+Note: WifiForge is an amalgamation of a bunch of tools that sometimes don't play nice. We've done our best to make setup as easy as possible, but you may still run into issues. Since we're always working to make this tool better, feel free to open an issue if you do run into any problems :) - it helps a lot! 
+
 # Wi-Fi Forge
 Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Based on the open source [Mininet-Wifi](https://github.com/intrig-unicamp/mininet-wifi/tree/master?tab=readme-ov-file), this project automatically sets up the networks and tools needed to run a variety of WiFi exploitation labs, removing the need for the overhead and hardware normally required to perform these attacks. 
 
@@ -12,9 +14,9 @@ Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Bas
 
 ## Compatibility
 Wifi-Forge should work on any linux operating system using the docker image. The following Operating Systems have been tested and are confirmed to work.
-- Kali Linux
+- Kali Linux 
 - Parrot OS
-- Ubuntu
+- Ubuntu - best option!
 
 ## Set-Up Guide
 Note: As of June, pulling from Dockerhub is the most up-to-date version of wififorge. Installing from any other method (including building directly from the Dockerfile) will not guarantee a stable release.
