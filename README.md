@@ -13,7 +13,7 @@
 </p>
 <hr/>
 <h4>
-<a target="_blank" href="https://google.com" rel="dofollow"><strong>Explore the Docs</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://google.com" rel="dofollow"><strong>Community Help</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://google.com" rel="dofollow"><strong>Roadmap</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://google.com" rel="dofollow"><strong>View G2 Reviews</strong></a>
+<a target="_blank" href="https://google.com" rel="dofollow"><strong>Explore the Docs</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://discord.com/invite/bhis" rel="dofollow"><strong>Community Help</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://google.com" rel="dofollow"><strong>Roadmap</strong></a>&nbsp;
 </h4>
 <hr/>
 
