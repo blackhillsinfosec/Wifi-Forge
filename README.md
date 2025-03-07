@@ -10,6 +10,8 @@
   <a href="https://github.com/blackhillsinfosec/Wifi-Forge/graphs/contributors"><img alt="npm" src="https://img.shields.io/github/contributors-anon/blackhillsinfosec/Wifi-Forge?color=yellow&style=flat-square" /></a>
   &nbsp;
   <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/badge/follow-BHIS-1DA1F2?logo=twitter&style=flat-square" alt="BHIS Twitter" /></a>
+    &nbsp;
+  <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/github/stars/blackhillsinfosec/Wifi-Forge?style=flat-square" alt="Wifi Forge Stars" /></a>
 </p>
 <hr/>
 
