@@ -20,6 +20,8 @@
     <a target="_blank" href="https://google.com" rel="dofollow"><strong>Explore the Docs</strong></a>&nbsp;·&nbsp;
     <a target="_blank" href="https://discord.com/invite/bhis" rel="dofollow"><strong>Community Help</strong></a>&nbsp;·&nbsp;
     <a target="_blank" href="https://google.com" rel="dofollow"><strong>Roadmap</strong></a>
+    <a target="_blank" href="https://www.youtube.com/watch?v=lqvq3xH0qYM&t=8s" rel="dofollow"><strong>What is Wifi Forge?</strong></a>
+    <a target="_blank" href="https://www.blackhillsinfosec.com/wifi-forge/" rel="dofollow"><strong>Blog Post</strong></a>
   </h4>
 </div>
 
@@ -151,17 +153,6 @@ sudo ./setup.sh
 cd ..
 sudo python3 WifiForge.py
 ```
-
-## Labs and Featured Tools
-Wi-Fi Forge provides pre-built labs that cover the following:
-
-- Evil twin AP
-- WEP PIN Recovery
-- WPA2 4 Way Handshake
-- WPS Pixie Attacks
-- WifiPhisher
-- Eaphammer
-- etc...
 
 ## Common Issues
 ### Xterm does not work!
