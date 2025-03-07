@@ -11,7 +11,7 @@
   &nbsp;
   <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/badge/follow-BHIS-1DA1F2?logo=twitter&style=flat-square" alt="BHIS Twitter" /></a>
     &nbsp;
-  <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/github/stars/blackhillsinfosec/Wifi-Forge?style=flat-square" alt="Wifi Forge Stars" /></a>
+  <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/github/stars/blackhillsinfosec/Wifi-Forge?style=flat-square&color=rgb(255%2C218%2C185)" alt="Wifi Forge Stars" /></a>
 </p>
 <hr/>
 
