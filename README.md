@@ -12,10 +12,17 @@
   <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/badge/follow-BHIS-1DA1F2?logo=twitter&style=flat-square" alt="BHIS Twitter" /></a>
 </p>
 <hr/>
-<h4>
-<a target="_blank" href="https://google.com" rel="dofollow"><strong>Explore the Docs</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://discord.com/invite/bhis" rel="dofollow"><strong>Community Help</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://google.com" rel="dofollow"><strong>Roadmap</strong></a>&nbsp;
-</h4>
+
+<div style="text-align: center;">
+  <h4>
+    <a target="_blank" href="https://google.com" rel="dofollow"><strong>Explore the Docs</strong></a>&nbsp;·&nbsp;
+    <a target="_blank" href="https://discord.com/invite/bhis" rel="dofollow"><strong>Community Help</strong></a>&nbsp;·&nbsp;
+    <a target="_blank" href="https://google.com" rel="dofollow"><strong>Roadmap</strong></a>
+  </h4>
+</div>
+
 <hr/>
+
 
 Wifi-Forge is the first ever wireless simulating tool that allows for you to interact with the wireless world without any hardware or Wifi. This allows you to practice attacks, research, and create and test new tooling in a controlled environment.
 
