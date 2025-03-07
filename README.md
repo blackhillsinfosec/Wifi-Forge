@@ -39,12 +39,82 @@ Wifi-Forge should work on any linux operating system using the docker image. The
 - Parrot OS
 - Ubuntu
 
-## Installation
+## Bring Your Own Tools (BYOT)
+If you install the tool from source the tools you may need may not be included with the Operating System you chose.
+The following tools will need to be installed to run through the labs and are up to the end user to install.
+### Tools Required
+- Wifiphisher
+- Wifite
+- Aircrack-ng
+- Bettercap
+- Hashcat
+- John
+- Airgeddon
+- iperf
+
+#### How to BYOT on Kali (Recommended OS)
+APT Packages
+```bash
+sudo apt install wifiphisher
+sudo apt install wifite
+sudo apt install aircrack-ng
+sudo apt install iperf
+sudo apt install bettercap
+sudo apt install john
+```
+Git Tools
+```bash
+git clone --depth 1 https://github.com/v1s1t0r1sh3r3/airgeddon.git
+cd airgeddon
+sudo bash airgeddon.sh
+```
+
+#### How to BYOT on Ubtuntu
+To install the tools on Ubuntu you will need to import the Kali Apt Repositories 
+```bash
+sudo sh -c "echo 'deb https://http.kali.org/kali kali-rolling main non-free contrib' > /etc/apt/sources.list.d/kali.list"
+sudo apt install gnupg -y
+wget 'https://archive.kali.org/archive-key.asc'
+sudo apt-key add archive-key.asc
+sudo sh -c "echo 'Package: *'>/etc/apt/preferences.d/kali.pref; echo 'Pin: release a=kali-rolling'>>/etc/apt/preferences.d/kali.pref; echo 'Pin-Priority: 50'>>/etc/apt/preferences.d/kali.pref"
+sudo apt update -y
+```
+APT Packages
+```bash
+sudo apt install -t kali-rolling wifiphisher -y
+sudo apt install -t kali-rolling wifite -y
+sudo apt install -t kali-rolling aircrack-ng -y
+sudo apt install -t kali-rolling iperf -y 
+sudo apt install -t kali-rolling bettercap -y
+sudo apt install -t kali-rolling john -y
+```
+Git Tools
+```bash
+git clone --depth 1 https://github.com/v1s1t0r1sh3r3/airgeddon.git
+cd airgeddon
+sudo bash airgeddon.sh
+```
+
+#### How to BYOT on Parrot
+APT Packages
+```bash
+sudo apt install wifiphisher
+sudo apt install wifite
+sudo apt install aircrack-ng
+sudo apt install iperf
+sudo apt install bettercap
+sudo apt install john
+```
+Git Tools
+```bash
+git clone --depth 1 https://github.com/v1s1t0r1sh3r3/airgeddon.git
+cd airgeddon
+sudo bash airgeddon.sh
+```
+
+## Installation Methods
 
 ### Docker (recommended)
-Note: Dockerfile will fail if mininet-wifi is already installed locally
-
-#### Install from release (best option)
 1. Pull image from dockerhub
 ```bash
 sudo docker pull redblackbird/wififorge:v2.0
@@ -62,41 +132,9 @@ service openvswitch-switch start
 cd /Wifi-Forge/Framework/
 sudo python3 WifiForge.py
 ```
-#### Build from Dockerfile
-1. Install Docker
-```bash
-sudo snap install docker
-```
-
-2. Clone the repository
-```bash
-git clone https://github.com/her3ticAVI/Wifi-Forge
-```
-
-3. Run the Dockerfile (may take up to 10 minutes)
-```bash
-sudo docker build -t wififorge .
-```
-
-4. Start a new container (command should automatically initiate a docker shell)
-```bash
-sudo docker run --privileged=true -it --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v /sys/:/sys -v /lib/modules/:/lib/modules/ --name mininet-wifi --network=host --hostname mininet-wifi wififorge /bin/bash
-```
-
-5. Within docker, initiate the controller to simulate APs
-```bash
-RUN service openvswitch-switch start
-```
-
-6. Within docker, run WifiForge.py
-```bash
-sudo python3 Framework/WifiForge.py
-```
 
 ### Build from Source
 NOTE: While the setup script is stable it is *highly* recommended to only use this install method within a virtual machine. The setup.sh script enables pip's "--break-system-packages," which may break packages important to your machine. 
-
-NOTE: The setup script does not install all the necessary tools to complete the labs - using a kali linux operating system will provide all the required tools. Otherwise, tools will have to be installed manually.
 
 1. Clone the repository
 ```bash
@@ -131,7 +169,7 @@ Intializing graphical interfaces as root between the docker image and host machi
 ```bash
 xhost si:localuser:root
 ```
-If other issues are encountered, start a thread in the issues section of the repo! :) 
+If other issues are encountered, start a thread in the issues section of the repo.
 
 ### Dockerfile stops at apt update!
 Once in a while, the dockerfile will fail before installing packages. Though unconfirmed, this error usually occurs after running Wifi-forge (either on baremetal or within a docker). Rebooting and running the Dockerfile again typically solves the issue. 
