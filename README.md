@@ -55,7 +55,7 @@ The following tools will need to be installed to run through the labs and are up
 - iperf
 
 #### How to BYOT on Kali (Recommended OS)
-APT Packages
+1. APT Packages
 ```bash
 sudo apt install wifiphisher
 sudo apt install wifite
@@ -64,7 +64,7 @@ sudo apt install iperf
 sudo apt install bettercap
 sudo apt install john
 ```
-Git Tools
+2. Git Tools
 ```bash
 git clone --depth 1 https://github.com/v1s1t0r1sh3r3/airgeddon.git
 cd airgeddon
@@ -72,7 +72,7 @@ sudo bash airgeddon.sh
 ```
 
 #### How to BYOT on Ubtuntu
-To install the tools on Ubuntu you will need to import the Kali Apt Repositories 
+1. To install the tools on Ubuntu you will need to import the Kali Apt Repositories 
 ```bash
 sudo sh -c "echo 'deb https://http.kali.org/kali kali-rolling main non-free contrib' > /etc/apt/sources.list.d/kali.list"
 sudo apt install gnupg -y
@@ -81,7 +81,7 @@ sudo apt-key add archive-key.asc
 sudo sh -c "echo 'Package: *'>/etc/apt/preferences.d/kali.pref; echo 'Pin: release a=kali-rolling'>>/etc/apt/preferences.d/kali.pref; echo 'Pin-Priority: 50'>>/etc/apt/preferences.d/kali.pref"
 sudo apt update -y
 ```
-APT Packages
+2. APT Packages
 ```bash
 sudo apt install -t kali-rolling wifiphisher -y
 sudo apt install -t kali-rolling wifite -y
@@ -90,7 +90,7 @@ sudo apt install -t kali-rolling iperf -y
 sudo apt install -t kali-rolling bettercap -y
 sudo apt install -t kali-rolling john -y
 ```
-Git Tools
+3. Git Tools
 ```bash
 git clone --depth 1 https://github.com/v1s1t0r1sh3r3/airgeddon.git
 cd airgeddon
@@ -98,7 +98,7 @@ sudo bash airgeddon.sh
 ```
 
 #### How to BYOT on Parrot
-APT Packages
+1. APT Packages
 ```bash
 sudo apt install wifiphisher
 sudo apt install wifite
@@ -107,7 +107,7 @@ sudo apt install iperf
 sudo apt install bettercap
 sudo apt install john
 ```
-Git Tools
+2. Git Tools
 ```bash
 git clone --depth 1 https://github.com/v1s1t0r1sh3r3/airgeddon.git
 cd airgeddon
