@@ -41,7 +41,7 @@ ascii_art = """
 def remove_old_variables():
 	ConfigMobLinks.aps = []
 	Mac80211Hwsim.hwsim_ids = []
-	os.system("mn -c")
+	os.system("mn -c > /dev/null 2>&1")
 
 # Function to import module and get the first function from it
 def import_module_and_get_function(file_path, module_name):
@@ -134,10 +134,12 @@ def main(stdscr):
 		elif key == curses.KEY_DOWN and current_row < len(menu)-1:
 			current_row += 1
 		elif key == curses.KEY_ENTER or key in [10, 13]:
+			sys.stdout = open(os.devnull, 'w')
 			with suspend_curses():
 				func = functions[file_names[current_row]][1]
 				func()
 				remove_old_variables()
+			sys.stdout = sys.__stdout__
 	
 		print_menu(stdscr, current_row)
 
