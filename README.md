@@ -165,7 +165,13 @@ If other issues are encountered, start a thread in the issues section of the rep
 ### Dockerfile stops at apt update!
 Once in a while, the dockerfile will fail before installing packages. Though unconfirmed, this error usually occurs after running Wifi-forge (either on baremetal or within a docker). Rebooting and running the Dockerfile again typically solves the issue. 
 
+<Details>
+<summary>
+  
 ## Links and Further Reading 
+
+</summary>
+
 - https://mininet-wifi.github.io/ 
 - [https://www.hackingarticles.in/wireless-penetration-testing-pmkid-attack/](https://www.hackingarticles.in/wireless-penetration-testing-pmkid-attack/)
 - [https://en.wikipedia.org/wiki/IEEE_802.11i-2004](https://en.wikipedia.org/wiki/IEEE_802.11i-2004)
@@ -178,4 +184,4 @@ Once in a while, the dockerfile will fail before installing packages. Though unc
 - [https://www.aircrack-ng.org/doku.php?id=cracking_wpa](https://www.aircrack-ng.org/doku.php?id=cracking_wpa)
 - [https://charlesreid1.com/wiki/Aircrack_and_John_the_Ripper](https://charlesreid1.com/wiki/Aircrack_and_John_the_Ripper)
 
-
+</details>
