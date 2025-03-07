@@ -185,3 +185,5 @@ Once in a while, the dockerfile will fail before installing packages. Though unc
 - [https://charlesreid1.com/wiki/Aircrack_and_John_the_Ripper](https://charlesreid1.com/wiki/Aircrack_and_John_the_Ripper)
 
 </details>
+
+Brought to you by Black Hills Infosec
