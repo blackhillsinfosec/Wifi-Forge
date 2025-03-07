@@ -31,7 +31,7 @@
 Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Based on the open source [Mininet-Wifi](https://github.com/intrig-unicamp/mininet-wifi/tree/master?tab=readme-ov-file), this project automatically sets up the networks and tools needed to run a variety of WiFi exploitation labs, removing the need for the overhead and hardware normally required to perform these attacks. 
 
 ## Disclaimer/Notes
-- The installation script will only run on Ubuntu, Debian, Fedora, or Kali. 
+- The installation script will only run on Ubuntu, Parrot, or Kali. 
 - It is suggested to run Wifi Forge on Ubuntu version 24.04 or the lastest version of Kali. 
 - The Wifi Forge installation script may disrupt normal operating system use, it is suggested to use a fresh install, virtual machine, or build using the provided dockerfile (see Set-Up Guide/Docker)
 
