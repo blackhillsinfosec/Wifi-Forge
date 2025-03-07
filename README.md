@@ -2,7 +2,15 @@
   <img src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/landpage.png" alt="Wi-Fi Forge Banner" width="700" height="700">
 </div>
 
-Note: WifiForge is an amalgamation of a bunch of tools that sometimes don't play nice. We've done our best to make setup as easy as possible, but you may still run into issues. Since we're always working to make this tool better, feel free to open an issue if you do run into any problems :) - it helps a lot! 
+<p align="left">
+  <a href="https://github.com/payloadcms/payload/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/payloadcms/payload/main.yml?style=flat-square"></a>
+  &nbsp;
+  <a href="https://discord.com/invite/bhis"><img alt="Discord" src="https://img.shields.io/discord/967097582721572934?label=Discord&color=7289da&style=flat-square" /></a>
+  &nbsp;
+  <a href="https://github.com/blackhillsinfosec/Wifi-Forge/graphs/contributors"><img alt="npm" src="https://img.shields.io/github/contributors-anon/blackhillsinfosec/Wifi-Forge?color=yellow&style=flat-square" /></a>
+  &nbsp;
+  <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/badge/follow-BHIS-1DA1F2?logo=twitter&style=flat-square" alt="BHIS Twitter" /></a>
+</p>
 
 # Wi-Fi Forge
 Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Based on the open source [Mininet-Wifi](https://github.com/intrig-unicamp/mininet-wifi/tree/master?tab=readme-ov-file), this project automatically sets up the networks and tools needed to run a variety of WiFi exploitation labs, removing the need for the overhead and hardware normally required to perform these attacks. 
