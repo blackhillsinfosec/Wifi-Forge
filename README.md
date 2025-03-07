@@ -1,4 +1,4 @@
-<a href="https://blackhillsinfosec.com"><img width="100%" src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/landpage.png" alt="Wifi Forge Logo" /></a>
+<a href="https://blackhillsinfosec.com"><img width="100%" src="https://github.com/her3ticAVI/MiniNet-Framework/blob/main/images/Wififorgev2logo.png alt="Wifi Forge Logo" /></a>
 <br />
 <br />
 
