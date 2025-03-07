@@ -3,7 +3,7 @@
 </div>
 
 <p align="left">
-  <a href="https://github.com/payloadcms/payload/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/payloadcms/payload/main.yml?style=flat-square"></a>
+  <a href="https://github.com/blackhillsinfosec/Wifi-Forge/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/blackhillsinfosec/Wifi-Forge/main.yml?style=flat-square"></a>
   &nbsp;
   <a href="https://discord.com/invite/bhis"><img alt="Discord" src="https://img.shields.io/discord/967097582721572934?label=Discord&color=7289da&style=flat-square" /></a>
   &nbsp;
