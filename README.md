@@ -17,7 +17,7 @@
 </h4>
 <hr/>
 > [!IMPORTANT]
-> 🎉 <strong>We've released 2.0!</strong> Star this repo or keep an eye on it to follow along. Please be aware this Tool is still in its infancy and should not be run on host machines.
+> 🎉 **We've released 3.0!** Star this repo or keep an eye on it to follow along
 
 Payload is the first-ever Next.js native CMS that can install directly in your existing `/app` folder. It's the start of a new era for headless CMS.
 
