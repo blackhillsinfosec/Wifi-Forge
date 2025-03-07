@@ -10,7 +10,7 @@
   <a href="https://github.com/blackhillsinfosec/Wifi-Forge/graphs/contributors"><img alt="npm" src="https://img.shields.io/github/contributors-anon/blackhillsinfosec/Wifi-Forge?color=yellow&style=flat-square" /></a>
   &nbsp;
   <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/badge/follow-BHIS-1DA1F2?logo=twitter&style=flat-square" alt="BHIS Twitter" /></a>
-    &nbsp;
+  &nbsp;
   <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/github/stars/blackhillsinfosec/Wifi-Forge?style=flat-square&color=rgb(255%2C218%2C185)" alt="Wifi Forge Stars" /></a>
 </p>
 <hr/>
@@ -19,8 +19,8 @@
   <h4>
     <a target="_blank" href="https://google.com" rel="dofollow"><strong>Explore the Docs</strong></a>&nbsp;·&nbsp;
     <a target="_blank" href="https://discord.com/invite/bhis" rel="dofollow"><strong>Community Help</strong></a>&nbsp;·&nbsp;
-    <a target="_blank" href="https://google.com" rel="dofollow"><strong>Roadmap</strong></a>
-    <a target="_blank" href="https://www.youtube.com/watch?v=lqvq3xH0qYM&t=8s" rel="dofollow"><strong>What is Wifi Forge?</strong></a>
+    <a target="_blank" href="https://google.com" rel="dofollow"><strong>Roadmap</strong></a>&nbsp;·&nbsp;
+    <a target="_blank" href="https://www.youtube.com/watch?v=lqvq3xH0qYM&t=8s" rel="dofollow"><strong>What is Wifi Forge?</strong></a>&nbsp;·&nbsp;
     <a target="_blank" href="https://www.blackhillsinfosec.com/wifi-forge/" rel="dofollow"><strong>Blog Post</strong></a>
   </h4>
 </div>
