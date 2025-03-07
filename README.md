@@ -16,10 +16,8 @@
 <a target="_blank" href="https://google.com" rel="dofollow"><strong>Explore the Docs</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://google.com" rel="dofollow"><strong>Community Help</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://google.com" rel="dofollow"><strong>Roadmap</strong></a>&nbsp;·&nbsp;<a target="_blank" href="https://google.com" rel="dofollow"><strong>View G2 Reviews</strong></a>
 </h4>
 <hr/>
-> [!IMPORTANT]
-> 🎉 **We've released 3.0!** Star this repo or keep an eye on it to follow along
 
-Payload is the first-ever Next.js native CMS that can install directly in your existing `/app` folder. It's the start of a new era for headless CMS.
+Wifi-Forge is the first ever wireless simulating tool that allows for you to interact with the wireless world without any hardware or Wifi. This allows you to practice attacks, research, and create and test new tooling in a controlled environment.
 
 # Wi-Fi Forge
 Wi-Fi Forge provides a safe and legal environment for learning WiFi hacking. Based on the open source [Mininet-Wifi](https://github.com/intrig-unicamp/mininet-wifi/tree/master?tab=readme-ov-file), this project automatically sets up the networks and tools needed to run a variety of WiFi exploitation labs, removing the need for the overhead and hardware normally required to perform these attacks. 
