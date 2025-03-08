@@ -41,6 +41,9 @@ Wifi-Forge should work on any linux operating system using the docker image. The
 - Parrot OS
 - Ubuntu
 
+## Installation
+<a target="_blank" href="https://wififorge.github.io/" rel="dofollow"><strong>Installation Documentation</strong></a>&nbsp;·&nbsp;
+
 ## Common Issues
 ### Xterm does not work!
 Intializing graphical interfaces as root between the docker image and host machine is restricted on most modern distributions. Run the following command to provide the appropriate permissions - 
