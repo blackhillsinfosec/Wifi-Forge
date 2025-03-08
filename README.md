@@ -42,7 +42,7 @@ Wifi-Forge should work on any linux operating system using the docker image. The
 - Ubuntu
 
 ## Installation
-<a target="_blank" href="https://wififorge.github.io/" rel="dofollow"><strong>Installation Documentation</strong></a>&nbsp;·&nbsp;
+<a target="_blank" href="https://wififorge.github.io/" rel="dofollow"><strong>Installation Documentation</strong></a>
 
 ## Common Issues
 ### Xterm does not work!
