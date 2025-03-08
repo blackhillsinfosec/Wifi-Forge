@@ -43,14 +43,13 @@ Wifi-Forge should work on any linux operating system using the docker image. The
 
 ## Installation
 <a target="_blank" href="https://wififorge.github.io/Installation/Installation" rel="dofollow"><strong>Installation Documentation</strong></a>
-
-<Details>
-<summary>
   
 ## Walkthroughs
 
 <a target="_blank" href="https://wififorge.github.io/Lab-Walkthroughs/0.-Getting-Started" rel="dofollow"><strong>Walkthroughs</strong></a>
 
+<Details>
+<summary>
 
 ## Common Issues
 
