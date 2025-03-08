@@ -119,11 +119,11 @@ sudo bash airgeddon.sh
 ### Docker (recommended)
 1. Pull image from dockerhub
 ```bash
-sudo docker pull redblackbird/wififorge:v2.0
+sudo docker pull redblackbird/wififorge:latest
 ```
 2. Start a new container
   ```bash
-  sudo docker run --privileged=true -it --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v /sys/:/sys -v /lib/modules/:/lib/modules/ --name mininet-wifi --network=host --hostname mininet-wifi redblackbird/wififorge:v2.0 /bin/bash
+  sudo docker run --privileged=true -it --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v /sys/:/sys -v /lib/modules/:/lib/modules/ --name mininet-wifi --network=host --hostname mininet-wifi redblackbird/wififorge:latest /bin/bash
   ```
 3. Within docker, initiate the controller to simulate APs
 ```bash
