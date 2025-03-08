@@ -60,9 +60,7 @@ If other issues are encountered, start a thread in the issues section of the rep
 
 ### Dockerfile stops at apt update!
 Once in a while, the dockerfile will fail before installing packages. Though unconfirmed, this error usually occurs after running Wifi-forge (either on baremetal or within a docker). Rebooting and running the Dockerfile again typically solves the issue. 
-
 </Details>
-
 <Details>
 <summary>
   
