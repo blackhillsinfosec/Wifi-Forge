@@ -98,35 +98,34 @@ def print_menu(stdscr, selected_row_index):
     #print the banner
 	minH = 34
 	minW = 148
-        if (h > minH and w > minW):
-                for index, line in enumerate(ascii_art.splitlines(), 2):
-                        x = w//2 - len(line)//2
-                        y = h//3 - len(ascii_art.splitlines())//2 + index
-                        stdscr.addstr(y, x, line)
+	if (h > minH and w > minW):
+		for index, line in enumerate(ascii_art.splitlines(), 2):
+			x = w//2 - len(line)//2
+			y = h//3 - len(ascii_art.splitlines())//2 + index
+			stdscr.addstr(y, x, line)
 
-                for index, row in enumerate(menu):
-                        x = w//2 - len(row)//2
-                        y = h//2 - (len(menu) - len(ascii_art.splitlines()))//2 + index
-                        if index == selected_row_index:
-                                stdscr.attron(curses.color_pair(1))
-                                stdscr.addstr(y, x, row)
-                                stdscr.attroff(curses.color_pair(1))
-                        else:
-                                stdscr.addstr(y, x, row)
-        elif (h <= minH or  w <= minW) and (h > 23 and w > 40):
-                for index, row in enumerate(menu):
-                        x = w//2 - len(row)//2
-                        y = h//2 - len(menu) + index
-                        if index == selected_row_index:
-                                stdscr.attron(curses.color_pair(1))
-                                stdscr.addstr(y, x, row)
-                                stdscr.attroff(curses.color_pair(1))
-                        else:
-                                stdscr.addstr(y, x, row)
-        else:
-                stdscr.addstr(0,0,"Window too small!")
-
-        stdscr.refresh()
+		for index, row in enumerate(menu):
+			x = w//2 - len(row)//2
+			y = h//2 - (len(menu) - len(ascii_art.splitlines()))//2 + index
+			if index == selected_row_index:
+				stdscr.attron(curses.color_pair(1))
+				stdscr.addstr(y, x, row)
+				stdscr.attroff(curses.color_pair(1))
+			else:
+				stdscr.addstr(y, x, row)
+	elif (h <= minH or  w <= minW) and (h > 23 and w > 40):
+		for index, row in enumerate(menu):
+			x = w//2 - len(row)//2
+			y = h//2 - len(menu) + index
+			if index == selected_row_index:
+				stdscr.attron(curses.color_pair(1))
+				stdscr.addstr(y, x, row)
+				stdscr.attroff(curses.color_pair(1))
+			else:
+				stdscr.addstr(y, x, row)
+	else:
+		stdscr.addstr(0,0,"Window too small!")
+	stdscr.refresh()
 
 
 def main(stdscr):
