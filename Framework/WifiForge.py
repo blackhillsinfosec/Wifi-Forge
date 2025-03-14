@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 import curses
 from curses import panel
 from subprocess import Popen, DEVNULL
