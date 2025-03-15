@@ -35,6 +35,7 @@ sudo -E python3 -m pip config set global.break-system-packages true  > /dev/null
 # Install Kali Tools
 echo -e "[${GREEN}+${RESET}] Installing Tools..."
 sudo apt update -y > /dev/null 2>&1
+sudo apt install ifupdown -y > /dev/null 2>&1
 sudo apt install pip -y > /dev/null 2>&1
 sudo apt install curl -y > /dev/null 2>&1
 sudo apt install aircrack-ng -y > /dev/null 2>&1
