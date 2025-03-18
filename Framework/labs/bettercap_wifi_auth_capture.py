@@ -64,6 +64,6 @@ def BETTERCAP_WIFI_AUTH_CAPTURE():
     ap4.start([])
 
     
-    CONFIG_TMUX(["a"], "BETTERCAP_AUTH_CAP")
+    CONFIG_TMUX(["Attacker"], "BETTERCAP_AUTH_CAP")
     net.stop()
     os.system("clear")
