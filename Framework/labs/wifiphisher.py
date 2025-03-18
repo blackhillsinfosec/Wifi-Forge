@@ -23,7 +23,7 @@ def WIFIPHISHER():
     net.build()
     ap.start([])
     
-    CONFIG_TMUX(["a", "host1"], "WIFIPHISHER")
+    CONFIG_TMUX(["Attacker", "host1"], "WIFIPHISHER")
 
     net.stop()
     os.system("ps aux | grep 'wifiphisher' | awk '{print $2}' | xargs -I {} kill -9 {}")
