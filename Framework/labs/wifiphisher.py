@@ -7,7 +7,7 @@ def WIFIPHISHER():
     net = Mininet_wifi()
 
     print('Creating Stations...')
-    attacker = net.addStation('a', wlans=2,passwd='december2022', encrypt='wpa2')
+    attacker = net.addStation('Attacker', wlans=2,passwd='december2022', encrypt='wpa2')
     host1 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
     host2 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
 
