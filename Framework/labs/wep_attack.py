@@ -15,7 +15,7 @@ def WEP_NETWORK():
     net = Mininet_wifi()
 
     print("Creating Stations...")
-    attacker = net.addStation('a', passwd='123456789a', encrypt='wep', wlans=2)
+    attacker = net.addStation('Attacker', passwd='123456789a', encrypt='wep', wlans=2)
     host1 = net.addStation('host1', passwd='123456789a', encrypt='wep')
     host2 = net.addStation('host2', passwd='123456789a', encrypt='wep')
     ap1 = net.addAccessPoint('ap1', ssid="WEP_NETWORK", mode="g", channel="6",
