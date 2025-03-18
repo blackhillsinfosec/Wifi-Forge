@@ -12,7 +12,7 @@ def EAPHAMMER_CRED_CAPTURE():
 	net = Mininet_wifi()
 
 	print("Creating Stations...")
-	host1 = net.addStation('a', passwd='JERRY277626AA', encrypt='wpa2', wlans=2)
+	host1 = net.addStation('Attacker', passwd='JERRY277626AA', encrypt='wpa2', wlans=2)
 	host2 = net.addStation('host1', passwd='JERRY277626AA', encrypt='wpa2', wlans=2)
 
 	print("Creating Access Point...")
