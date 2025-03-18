@@ -28,7 +28,7 @@ def WPS_NETWORK():
     attacker.cmd('iw dev a-wlan0 interface add mon0 type monitor')
     attacker.cmd('ip link set mon0 up')
 
-    CONFIG_TMUX(["a", "host1"], "WPS")
+    CONFIG_TMUX(["Attacker", "host1"], "WPS")
 
     net.stop()
     os.system("clear")
