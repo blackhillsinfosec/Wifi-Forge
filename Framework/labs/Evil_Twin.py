@@ -26,7 +26,7 @@ def EAPHAMMER_CRED_CAPTURE():
 	net.build()
 	ap1.start([])
 
-	CONFIG_TMUX(["a"], "EVIL_TWIN")
+	CONFIG_TMUX(["Attacker"], "EVIL_TWIN")
 
 	net.stop()
 	os.system("clear")
