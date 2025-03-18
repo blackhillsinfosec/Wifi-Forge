@@ -61,7 +61,7 @@ def CRACKING_WPA_WITH_AIRCRACK():
     ap3.start([])
     ap4.start([])
     
-    CONFIG_TMUX(["a"], "WPA_CRACK")
+    CONFIG_TMUX(["Attacker"], "WPA_CRACK")
 
     net.stop()
     os.system("clear")
