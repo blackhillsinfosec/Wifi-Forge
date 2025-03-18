@@ -26,7 +26,7 @@ def NTLM_CRACK_WITH_JOHN():
 	net.build()
 	ap1.start([])
 
-	CONFIG_TMUX(["a"], "NTLM_JOHN_CRACK")
+	CONFIG_TMUX(["Attacker"], "NTLM_JOHN_CRACK")
 
 	net.stop()
 	os.system("rm /Wifi-Forge/Framework/loot/4whs.pot")
