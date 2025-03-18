@@ -6,7 +6,7 @@ def CRACKING_WPA_WITH_AIRCRACK():
     net = Mininet_wifi()
 
     print('Creating Stations')
-    attacker = net.addStation('a', wlans=1)
+    attacker = net.addStation('Attacker', wlans=1)
 
     #secure_wifi
     host1 = net.addStation('host1', passwd='123456789a', encrypt='wep')
