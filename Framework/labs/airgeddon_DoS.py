@@ -63,7 +63,7 @@ def Airgeddon_DoS():
     ap2.start([])
     ap3.start([])
 
-    CONFIG_TMUX(["a"], "BETTERCAP")
+    CONFIG_TMUX(["Attacker"], "BETTERCAP")
     
     net.stop()
     os.system("clear")
