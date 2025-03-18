@@ -7,7 +7,7 @@ def WPS_NETWORK():
     net = Mininet_wifi()
 
     print("Creating Stations...")
-    attacker = net.addStation('a', encrypt='wpa2')
+    attacker = net.addStation('Attacker', encrypt='wpa2')
     host1 = net.addStation('host1', encrypt='wpa2')
     
     print('Creating the Access Point...')
