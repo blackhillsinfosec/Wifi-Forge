@@ -32,7 +32,7 @@ def WEP_NETWORK():
     net.build()
     ap1.start([])
     
-    CONFIG_TMUX(['a', 'host1', 'host2'], "WEP_ATTACK")
+    CONFIG_TMUX(['Attacker', 'host1', 'host2'], "WEP_ATTACK")
 
     #KILL LAB
     os.system('clear')
