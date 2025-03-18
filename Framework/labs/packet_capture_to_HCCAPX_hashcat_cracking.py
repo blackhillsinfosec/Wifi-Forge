@@ -63,7 +63,7 @@ def PACKET_CAPTURE_HCCAPX_AND_HASHCAT():
     ap3.start([])
     ap4.start([])
     
-    CONFIG_TMUX(["a", "host_machine"], "HCCAPX_HASHCAT")
+    CONFIG_TMUX(["Attacker", "host_machine"], "HCCAPX_HASHCAT")
     
     net.stop()
     os.system("clear")
