@@ -9,7 +9,7 @@ def Airgeddon_DoS():
     net = Mininet_wifi()
 
     print('Creating Stations')
-    attacker = net.addStation('a', wlans=2)
+    attacker = net.addStation('Attacker', wlans=2)
 
     #secure_wifi
     host1 = net.addStation('host1', passwd='123456789a', encrypt='wep')
