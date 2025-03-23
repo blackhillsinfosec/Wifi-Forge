@@ -53,20 +53,7 @@ Wifi-Forge should work on any linux operating system using the docker image. The
 
 ## Common Issues
 
-</summary>
-
-### Xterm does not work!
-Intializing graphical interfaces as root between the docker image and host machine is restricted on most modern distributions. Run the following command to provide the appropriate permissions - 
-```bash
-xhost si:localuser:root
-```
-If other issues are encountered, start a thread in the issues section of the repo.
-
-### Dockerfile stops at apt update!
-Once in a while, the dockerfile will fail before installing packages. Though unconfirmed, this error usually occurs after running Wifi-forge (either on baremetal or within a docker). Rebooting and running the Dockerfile again typically solves the issue. 
-</Details>
-<Details>
-<summary>
+<a target="_blank" href="https://wififorge.github.io/Documentation/Common-Issues" rel="dofollow"><strong>Common Issues</strong></a>
   
 ## Links and Further Reading 
 
