@@ -63,7 +63,7 @@ def BETTERCAP_RECON():
     ap3.start([])
     ap4.start([])
     
-    CONFIG_TMUX("Attacker", "BETTERCAP")
+    CONFIG_TMUX(["Attacker"], "BETTERCAP")
 
     net.stop()
     os.system("clear")
