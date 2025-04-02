@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Disable immediate exit so we can handle errors properly
+set +e
+
 # Color codes for formatting
 RED='\033[91m'
 GREEN='\033[92m'
@@ -11,7 +14,6 @@ RESET='\033[0m'
 cwd=$(pwd)
 
 # Format the string to only include the path to the repo's main file
-# The exact path is needed to add to the safe.repositories file
 index=$(echo "$cwd" | awk -F'/MiniNet-Framework' '{print length($1)+length("/MiniNet-Framework")}')
 truncated_cwd=$(echo "$cwd" | cut -c 1-"$index")
 
@@ -21,46 +23,52 @@ echo_spinner() {
     local message=$2
     local symbols=("+" "x")
     echo -ne "[${GREEN}+${RESET}] $message"
+    
     while kill -0 $pid 2>/dev/null; do
         for symbol in "${symbols[@]}"; do
             echo -ne "\r[${GREEN}${symbol}${RESET}] $message"
             sleep 0.5
         done
     done
-    echo -e "\r[${GREEN}✔${RESET}] $message    "
+
+    wait $pid
+    exit_code=$?
+    if [ $exit_code -ne 0 ]; then
+        echo -e "\r[${RED}✖${RESET}] $message (Failed)"
+        exit 1
+    else
+        echo -e "\r[${GREEN}✔${RESET}] $message    "
+    fi
+}
+
+# Run a command with error detection
+run_command() {
+    ($1 > /dev/null 2>&1) &
+    local pid=$!
+    echo_spinner $pid "$2"
 }
 
 # Adding Submodules to safe.directory
-(git config --global --add safe.directory "$truncated_cwd" > /dev/null 2>&1) &
-echo_spinner $! "Adding Submodules to safe.directory..."
+run_command "git config --global --add safe.directory \"$truncated_cwd\"" "Adding Submodules to safe.directory..."
 
 # Initialize Submodules
-(git submodule init > /dev/null 2>&1) &
-echo_spinner $! "Initializing Submodules..."
+run_command "git submodule init" "Initializing Submodules..."
 
 # Update Submodules
-(git submodule update > /dev/null 2>&1) &
-echo_spinner $! "Updating Submodules..."
+run_command "git submodule update" "Updating Submodules..."
 
 # Set global pip variable to break system packages
-(sudo -E python3 -m pip config set global.break-system-packages true > /dev/null 2>&1) &
-echo_spinner $! "Configuring pip..."
+run_command "sudo -E python3 -m pip config set global.break-system-packages true" "Configuring pip..."
 
 # Install Kali Tools
-(sudo apt update -y > /dev/null 2>&1) &
-echo_spinner $! "Updating package list..."
-
-(sudo apt install -y ifupdown pip curl aircrack-ng john dsniff tmux > /dev/null 2>&1) &
-echo_spinner $! "Installing required tools..."
+run_command "sudo apt update -y" "Updating package list..."
+run_command "sudo apt install -y ifupdown pip curl aircrack-ng john dsniff tmux" "Installing required tools..."
 
 # Install Mininet
-(sudo apt install -y mininet --allow-downgrades > /dev/null 2>&1) &
-echo_spinner $! "Installing Mininet..."
+run_command "sudo apt install -y mininet --allow-downgrades" "Installing Mininet..."
 
 # Run Install Script
-(../mininet-wifi/util/install.sh -Wlnf > /dev/null 2>&1) &
-echo_spinner $! "Running Install Script..."
+run_command "../mininet-wifi/util/install.sh -Wlnf" "Running Install Script..."
 
 # Compile
-(sudo make install > /dev/null 2>&1) &
-echo_spinner $! "Compiling..."
+run_command "sudo make install" "Compiling..."
