@@ -15,53 +15,52 @@ cwd=$(pwd)
 index=$(echo "$cwd" | awk -F'/MiniNet-Framework' '{print length($1)+length("/MiniNet-Framework")}')
 truncated_cwd=$(echo "$cwd" | cut -c 1-"$index")
 
-# Change the config file to trust the submodule
+# Function for animated spinner
+echo_spinner() {
+    local pid=$1
+    local message=$2
+    local symbols=("+" "x")
+    echo -ne "[${GREEN}+${RESET}] $message"
+    while kill -0 $pid 2>/dev/null; do
+        for symbol in "${symbols[@]}"; do
+            echo -ne "\r[${GREEN}${symbol}${RESET}] $message"
+            sleep 0.5
+        done
+    done
+    echo -e "\r[${GREEN}✔${RESET}] $message    "
+}
 
 # Adding Submodules to safe.directory
-echo -e "[${GREEN}+${RESET}] Adding Submodules to safe.directory..."
-git config --global --add safe.directory "$truncated_cwd" > /dev/null 2>&1
+(git config --global --add safe.directory "$truncated_cwd" > /dev/null 2>&1) &
+echo_spinner $! "Adding Submodules to safe.directory..."
 
 # Initialize Submodules
-echo -e "[${GREEN}+${RESET}] Initializing Submodules..."
-git submodule init > /dev/null 2>&1
+(git submodule init > /dev/null 2>&1) &
+echo_spinner $! "Initializing Submodules..."
 
 # Update Submodules
-git submodule update > /dev/null 2>&1
+(git submodule update > /dev/null 2>&1) &
+echo_spinner $! "Updating Submodules..."
 
-#set global pip variable break system packages to true
-sudo -E python3 -m pip config set global.break-system-packages true  > /dev/null 2>&1
-
+# Set global pip variable to break system packages
+(sudo -E python3 -m pip config set global.break-system-packages true > /dev/null 2>&1) &
+echo_spinner $! "Configuring pip..."
 
 # Install Kali Tools
-echo -e "[${GREEN}+${RESET}] Installing Tools..."
-sudo apt update -y > /dev/null 2>&1
-sudo apt install ifupdown -y > /dev/null 2>&1
-sudo apt install pip -y > /dev/null 2>&1
-sudo apt install curl -y > /dev/null 2>&1
-sudo apt install aircrack-ng -y > /dev/null 2>&1
-sudo apt install john -y > /dev/null 2>&1
-sudo apt install dsniff -y > /dev/null 2>&1
-sudo apt install tmux -y > /dev/null 2>&1
+(sudo apt update -y > /dev/null 2>&1) &
+echo_spinner $! "Updating package list..."
+
+(sudo apt install -y ifupdown pip curl aircrack-ng john dsniff tmux > /dev/null 2>&1) &
+echo_spinner $! "Installing required tools..."
 
 # Install Mininet
-echo -e "[${GREEN}+${RESET}] Installing Mininet..."
-sudo apt install mininet -y --allow-downgrades > /dev/null 2>&1
-
+(sudo apt install -y mininet --allow-downgrades > /dev/null 2>&1) &
+echo_spinner $! "Installing Mininet..."
 
 # Run Install Script
-echo -e "[${GREEN}+${RESET}] Running Install Script..."
-../mininet-wifi/util/install.sh -Wlnf > /dev/null 2>&1
+(../mininet-wifi/util/install.sh -Wlnf > /dev/null 2>&1) &
+echo_spinner $! "Running Install Script..."
 
 # Compile
-echo -e "[${GREEN}+${RESET}] Compiling..."
-sudo make install > /dev/null 2>&1
-
-sudo -E pip install -r requirements.txt --break-system-packages > /dev/null 2>&1
-
-
-# Install openvswitch-testcontroller
-echo -e "[${GREEN}+${RESET}] Installing openvswitch-testcontroller..."
-sudo apt install openvswitch-testcontroller -y > /dev/null 2>&1
-sudo ln /usr/bin/ovs-testcontroller /usr/bin/controller > /dev/null 2>&1
-sudo service openvswitch-switch start  > /dev/null 2>&1
-sudo cp ./main_menu /bin  > /dev/null 2>&1
+(sudo make install > /dev/null 2>&1) &
+echo_spinner $! "Compiling..."
