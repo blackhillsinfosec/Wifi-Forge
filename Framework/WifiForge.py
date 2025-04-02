@@ -130,7 +130,7 @@ def print_menu(stdscr, selected_row_index):
 			else:
 				stdscr.addstr(y, x, row)
 	else:
-		stdscr.addstr(0,0,"Window too small!")
+		stdscr.addstr(0,0,"The Terminal is too small, please enlarge to continue!")
 	stdscr.refresh()
 
 
