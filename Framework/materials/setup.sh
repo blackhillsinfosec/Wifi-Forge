@@ -35,7 +35,6 @@ echo_spinner() {
     exit_code=$?
     if [ $exit_code -ne 0 ]; then
         echo -e "\r[${RED}✖${RESET}] $message (Failed)"
-        exit 1
     else
         echo -e "\r[${GREEN}✔${RESET}] $message    "
     fi
@@ -72,3 +71,5 @@ run_command "../mininet-wifi/util/install.sh -Wlnf" "Running Install Script..."
 
 # Compile
 run_command "sudo make install" "Compiling..."
+
+cd .. && sudo python3 WifiForge.py
