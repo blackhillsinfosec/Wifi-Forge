@@ -72,4 +72,7 @@ run_command "../mininet-wifi/util/install.sh -Wlnf" "Running Install Script..."
 # Compile
 run_command "sudo make install" "Compiling..."
 
+run_command "sudo ln -s ../WifiForge.py /usr/local/bin/wififorge" "Adding wififorge to PATH..."
+run_command "sudo chmod +x /usr/local/bin/wififorge" "Adding Execute Privileges to wififorge..."
+
 cd .. && sudo python3 WifiForge.py
