@@ -154,6 +154,7 @@ def main(stdscr):
 		elif key == curses.KEY_DOWN and current_row < len(menu)-1:
 			current_row += 1
 		elif key == curses.KEY_ENTER or key in [10, 13]:
+			os.system("clear")
 			sys.stdout = open(os.devnull, 'w')
 			with suspend_curses():
 				func = functions[file_names[current_row]][1]
