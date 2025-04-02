@@ -1,8 +1,7 @@
 from mininet.log import setLogLevel, info
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
-
-from helper_functions.CONNECT_TMUX import CONFIG_TMUX
+from Framework.helper_functions.CONNECT_TMUX import CONFIG_TMUX
 from time import sleep
 from WifiForge import print_banner
 import os
