@@ -32,7 +32,11 @@ def CONFIG_TMUX(nodes, lab_name):
                 session.cmd("select-pane", "-t", index, "-T", "host_machine")
             else:
                 process_id = check_output(["ps aux | grep -G 'mininet:"+nodes[index]+"' | grep -v 'grep' | grep -v 'ap' | awk '{print $2}'"], shell=True).decode("utf-8")
-                subprocess.Popen(["tmux", "send-keys", "-t", f"{session_name}:0.{index}", f"exec sudo nsenter -t {process_id.rstrip()} -m -u -i -n -p bash", "C-m"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                subprocess.Popen(
+                    ["tmux", "send-keys", "-t", f"{session_name}:0.{index}", 
+                    f"sudo nsenter -t {process_id.rstrip()} -m -u -i -n -p bash -c 'clear; exec bash'", "C-m"],
+                    stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                )
                 session.cmd("select-pane", "-t", index, "-T", nodes[index])
 
         #let the user click; make it look nice
