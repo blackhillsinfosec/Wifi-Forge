@@ -7,7 +7,7 @@ Estbalish an environment for learning WEP attacks
 See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 '''
 
-def NTLM_CRACK_WITH_JOHN():
+def NTLM_JOHN_CRACK():
 	net = Mininet_wifi()
 
 	print("Creating Stations...")

@@ -8,7 +8,7 @@ Estbalish an environment for learning WEP attacks
 See original script here: https://hackmd.io/@ramonfontes/cracking_wep
 '''
 
-def EAPHAMMER_CRED_CAPTURE():
+def EVIL_TWIN():
 	net = Mininet_wifi()
 
 	print("Creating Stations...")

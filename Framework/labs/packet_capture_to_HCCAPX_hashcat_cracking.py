@@ -4,7 +4,7 @@ from mn_wifi.net import Mininet_wifi
 from Framework.helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 
-def PACKET_CAPTURE_HCCAPX_AND_HASHCAT():
+def PACKET_CAPTURE_TO_HCCAPX_HASHCAT_CRACKING():
     net = Mininet_wifi()
 
     print('Creating Stations')

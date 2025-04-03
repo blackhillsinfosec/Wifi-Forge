@@ -3,7 +3,7 @@ from mn_wifi.net import Mininet_wifi
 from Framework.helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 
-def WPS_NETWORK():
+def WPS_PIXIE_DUST_ATTACK():
     net = Mininet_wifi()
 
     print("Creating Stations...")

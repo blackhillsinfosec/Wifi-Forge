@@ -6,7 +6,7 @@ from time import sleep
 from WifiForge import print_banner
 import os
 
-def WEP_NETWORK():
+def WEP_ATTACK():
 
     # BUILD NETWORK 
 
