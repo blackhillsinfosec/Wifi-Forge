@@ -3,7 +3,7 @@
 
   # `WifiForge`
 
-  <a href="https://github.com/blackhillsinfosec/Wifi-Forge/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/blackhillsinfosec/Wifi-Forge/.github%2Fworkflows%2Fpython-app.yml?style=flat-square"></a>
+  <a href="https://github.com/blackhillsinfosec/Wifi-Forge/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/blackhillsinfosec/Wifi-Forge/.github%2Fworkflows%2Fpython-app.yml?style=flat-square"></a> 
   &nbsp;
   <a href="https://discord.com/invite/bhis"><img alt="Discord" src="https://img.shields.io/discord/967097582721572934?label=Discord&color=7289da&style=flat-square" /></a>
   &nbsp;
