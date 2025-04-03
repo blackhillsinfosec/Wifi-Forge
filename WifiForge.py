@@ -109,8 +109,6 @@ def main():
                 exit(0)
 
 os.system("clear")
-print("Thanks for using WifiForge, goodbye! :)")
-
 
 if __name__ == "__main__":
     main()
