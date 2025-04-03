@@ -11,7 +11,6 @@
   &nbsp;
   <a href="https://x.com/BHinfoSecurity"><img src="https://img.shields.io/github/stars/blackhillsinfosec/Wifi-Forge?style=flat-square&color=rgb(255%2C218%2C185)" alt="Wifi Forge Stars" /></a>
 </p>
-<hr/>
 
 <div style="text-align: center;">
   <h4>
@@ -22,8 +21,6 @@
     <a target="_blank" href="https://www.blackhillsinfosec.com/wifi-forge/" rel="dofollow"><strong>Blog Post</strong></a>
   </h4>
 </div>
-
-<hr/>
 
 ## What is WifiForge
 Wifi Forge provides a safe and legal environment for learning WiFi hacking. Based on the open source [Mininet-Wifi](https://github.com/intrig-unicamp/mininet-wifi/tree/master?tab=readme-ov-file), this project automatically sets up the networks and tools needed to run a variety of WiFi exploitation labs, removing the need for the overhead and hardware normally required to perform these attacks. 
