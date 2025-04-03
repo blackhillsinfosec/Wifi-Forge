@@ -51,11 +51,13 @@ Wifi-Forge should work on any linux operating system using the docker image. The
 ## Common Issues
 
 <a target="_blank" href="https://wififorge.github.io/Documentation/Common-Issues" rel="dofollow"><strong>Common Issues</strong></a>
+
+<summary>
   
 ## Links and Further Reading 
 
 </summary>
-
+<details>
 - https://mininet-wifi.github.io/ 
 - [https://www.hackingarticles.in/wireless-penetration-testing-pmkid-attack/](https://www.hackingarticles.in/wireless-penetration-testing-pmkid-attack/)
 - [https://en.wikipedia.org/wiki/IEEE_802.11i-2004](https://en.wikipedia.org/wiki/IEEE_802.11i-2004)
