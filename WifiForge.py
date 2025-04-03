@@ -8,7 +8,7 @@ from mn_wifi.mobility import Mobility, ConfigMobLinks
 from mn_wifi.module import Mac80211Hwsim
 
 def print_banner():
-    print("  ")
+	print("  ")
 
 ascii_art = """
                                   ██████████                                  
@@ -94,6 +94,7 @@ def main():
         while True:
             print_menu(term, current_row)
             key = term.inkey()
+            
             if key.code == term.KEY_UP and current_row > 0:
                 current_row -= 1
             elif key.code == term.KEY_DOWN and current_row < len(menu) - 1:
@@ -104,6 +105,12 @@ def main():
                 functions[file_names[current_row]][1]()
                 remove_old_variables()
                 sys.stdout = sys.__stdout__
+            elif key.lower() == 'q':
+                exit(0)
+
+os.system("clear")
+print("Thanks for using WifiForge, goodbye! :)")
+
 
 if __name__ == "__main__":
     main()
