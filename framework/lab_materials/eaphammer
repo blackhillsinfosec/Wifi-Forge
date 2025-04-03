@@ -123,10 +123,10 @@ for i in tqdm(range(int(9e6))):
 print("\n\n")
 print("[*] Success: a-wlan0 no longer controlled by NetworkManager")
 
-message = print_file_names(f"[*] WPA handshakes will be saved to /Wifi-Forge/Framework/loot/wpa_handshake_capture")
+message = print_file_names(f"[*] WPA handshakes will be saved to /Wifi-Forge/framework/loot/wpa_handshake_capture")
 message = message[35:]
 print(message)
-print_file_names(f"Configuration file: /Wifi-Forge/Framework/loot/wpa_handshake_capture")
+print_file_names(f"Configuration file: /Wifi-Forge/framework/loot/wpa_handshake_capture")
 
 print("\n\n[hostapd] AP starting...\n\n")
 time.sleep(random.randint(1,4))

@@ -1,7 +1,7 @@
 from mininet.net import Mininet
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
-from Framework.helper_functions.CONNECT_TMUX import CONFIG_TMUX
+from framework.helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 '''
 Estbalish an environment for learning WEP attacks

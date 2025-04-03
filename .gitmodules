@@ -1,3 +1,3 @@
-[submodule "Framework/mininet-wifi"]
-	path = Framework/mininet-wifi
+[submodule "framework/mininet-wifi"]
+	path = framework/mininet-wifi
 	url = https://github.com/JsphByd/mininet-wifi.git

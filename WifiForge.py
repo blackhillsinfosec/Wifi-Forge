@@ -64,7 +64,7 @@ def load_functions_from_py_files(directory):
                 function_dict[filename] = (function_name, function)
     return function_dict
 
-directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "Framework", "labs")
+directory = os.path.join(os.path.dirname(os.path.realpath(__file__)), "framework", "labs")
 functions = load_functions_from_py_files(directory)
 file_names = list(functions.keys())
 menu = [file.replace("_", " ").title()[:-3] for file in file_names]

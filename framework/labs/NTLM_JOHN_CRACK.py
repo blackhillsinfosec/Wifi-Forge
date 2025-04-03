@@ -1,6 +1,6 @@
 from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
-from Framework.helper_functions.CONNECT_TMUX import CONFIG_TMUX
+from framework.helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 '''
 Estbalish an environment for learning WEP attacks
@@ -29,7 +29,7 @@ def NTLM_JOHN_CRACK():
 	CONFIG_TMUX(["Attacker"], "NTLM_JOHN_CRACK")
 
 	net.stop()
-	os.system("rm /Wifi-Forge/Framework/loot/4whs.pot")
+	os.system("rm /Wifi-Forge/framework/loot/4whs.pot")
 	os.system("clear")
 
 

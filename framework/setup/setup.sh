@@ -14,7 +14,7 @@ RESET='\033[0m'
 cwd=$(pwd)
 
 # Format the string to only include the path to the repo's main file
-index=$(echo "$cwd" | awk -F'/MiniNet-Framework' '{print length($1)+length("/MiniNet-Framework")}')
+index=$(echo "$cwd" | awk -F'/MiniNet-framework' '{print length($1)+length("/MiniNet-framework")}')
 truncated_cwd=$(echo "$cwd" | cut -c 1-"$index")
 
 # Function for animated spinner

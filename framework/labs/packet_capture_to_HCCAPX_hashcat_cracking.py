@@ -1,8 +1,10 @@
+from mininet.node import Controller
+from mn_wifi.cli import CLI
 from mn_wifi.net import Mininet_wifi
-from Framework.helper_functions.CONNECT_TMUX import CONFIG_TMUX
+from framework.helper_functions.CONNECT_TMUX import CONFIG_TMUX
 import os
 
-def CRACKING_WPA_WITH_AIRCRACK():
+def PACKET_CAPTURE_TO_HCCAPX_HASHCAT_CRACKING():
     net = Mininet_wifi()
 
     print('Creating Stations')
@@ -15,8 +17,8 @@ def CRACKING_WPA_WITH_AIRCRACK():
                              passwd='123456789a', encrypt='wep',
                              failMode="standalone", datapath='user')
     #WPA-LAB
-    host3 = net.addStation('host1', passwd='december2022', encrypt='wpa2')
-    host4 = net.addStation('host2', passwd='december2022', encrypt='wpa2')
+    host3 = net.addStation('host3', passwd='december2022', encrypt='wpa2')
+    host4 = net.addStation('host4', passwd='december2022', encrypt='wpa2')
     ap1 = net.addAccessPoint('ap1', ssid='WPA2_Network', passwd='december2022', encrypt='wpa2', mode='g', channel='6')
 
 
@@ -61,7 +63,7 @@ def CRACKING_WPA_WITH_AIRCRACK():
     ap3.start([])
     ap4.start([])
     
-    CONFIG_TMUX(["Attacker"], "WPA_CRACK")
-
+    CONFIG_TMUX(["Attacker", "host_machine"], "HCCAPX_HASHCAT")
+    
     net.stop()
     os.system("clear")
