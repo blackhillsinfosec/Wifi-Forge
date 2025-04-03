@@ -27,7 +27,7 @@
   </h4>
 </div>
 
-<a href="https://blackhillsinfosec.com"><img width="100%" src="https://github.com/her3ticAVI/MiniNet-framework/blob/main/images/wififorge-running.png" alt="Wifi Forge Running" /></a>
+<a href="https://blackhillsinfosec.com"><img width="75%" height="75%" src="https://github.com/her3ticAVI/MiniNet-framework/blob/main/images/wififorge-running.png" alt="Wifi Forge Running" /></a>
 
 ## Disclaimer/Notes
 
