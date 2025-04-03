@@ -28,17 +28,20 @@
 </div>
 
 ## Disclaimer/Notes
+
 The installation script will only run on Ubuntu, Parrot, or Kali. 
 It is suggested to run Wifi Forge on Ubuntu version 24.04 or the lastest version of Kali. 
 The Wifi Forge installation script may disrupt normal operating system use, it is suggested to use a fresh install, virtual machine, or build using the provided dockerfile (see Set-Up Guide/Docker)
 
 ## Compatibility
+
 Wifi-Forge should work on any linux operating system using the docker image. The following Operating Systems have been tested and are confirmed to work.
 Kali Linux 
 Parrot OS
 Ubuntu
 
 ## Installation
+
 <a target="_blank" href="https://wififorge.github.io/Installation/Installation" rel="dofollow"><strong>Installation Documentation</strong></a>
   
 ## Walkthroughs
